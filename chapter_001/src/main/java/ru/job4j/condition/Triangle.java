@@ -62,14 +62,6 @@ public class Triangle {
      * @return
      */
     private boolean exist(double ab, double ac, double bc) {
-        if (ab > ac + bc) {
-            return false;
-        } else if (ac > ab + bc) {
-            return false;
-        } else if (bc > ab + ac) {
-            return false;
-        } else {
-            return true;
-        }
+        return ab > ac + bc || ac > ab + bc || bc > ab + ac ? false : true;
     }
 }
