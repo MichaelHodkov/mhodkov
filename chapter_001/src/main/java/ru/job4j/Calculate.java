@@ -1,23 +1,56 @@
 package ru.job4j;
 /**
-* Class Класс для выводы строки на консоль.
+* Class Элементарный калькулятор.
 * @author Michael Hodkov
 */
 public class Calculate {
+
 	/**
-	* Method echo.
-	* @param name Your name.
-	* @return Echo plus your name.
-	*/
-	public String echo(String name) {
-		return "Echo, echo, echo : " + name;
+	 * Переменная для хранения результата вычислений.
+	 */
+	private double result;
+
+	/**
+	 * Method Сложения.
+	 * @param first
+	 * @param second
+	 */
+	public void add(double first, double second) {
+		this.result = first + second;
 	}
-	
+
 	/**
-	* Конструктор, вывод строки в консоль.
-	* @param args - args
-	*/
-	public static void main(String[] args) {
-		System.out.println("Hello world.");
+	 * Method Вычитания.
+	 * @param first
+	 * @param second
+	 */
+	public void subtract(double first, double second) {
+		this.result = first - second;
+	}
+
+	/**
+	 * Method Деления.
+	 * @param first
+	 * @param second
+	 */
+	public void div(double first, double second) {
+		this.result = first / second;
+	}
+
+	/**
+	 * Method Умножения.
+	 * @param first
+	 * @param second
+	 */
+	public void multiple(double first, double second) {
+		this.result = first * second;
+	}
+
+	/**
+	 * Method возвращает значение переменной result.
+	 * @return result.
+	 */
+	public double getResult() {
+		return this.result;
 	}
 }
