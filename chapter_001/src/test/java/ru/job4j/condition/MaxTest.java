@@ -17,4 +17,11 @@ public class MaxTest {
         int result = maxim.max(3, 7);
         assertThat(result, is(7));
     }
+
+    @Test
+    public void whenMaxFirstSecondOrThird() {
+        Max maxim = new Max();
+        int result = maxim.max(3, 7, 10);
+        assertThat(result, is(10));
+    }
 }
