@@ -27,7 +27,8 @@ public class Board {
                 }
             }
             // добавляем перевод на новую строку.
-            screen.append(ln);
+            final String line = System.getProperty("line.separator");
+            screen.append(line);
         }
         return screen.toString();
     };
