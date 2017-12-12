@@ -10,7 +10,7 @@ public class Factorial {
     /**
      * Метод рассчитывает факториал для числа n;
      * @param n
-     * @return
+     * @return произвидение чисел.
      */
     public int calc(int n) {
         int sum = 1;
