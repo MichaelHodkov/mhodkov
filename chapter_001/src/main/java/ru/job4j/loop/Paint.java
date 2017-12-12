@@ -1,5 +1,6 @@
 package ru.job4j.loop;
 
+import java.util.function.BiPredicate;
 /**
  * @author Michael Hodkov
  * @version $Id$
@@ -9,25 +10,55 @@ public class Paint {
 
     /**
      * Метод рисует пирамиду из символа ^ и пробелов.
-     * @param h - высота пирамиды.
+     * @param height - высота пирамиды.
      * @return строка с нарисованной пирамидой.
      */
-    public String piramid(int h) {
+    public String piramid(int height) {
+        return this.loopBy(
+                height,
+                2 * height - 1,
+                (row, column) -> row >= height - column - 1 && row + height - 1 >= column
+        );
+    }
+
+    private String loopBy(int height, int weight, BiPredicate<Integer, Integer> predict) {
         StringBuilder screen = new StringBuilder();
-        if (h > 0) {
-            int weight = 2 * h - 1;
-            for (int row = 0; row != h; row++) {
-                for (int column = 0; column != weight; column++) {
-                    if (row >= h - column - 1 && row + h - 1 >= column) {
-                        screen.append("^");
-                    } else {
-                        screen.append(" ");
-                    }
+        for (int row = 0; row != height; row++) {
+            for (int column = 0; column != weight; column++) {
+                if (predict.test(row, column)) {
+                    screen.append("^");
+                } else {
+                    screen.append(" ");
                 }
-                final String line = System.getProperty("line.separator");
-                screen.append(line);
             }
+            screen.append(System.lineSeparator());
         }
         return screen.toString();
-    };
+    }
+
+    /**
+     * Метод рисует правую половину пирамиды.
+     * @param height
+     * @return
+     */
+    public String rightTrl(int height) {
+        return this.loopBy(
+                height,
+                height,
+                (row, column) -> row >= column
+        );
+    }
+
+    /**
+     * Метод рисует левую половину пирамиды.
+     * @param height
+     * @return
+     */
+    public String leftTrl(int height) {
+        return this.loopBy(
+                height,
+                height,
+                (row, column) -> row >= height - column - 1
+        );
+    }
 }
