@@ -13,11 +13,8 @@ public class Factorial {
      * @return
      */
     public int calc(int n) {
-        int sum = 0;
-        if (n == 0) {
-            sum = 1;
-        } else {
-            sum = 1;
+        int sum = 1;
+        if (n != 0) {
             for (int i = 1; i <= n; i++) {
                 sum *= i;
             }
