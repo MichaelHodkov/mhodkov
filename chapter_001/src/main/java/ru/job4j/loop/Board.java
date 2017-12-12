@@ -13,7 +13,7 @@ public class Board {
      * @param height - высота шахматной доски.
      * @return - строку содержащую шахматную доску.
      */
-    public String paint(int width, int height){
+    public String paint(int width, int height) {
         StringBuilder screen = new StringBuilder();
         String ln = System.lineSeparator();
         for (int i = 0; i < height; i++) {
