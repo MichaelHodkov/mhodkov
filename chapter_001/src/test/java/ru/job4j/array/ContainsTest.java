@@ -25,6 +25,19 @@ public class ContainsTest {
     }
 
     /**
+     * Тест входа подстроки в строку которая есть, но не сразу .
+     */
+    @Test
+    public void whereSubStringInStringTrueDificul() {
+        Contains contains = new Contains();
+        String testSt = "abcabeab";
+        String testSubSt = "be";
+        boolean testFlag = contains.contains(testSt, testSubSt);
+        boolean expectFlag = true;
+        assertThat(testFlag, is(expectFlag));
+    }
+
+    /**
      * Тест входа подстроки в строку которой нет.
      */
     @Test

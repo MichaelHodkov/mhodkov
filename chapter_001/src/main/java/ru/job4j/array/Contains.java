@@ -14,27 +14,26 @@ public class Contains {
      * @return true - нашли слово, false - не нашли слово.
      */
     public boolean contains(String origin, String sub) {
-        if (sub.length() > origin.length()) {
-            return false;
-        }
-        char[] origArray = origin.toCharArray();
-        char[] subArray = sub.toCharArray();
-        int count = 0;
-        int index = 0;
-        for (int i = 0; i < origArray.length - 1; i++) {
-            if (origArray[i] == subArray[index]) {
-                count++;
-                index++;
-                if (count == subArray.length) {
-                    return true;
+        boolean flag = false;
+        if (sub.length() <= origin.length()) {
+            char[] origArray = origin.toCharArray();
+            char[] subArray = sub.toCharArray();
+            int count = 0;
+            int index = 0;
+            for (int i = 0; i < origArray.length - 1; i++) {
+                if (origArray[i] == subArray[index]) {
+                    count++;
+                    index++;
+                    if (count == subArray.length) {
+                        flag = true;
+                        break;
+                    }
+                } else {
+                    count = 0;
+                    index = 0;
                 }
-                if (index == subArray.length) {
-                    return false;
-                }
-            } else {
-                count = 0;
             }
         }
-        return false;
+        return flag;
     }
 }
