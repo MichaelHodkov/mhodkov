@@ -50,6 +50,8 @@ public class Tracker {
     public void replace(String id, Item item) {
         for (int i = 0; i < this.position; i++) {
             if (this.items[i].getId().equals(id)) {
+                String key = this.items[i].getId();
+                item.setId(key);
                 this.items[i] = item;
                 break;
             }
