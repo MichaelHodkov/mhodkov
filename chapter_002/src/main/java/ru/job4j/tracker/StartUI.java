@@ -34,7 +34,7 @@ public class StartUI {
     private static final String FINDID = "4";
 
     /**
-     * Константа меню для добавления новой заявки.
+     * Константа меню для поиска заявокк по имени.
      */
     private static final String FINDNAME = "5";
 
@@ -170,6 +170,7 @@ public class StartUI {
             System.out.println("id: " + iter.getId());
             System.out.println("Имя заявки : " + iter.getName());
             System.out.println("Описание заявки :" + iter.getDesc());
+            System.out.println("-------------------------------------------------");
             flag = false;
         }
         if (flag) {
