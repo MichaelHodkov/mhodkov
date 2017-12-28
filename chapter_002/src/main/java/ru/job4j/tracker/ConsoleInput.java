@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @since 0.1
  */
 
-public class ConsoleInput implements Input{
+public class ConsoleInput implements Input {
 
     private Scanner scanner = new Scanner(System.in);
 
