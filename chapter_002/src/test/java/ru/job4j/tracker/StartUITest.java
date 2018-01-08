@@ -59,7 +59,7 @@ public class StartUITest {
     @Test
     public void whenUsedShowAllItems() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("name1", "desc1"));
+        Item item = tracker.add(new Item("name", "desc"));
         String key = item.getId();
         Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
@@ -67,8 +67,8 @@ public class StartUITest {
                 + "id: "
                 + key
                 + "\r\n"
-                + "Name: name1\r\n"
-                + "Description:desc1\r\n"
+                + "Name: name\r\n"
+                + "Description: desc\r\n"
                 + "--------------------------------------\r\n";
         String stExpect = stMenu + stID + stMenu;
         assertThat(new String(out.toByteArray()), is(stExpect));
