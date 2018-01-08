@@ -32,6 +32,7 @@ public class StartUITest {
             + "4 Find item by Id\n"
             + "5 Find items by name\n"
             + "6 Exit Program\n\r\n";
+    private String stExpect;
 
     @Before
     public void loadOutput() {
@@ -64,13 +65,13 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
         String stID = "------------All Items-----------------\r\n"
-                + "id: "
+                + "ID: "
                 + key
                 + "\r\n"
                 + "Name: name\r\n"
                 + "Description: desc\r\n"
                 + "--------------------------------------\r\n";
-        String stExpect = stMenu + stID + stMenu;
+        stExpect = stMenu + stID + stMenu;
         assertThat(new String(out.toByteArray()), is(stExpect));
     }
 
@@ -92,11 +93,21 @@ public class StartUITest {
     public void whenDeleteItem() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("name1", "desc1"));
-        String key = item.getId();
-        tracker.add(new Item("name2", "desc2"));
-        Input input = new StubInput(new String[]{"3", key, "6"});
+        String keyDel = item.getId();
+        item = tracker.add(new Item("name2", "desc2"));
+        String keyTwoItem = item.getId();
+        Input input = new StubInput(new String[]{"3", keyDel, "1", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("name2"));
+        String stDel = "------------Delete Item---------------\r\n--------------------------------------\r\n";
+        String stID = "------------All Items-----------------\r\n"
+                + "ID: "
+                + keyTwoItem
+                + "\r\n"
+                + "Name: name2\r\n"
+                + "Description: desc2\r\n"
+                + "--------------------------------------\r\n";
+        stExpect = stMenu + stDel + stMenu + stID + stMenu;
+        assertThat(new String(out.toByteArray()), is(stExpect));
     }
 
     @Test
@@ -108,23 +119,44 @@ public class StartUITest {
         tracker.add(new Item("name3", "desc3"));
         Input input = new StubInput(new String[]{"4", key, "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findById(key).getName(), is("name2"));
+        String stFind = "------------Find Item by ID-----------\r\n";
+        String stID = "ID: "
+                + key
+                + "\r\n"
+                + "Name: name2\r\n"
+                + "Description: desc2\r\n"
+                + "--------------------------------------\r\n";
+        stExpect = stMenu + stFind + stID + stMenu;
+        assertThat(new String(out.toByteArray()), is(stExpect));
     }
 
     @Test
     public void whenFindByName() {
         Tracker tracker = new Tracker();
         tracker.add(new Item("name1", "desc1"));
-        tracker.add(new Item("name", "desc2"));
+        Item item = tracker.add(new Item("name", "desc2"));
+        String keyOne = item.getId();
         tracker.add(new Item("name3", "desc3"));
-        tracker.add(new Item("name", "desc4"));
+        item = tracker.add(new Item("name", "desc4"));
+        String keyTwo = item.getId();
         tracker.add(new Item("name5", "desc5"));
         Input input = new StubInput(new String[]{"5", "name", "6"});
         new StartUI(input, tracker).init();
-        Item[] expect = new Item[2];
-        expect[0] = tracker.findAll()[1];
-        expect[1] = tracker.findAll()[3];
-        assertThat(tracker.findByName("name"), is(expect));
+        String stFind = "------------Find Item by Name---------\r\n";
+        String stIDOne = "ID: "
+                + keyOne
+                + "\r\n"
+                + "Name: name\r\n"
+                + "Description: desc2\r\n"
+                + "--------------------------------------\r\n";
+        String stIDTwo = "ID: "
+                + keyTwo
+                + "\r\n"
+                + "Name: name\r\n"
+                + "Description: desc4\r\n"
+                + "--------------------------------------\r\n";
+        stExpect = stMenu + stFind + stIDOne + stIDTwo + stMenu;
+        assertThat(new String(out.toByteArray()), is(stExpect));
     }
 
 }

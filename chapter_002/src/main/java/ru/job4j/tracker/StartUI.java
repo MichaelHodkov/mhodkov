@@ -109,7 +109,7 @@ public class StartUI {
         System.out.println("------------All Items-----------------");
         boolean flag = true;
         for (Item iter: this.tracker.findAll()) {
-            System.out.println("id: " + iter.getId());
+            System.out.println("ID: " + iter.getId());
             System.out.println("Name: " + iter.getName());
             System.out.println("Description: " + iter.getDesc());
             System.out.println("--------------------------------------");
