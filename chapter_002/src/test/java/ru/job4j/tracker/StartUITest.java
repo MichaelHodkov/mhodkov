@@ -24,14 +24,14 @@ public class StartUITest {
     // Создаем буфур для хранения вывода.
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-    private String stMenu = "Меню.\\n" +
-            "0. Добавить новую заявку.\\n" +
-            "1. Показать все заявки.\\n" +
-            "2. Редактировать заявку.\\n" +
-            "3. Удалить заявку.\\n" +
-            "4. Найти заявку по Id.\\n" +
-            "5. Найти заявку по имени.\\n" +
-            "6. Выход из программы.\\n\\r\\n";
+    private String stMenu = "Menu\n"
+            + "0 Add new Item\n"
+            + "1 Show all items\n"
+            + "2 Edit item\n"
+            + "3 Delete item\n"
+            + "4 Find item by Id\n"
+            + "5 Find items by name\n"
+            + "6 Exit Program\n\r\n";
 
     @Before
     public void loadOutput() {
@@ -63,13 +63,13 @@ public class StartUITest {
         String key = item.getId();
         Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
-        String stID = "------------ Все заявки --------------\\r\\n" +
-                "id: " +
-                key +
-                "\\r\\n" +
-                "Имя заявки : name1\\r\\n" +
-                "Описание заявки :desc1\\r\\n" +
-                "--------------------------------------\\r\\n";
+        String stID = "------------All Items-----------------\r\n"
+                + "id: "
+                + key
+                + "\r\n"
+                + "Name: name1\r\n"
+                + "Description:desc1\r\n"
+                + "--------------------------------------\r\n";
         String stExpect = stMenu + stID + stMenu;
         assertThat(new String(out.toByteArray()), is(stExpect));
     }
