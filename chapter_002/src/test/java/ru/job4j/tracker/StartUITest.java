@@ -1,6 +1,12 @@
 package ru.job4j.tracker;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -13,6 +19,34 @@ import static org.junit.Assert.assertThat;
  */
 
 public class StartUITest {
+    // получаем ссылку на стандартный вывод в консоль.
+    private final PrintStream stdout = System.out;
+    // Создаем буфур для хранения вывода.
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    private String stMenu = "Меню.\\n" +
+            "0. Добавить новую заявку.\\n" +
+            "1. Показать все заявки.\\n" +
+            "2. Редактировать заявку.\\n" +
+            "3. Удалить заявку.\\n" +
+            "4. Найти заявку по Id.\\n" +
+            "5. Найти заявку по имени.\\n" +
+            "6. Выход из программы.\\n\\r\\n";
+
+    @Before
+    public void loadOutput() {
+        System.out.println("execute before method");
+        //Заменяем стандартный вывод на вывод в пямять для тестирования.
+        System.setOut(new PrintStream(this.out));
+    }
+
+    @After
+    public void backOutput() {
+        // возвращаем обратно стандартный вывод в консоль.
+        System.setOut(this.stdout);
+        System.out.println("execute after method");
+    }
+
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
@@ -25,14 +59,19 @@ public class StartUITest {
     @Test
     public void whenUsedShowAllItems() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test name1", "desc1", "0", "test name2", "desc2", "1", "6"});
+        Item item = tracker.add(new Item("name1", "desc1"));
+        String key = item.getId();
+        Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
-        String[] allName = new String[tracker.findAll().length];
-        for (int i = 0; i < tracker.findAll().length; i++) {
-            allName[i] = tracker.findAll()[i].getName();
-        }
-        String[] expect = {"test name1", "test name2"};
-        assertThat(allName, is(expect));
+        String stID = "------------ Все заявки --------------\\r\\n" +
+                "id: " +
+                key +
+                "\\r\\n" +
+                "Имя заявки : name1\\r\\n" +
+                "Описание заявки :desc1\\r\\n" +
+                "--------------------------------------\\r\\n";
+        String stExpect = stMenu + stID + stMenu;
+        assertThat(new String(out.toByteArray()), is(stExpect));
     }
 
     @Test
