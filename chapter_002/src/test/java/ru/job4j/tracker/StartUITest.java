@@ -24,14 +24,14 @@ public class StartUITest {
     // Создаем буфур для хранения вывода.
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-    private String stMenu = "Menu\n"
-            + "0 Add new Item\n"
-            + "1 Show all items\n"
-            + "2 Edit item\n"
-            + "3 Delete item\n"
-            + "4 Find item by Id\n"
-            + "5 Find items by name\n"
-            + "6 Exit Program\n\r\n";
+    private String stMenu = "Menu:\r\n"
+            + "0. Add new Item\r\n"
+            + "1. Show all items\r\n"
+            + "2. Edit item\r\n"
+            + "3. Delete item\r\n"
+            + "4. Find item by Id\r\n"
+            + "5. Find items by name\r\n"
+            + "6. Exit Program\r\n\r\n";
     private String stExpect;
 
     @Before
@@ -147,8 +147,7 @@ public class StartUITest {
                 + keyOne
                 + "\r\n"
                 + "Name: name\r\n"
-                + "Description: desc2\r\n"
-                + "--------------------------------------\r\n";
+                + "Description: desc2\r\n";
         String stIDTwo = "ID: "
                 + keyTwo
                 + "\r\n"
