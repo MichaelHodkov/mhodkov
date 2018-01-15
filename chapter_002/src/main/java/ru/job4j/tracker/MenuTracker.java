@@ -55,10 +55,25 @@ public class MenuTracker {
     private Input input;
     private Tracker tracker;
     private UserAction[] actions = new UserAction[7];
+    private int menuExit;
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
+    }
+
+    public int[] getMenuRanges() {
+        int[] menuRanges = new int[this.actions.length];
+        for (int i = 0; i < this.actions.length; i++) {
+            if (this.actions[i] != null) {
+                menuRanges[i] = i;
+            }
+        }
+        return menuRanges;
+    }
+
+    public int getMenuExit() {
+        return menuExit;
     }
 
     public void fillActions() {
@@ -113,6 +128,7 @@ public class MenuTracker {
 
         @Override
         public int key() {
+            menuExit = 6;
             return 6;
         }
 
