@@ -25,13 +25,13 @@ public class StartUITest {
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
     private String stMenu = "Menu:\r\n"
-            + "0. Add new Item\r\n"
-            + "1. Show all items\r\n"
-            + "2. Edit item\r\n"
-            + "3. Delete item\r\n"
-            + "4. Find item by Id\r\n"
-            + "5. Find items by name\r\n"
-            + "6. Exit Program\r\n\r\n";
+            + "0 : Add new Item\r\n"
+            + "1 : Show all items\r\n"
+            + "2 : Edit item\r\n"
+            + "3 : Delete item\r\n"
+            + "4 : Find item by Id\r\n"
+            + "5 : Find items by name\r\n"
+            + "6 : Exit Program\r\n\r\n";
     private String stExpect;
 
     @Before
