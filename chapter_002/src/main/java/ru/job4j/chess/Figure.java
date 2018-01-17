@@ -6,7 +6,7 @@ package ru.job4j.chess;
  * @since 0.1
  */
 
-public abstract class Figure {
+abstract class Figure {
     private final Cell position;
 
     Figure(int x, int y) {

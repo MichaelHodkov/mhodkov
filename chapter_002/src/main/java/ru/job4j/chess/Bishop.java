@@ -1,8 +1,14 @@
 package ru.job4j.chess;
 
+/**
+ * @author Michael Hodkov
+ * @version $Id$
+ * @since 0.1
+ */
+
 public class Bishop extends Figure {
 
-    public Bishop(int x, int y) {
+    Bishop(int x, int y) {
         super(x, y);
     }
 
@@ -18,24 +24,21 @@ public class Bishop extends Figure {
         int wayX = source.getX();
         int wayY = source.getY();
         if (dest.getY() < source.getY()) {
+            incrementY = -1;
             if (dest.getX() < source.getX()) {
                 incrementX = -1;
-                incrementY = -1;
-            } else {
-                incrementY = -1;
             }
         } else if (dest.getX() < source.getX()) {
             incrementX = -1;
         }
         do {
-            wayX += incrementX ;
+            wayX += incrementX;
             wayY += incrementY;
             if (wayX < 0 || wayX > 7 || wayY < 0 || wayY > 7) {
                 throw new ImposibleMoveException("Not the correct diagonal...");
             }
             arrWay[index++] = new Cell(wayX, wayY);
-        } while (!dest.equals(new Cell(wayX, wayY)));
-        //while (source.x != dest.x || source.y != dest.y);
+        } while (!dest.cellEquals(new Cell(wayX, wayY)));
         return arrWay;
     }
 

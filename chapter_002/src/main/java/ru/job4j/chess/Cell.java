@@ -17,7 +17,7 @@ public class Cell {
         this.y = y;
     }
 
-    public boolean equals(Cell cell) {
+    public boolean cellEquals(Cell cell) {
         return this.x == cell.x && this.y == cell.y;
     }
 
