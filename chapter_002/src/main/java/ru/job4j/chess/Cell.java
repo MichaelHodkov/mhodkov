@@ -1,5 +1,11 @@
 package ru.job4j.chess;
 
+/**
+ * @author Michael Hodkov
+ * @version $Id$
+ * @since 0.1
+ */
+
 import java.util.Objects;
 
 /**
