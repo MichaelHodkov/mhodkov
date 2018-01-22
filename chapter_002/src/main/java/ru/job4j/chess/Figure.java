@@ -11,7 +11,11 @@ abstract class Figure {
 
     Figure(int x, int y) {
         Cell cell = new Cell(x, y);
-        position = cell;
+        this.position = cell;
+    }
+
+    Figure(Cell cell) {
+        this.position = cell;
     }
 
     abstract Cell[] way(Cell source, Cell dest) throws ImposibleMoveException;

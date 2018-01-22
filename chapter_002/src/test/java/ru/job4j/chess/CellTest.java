@@ -18,7 +18,7 @@ public class CellTest {
     public void whenGetEqualsBetweenTwoCell() {
         boolean expect = true;
         Cell cell = new Cell(1, 2);
-        assertThat(new Cell(1,2).cellEquals(cell), is(expect));
+        assertThat(new Cell(1, 2).equals(cell), is(expect));
     }
 
     @Test

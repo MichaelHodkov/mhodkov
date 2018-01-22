@@ -1,11 +1,5 @@
 package ru.job4j.chess;
 
-/**
- * @author Michael Hodkov
- * @version $Id$
- * @since 0.1
- */
-
 import java.util.Objects;
 
 /**
@@ -23,8 +17,21 @@ public class Cell {
         this.y = y;
     }
 
-    public boolean cellEquals(Cell cell) {
-        return this.x == cell.x && this.y == cell.y;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Cell cell = (Cell) o;
+        return x == cell.x && y == cell.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     public int getX() {
@@ -33,5 +40,10 @@ public class Cell {
 
     public int getY() {
         return this.y;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(%d, %d)", this.x, this.y);
     }
 }
