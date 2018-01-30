@@ -36,7 +36,7 @@ public class Knight extends Figure {
                     || legalWay[i].getY() > 7) {
                 legalWay[i] = null;
             }
-            if (legalWay[i] != null && legalWay[i].cellEquals(dest)) {
+            if (legalWay[i] != null && legalWay[i].equals(dest)) {
                 Cell[] arrWay = new Cell[1];
                 arrWay[0] = legalWay[i];
                 return arrWay;

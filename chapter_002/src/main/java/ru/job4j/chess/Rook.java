@@ -31,7 +31,7 @@ public class Rook extends Figure {
                     throw new ImposibleMoveException("Not the correct diagonal...");
                 }
                 arrWay[index++] = new Cell(wayX, wayY);
-            } while (!dest.cellEquals(new Cell(wayX, wayY)));
+            } while (!dest.equals(new Cell(wayX, wayY)));
         } else {
             if (dest.getX() < source.getX()) {
                 increment = -1;
@@ -42,7 +42,7 @@ public class Rook extends Figure {
                     throw new ImposibleMoveException("Not the correct diagonal...");
                 }
                 arrWay[index++] = new Cell(wayX, wayY);
-            } while (!dest.cellEquals(new Cell(wayX, wayY)));
+            } while (!dest.equals(new Cell(wayX, wayY)));
         }
         return arrWay;
     }

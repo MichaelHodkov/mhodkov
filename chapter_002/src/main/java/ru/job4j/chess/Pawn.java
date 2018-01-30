@@ -42,7 +42,7 @@ public class Pawn extends Figure {
                 throw new ImposibleMoveException("Not correct way...");
             }
             arrWay[index++] = new Cell(wayX, wayY);
-        } while (!dest.cellEquals(new Cell(wayX, wayY)));
+        } while (!dest.equals(new Cell(wayX, wayY)));
         return arrWay;
     }
 

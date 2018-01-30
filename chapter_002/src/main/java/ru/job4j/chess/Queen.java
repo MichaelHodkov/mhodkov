@@ -44,7 +44,7 @@ public class Queen extends Figure {
                     throw new ImposibleMoveException("Not correct move...");
                 }
                 arrWay[index++] = new Cell(wayX, wayY);
-            } while (!dest.cellEquals(new Cell(wayX, wayY)));
+            } while (!dest.equals(new Cell(wayX, wayY)));
             return arrWay;
         } else {
             throw new ImposibleMoveException("This figure does not move this...");
