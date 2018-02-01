@@ -1,5 +1,7 @@
 package ru.job4j.sort;
 
+import java.util.Objects;
+
 /**
  * @author Michael Hodkov
  * @version $Id$
@@ -13,6 +15,31 @@ public class User implements Comparable<User> {
     public User(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return this.age == user.age && name.equals(user.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
     }
 
     @Override

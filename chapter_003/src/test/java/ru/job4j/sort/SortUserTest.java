@@ -36,4 +36,59 @@ public class SortUserTest {
         expect.add(new User("Petr", 48));
         assertThat(sortUser.sort(list), is(expect));
     }
+
+    @Test
+    public void whenSortListByLengthName() {
+        SortUser sortUser = new SortUser();
+        List<User> list = new ArrayList<User>();
+        list.addAll(
+                Arrays.asList(
+                        new User("Petr", 48),
+                        new User("Vadim", 22),
+                        new User("Anton", 34),
+                        new User("Vlad", 34),
+                        new User("An", 22)
+                )
+        );
+        List<User> expect = new ArrayList<User>();
+        expect.addAll(
+                Arrays.asList(
+                        new User("An", 22),
+                        new User("Petr", 48),
+                        new User("Vlad", 34),
+                        new User("Anton", 34),
+                        new User("Vadim", 22)
+
+                )
+        );
+        assertThat(sortUser.sortNameLength(list), is(expect));
+    }
+
+    @Test
+    public void whenSortListByAllFields() {
+        SortUser sortUser = new SortUser();
+        List<User> list = new ArrayList<User>();
+        list.addAll(
+                Arrays.asList(
+                        new User("Petr", 48),
+                        new User("Mike", 23),
+                        new User("Petr", 34),
+                        new User("Vlad", 34),
+                        new User("Vlad", 14),
+                        new User("Mike", 22)
+                )
+        );
+        List<User> expect = new ArrayList<User>();
+        expect.addAll(
+                Arrays.asList(
+                        new User("Mike", 22),
+                        new User("Mike", 23),
+                        new User("Petr", 34),
+                        new User("Petr", 48),
+                        new User("Vlad", 14),
+                        new User("Vlad", 34)
+                )
+        );
+        assertThat(sortUser.sortByAllFields(list), is(expect));
+    }
 }
