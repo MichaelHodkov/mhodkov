@@ -7,6 +7,7 @@ package ru.job4j;
  */
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ConvertList {
@@ -38,5 +39,15 @@ public class ConvertList {
             y++;
         }
         return newArray;
+    }
+
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> newList = new ArrayList<Integer>();
+        for (int[] iter : list) {
+            for (int item : iter) {
+                newList.add(item);
+            }
+        }
+        return newList;
     }
 }

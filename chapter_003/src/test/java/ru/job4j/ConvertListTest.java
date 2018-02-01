@@ -45,4 +45,20 @@ public class ConvertListTest {
         int[][] expectArray = {{1, 7, 9}, {8, 4, 3}, {45, 0, 0}};
         assertThat(testArray, is(expectArray));
     }
+
+    @Test
+    public void whenConvertArrayListToList() {
+        List<int[]> list = new ArrayList<int[]>();
+        list.add(new int[] {77, 99});
+        list.add(new int[] {22, 45, 69, 88});
+        List<Integer> testList = convertList.convert(list);
+        List<Integer> expectList = new ArrayList<Integer>();
+        expectList.add(77);
+        expectList.add(99);
+        expectList.add(22);
+        expectList.add(45);
+        expectList.add(69);
+        expectList.add(88);
+        assertThat(testList, is(expectList));
+    }
 }
