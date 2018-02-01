@@ -1,11 +1,5 @@
 package ru.job4j;
 
-/**
- * @author Michael Hodkov
- * @version $Id$
- * @since 0.1
- */
-
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,6 +9,11 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
+/**
+ * @author Michael Hodkov
+ * @version $Id$
+ * @since 0.1
+ */
 public class UserConvertTest {
 
     @Test

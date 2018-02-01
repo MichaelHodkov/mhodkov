@@ -1,13 +1,5 @@
 package ru.job4j.coffeemachine;
 
-/**
- * Test.
- *
- * @author Michael Hodkov
- * @version $Id$
- * @since 0.1
- */
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +8,11 @@ import java.io.PrintStream;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * @author Michael Hodkov
+ * @version $Id$
+ * @since 0.1
+ */
 public class AutomatTest {
     private final ByteArrayOutputStream mem = new ByteArrayOutputStream();
     private final PrintStream out = System.out;

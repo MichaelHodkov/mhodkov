@@ -1,14 +1,13 @@
 package ru.job4j;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Michael Hodkov
  * @version $Id$
  * @since 0.1
  */
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class ConvertList {
 
     public List<Integer> toList(int[][] array) {

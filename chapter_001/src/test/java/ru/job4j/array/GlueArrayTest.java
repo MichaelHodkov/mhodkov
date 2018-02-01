@@ -12,6 +12,11 @@ import static org.junit.Assert.assertThat;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Michael Hodkov
+ * @version $Id$
+ * @since 0.1
+ */
 public class GlueArrayTest {
 
     @Test

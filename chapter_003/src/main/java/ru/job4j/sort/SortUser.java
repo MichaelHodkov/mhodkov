@@ -1,13 +1,12 @@
 package ru.job4j.sort;
 
+import java.util.*;
+
 /**
  * @author Michael Hodkov
  * @version $Id$
  * @since 0.1
  */
-
-import java.util.*;
-
 public class SortUser {
     public Set<User> sort(List<User> list) {
         Set<User> treeSet = new TreeSet<User>();

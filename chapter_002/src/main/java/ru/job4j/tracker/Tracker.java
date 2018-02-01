@@ -1,15 +1,14 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /**
  * @author Michael Hodkov
  * @version $Id$
  * @since 0.1
  */
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class Tracker {
 
     /**
