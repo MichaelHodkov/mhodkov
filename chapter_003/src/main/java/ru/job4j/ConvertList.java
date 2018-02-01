@@ -7,14 +7,13 @@ package ru.job4j;
  */
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ConvertList {
 
-    public List<Integer> toList (int[][] array) {
+    public List<Integer> toList(int[][] array) {
         List<Integer> list = new ArrayList<>();
-        for (int x[] : array) {
+        for (int[] x : array) {
             for (int item : x) {
                 list.add(item);
             }
@@ -22,7 +21,7 @@ public class ConvertList {
         return list;
     }
 
-    public int[][] toArray (List<Integer> list, int rows) {
+    public int[][] toArray(List<Integer> list, int rows) {
         while (list.size() % rows != 0) {
             list.add(0);
         }
