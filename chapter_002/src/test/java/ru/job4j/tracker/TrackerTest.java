@@ -1,6 +1,10 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -19,7 +23,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription");
         tracker.add(item);
-        assertThat(tracker.findAll()[0], is(item));
+        assertThat(tracker.findAll().get(0), is(item));
     }
 
     @Test
@@ -43,17 +47,17 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription1");
         tracker.add(item);
+        String idOne = item.getId();
         item = new Item("test2", "testDescription2");
         tracker.add(item);
-        String idOne = tracker.findAll()[0].getId();
-        String idTwo = tracker.findAll()[1].getId();
+        String idTwo = item.getId();
         boolean rsl = idOne.equals(idTwo) ? true : false;
         boolean expect = false;
         assertThat(rsl, is(expect));
     }
 
     @Test
-    public void whenDeleteSecondItemInArray() {
+    public void whenDeleteSecondItemInList() {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription1");
         tracker.add(item);
@@ -65,17 +69,19 @@ public class TrackerTest {
         item = new Item("test4", "testDescription4");
         tracker.add(item);
         tracker.delete(key);
-        Item[] notNullArray = tracker.findAll();
-        String[] rsl = new String[notNullArray.length];
-        for (int i = 0; i < rsl.length; i++) {
-            rsl[i] = notNullArray[i].getName();
+        List<String> rsl = new ArrayList<>();
+        for (Item it : tracker.findAll()) {
+            rsl.add(it.getName());
         }
-        String[] expect = {"test1", "test3", "test4"};
+        List<String> expect = new ArrayList<>();
+        expect.add("test1");
+        expect.add("test3");
+        expect.add("test4");
         assertThat(rsl, is(expect));
     }
 
     @Test
-    public void whenDeleteFirstItemInArray() {
+    public void whenDeleteFirstItemInList() {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription1");
         tracker.add(item);
@@ -87,17 +93,19 @@ public class TrackerTest {
         item = new Item("test4", "testDescription4");
         tracker.add(item);
         tracker.delete(key);
-        Item[] notNullArray = tracker.findAll();
-        String[] rsl = new String[notNullArray.length];
-        for (int i = 0; i < rsl.length; i++) {
-            rsl[i] = notNullArray[i].getName();
+        List<String> rsl = new ArrayList<String>();
+        for (Item it : tracker.findAll()) {
+            rsl.add(it.getName());
         }
-        String[] expect = {"test2", "test3", "test4"};
+        List<String> expect = new ArrayList<String>();
+        expect.add("test2");
+        expect.add("test3");
+        expect.add("test4");
         assertThat(rsl, is(expect));
     }
 
     @Test
-    public void whenDeleteLastItemInArray() {
+    public void whenDeleteLastItemInList() {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription1");
         tracker.add(item);
@@ -109,17 +117,19 @@ public class TrackerTest {
         tracker.add(item);
         String key = item.getId();
         tracker.delete(key);
-        Item[] notNullArray = tracker.findAll();
-        String[] rsl = new String[notNullArray.length];
-        for (int i = 0; i < rsl.length; i++) {
-            rsl[i] = notNullArray[i].getName();
+        List<String> rsl = new ArrayList<String>();
+        for (Item it : tracker.findAll()) {
+            rsl.add(it.getName());
         }
-        String[] expect = {"test1", "test2", "test3"};
+        List<String> expect = new ArrayList<String>();
+        expect.add("test1");
+        expect.add("test2");
+        expect.add("test3");
         assertThat(rsl, is(expect));
     }
 
     @Test
-    public void findAll() {
+    public void whenFindAll() {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription1");
         tracker.add(item);
@@ -129,12 +139,15 @@ public class TrackerTest {
         tracker.add(item);
         item = new Item("test4", "testDescription4");
         tracker.add(item);
-        Item[] notNullArray = tracker.findAll();
-        String[] rsl = new String[notNullArray.length];
-        for (int i = 0; i < rsl.length; i++) {
-            rsl[i] = notNullArray[i].getName();
+        List<String> rsl = new ArrayList<String>();
+        for (Item it : tracker.findAll()) {
+            rsl.add(it.getName());
         }
-        String[] expect = {"test1", "test2", "test3", "test4"};
+        List<String> expect = new ArrayList<String>();
+        expect.add("test1");
+        expect.add("test2");
+        expect.add("test3");
+        expect.add("test4");
         assertThat(rsl, is(expect));
     }
 
@@ -151,17 +164,19 @@ public class TrackerTest {
         tracker.add(item);
         item = new Item("test", "testDescription5");
         tracker.add(item);
-        Item[] arrayFindByName = tracker.findByName("test");
-        String[] rsl = new String[arrayFindByName.length];
-        for (int i = 0; i < rsl.length; i++) {
-            rsl[i] = arrayFindByName[i].getName();
+        List<String> rsl = new ArrayList<String>();
+        for (Item it : tracker.findByName("test")) {
+            rsl.add(it.getName());
         }
-        String[] expect = {"test", "test", "test"};
+        List<String> expect = new ArrayList<String>();
+        expect.add("test");
+        expect.add("test");
+        expect.add("test");
         assertThat(rsl, is(expect));
     }
 
     @Test
-    public void findById() {
+    public void whenFindById() {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription1");
         tracker.add(item);

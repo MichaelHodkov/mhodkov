@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 /**
  * @author Michael Hodkov
  * @version $Id$
@@ -176,7 +178,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------Find Item by Name---------");
             String answer = input.ask("Enter Item name: ");
-            Item[] item = tracker.findByName(answer);
+            List<Item> item = tracker.findByName(answer);
             boolean flag = true;
             for (Item iter : item) {
                 System.out.println("ID: " + iter.getId());
