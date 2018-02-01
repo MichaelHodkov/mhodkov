@@ -24,14 +24,15 @@ public class StartUITest {
     // Создаем буфур для хранения вывода.
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-    private String stMenu = "Menu:\r\n"
-            + "0 : Add new Item\r\n"
-            + "1 : Show all items\r\n"
-            + "2 : Edit item\r\n"
-            + "3 : Delete item\r\n"
-            + "4 : Find item by Id\r\n"
-            + "5 : Find items by name\r\n"
-            + "6 : Exit Program\r\n\r\n";
+    private String stMenu = String.format("Menu:%n"
+            + "0 : Add new Item%n"
+            + "1 : Show all items%n"
+            + "2 : Edit item%n"
+            + "3 : Delete item%n"
+            + "4 : Find item by Id%n"
+            + "5 : Find items by name%n"
+            + "6 : Exit Program%n%n");
+
     private String stExpect;
 
     @Before
@@ -64,13 +65,9 @@ public class StartUITest {
         String key = item.getId();
         Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
-        String stID = "------------All Items-----------------\r\n"
-                + "ID: "
-                + key
-                + "\r\n"
-                + "Name: name\r\n"
-                + "Description: desc\r\n"
-                + "--------------------------------------\r\n";
+        String stID = String.format("------------All Items-----------------%n"
+                + "ID: %s%nName: name%nDescription: desc%n"
+                + "--------------------------------------%n", key);
         stExpect = stMenu + stID + stMenu;
         assertThat(new String(out.toByteArray()), is(stExpect));
     }
@@ -98,14 +95,11 @@ public class StartUITest {
         String keyTwoItem = item.getId();
         Input input = new StubInput(new String[]{"3", keyDel, "1", "6"});
         new StartUI(input, tracker).init();
-        String stDel = "------------Delete Item---------------\r\n--------------------------------------\r\n";
-        String stID = "------------All Items-----------------\r\n"
-                + "ID: "
-                + keyTwoItem
-                + "\r\n"
-                + "Name: name2\r\n"
-                + "Description: desc2\r\n"
-                + "--------------------------------------\r\n";
+        String stDel = String.format("------------Delete Item---------------%n"
+                + "--------------------------------------%n");
+        String stID = String.format("------------All Items-----------------%n"
+                + "ID: %s%nName: name2%nDescription: desc2%n"
+                + "--------------------------------------%n", keyTwoItem);
         stExpect = stMenu + stDel + stMenu + stID + stMenu;
         assertThat(new String(out.toByteArray()), is(stExpect));
     }
@@ -119,13 +113,9 @@ public class StartUITest {
         tracker.add(new Item("name3", "desc3"));
         Input input = new StubInput(new String[]{"4", key, "6"});
         new StartUI(input, tracker).init();
-        String stFind = "------------Find Item by ID-----------\r\n";
-        String stID = "ID: "
-                + key
-                + "\r\n"
-                + "Name: name2\r\n"
-                + "Description: desc2\r\n"
-                + "--------------------------------------\r\n";
+        String stFind = String.format("------------Find Item by ID-----------%n");
+        String stID = String.format("ID: %s%nName: name2%nDescription: desc2%n"
+                + "--------------------------------------%n", key);
         stExpect = stMenu + stFind + stID + stMenu;
         assertThat(new String(out.toByteArray()), is(stExpect));
     }
@@ -142,18 +132,10 @@ public class StartUITest {
         tracker.add(new Item("name5", "desc5"));
         Input input = new StubInput(new String[]{"5", "name", "6"});
         new StartUI(input, tracker).init();
-        String stFind = "------------Find Item by Name---------\r\n";
-        String stIDOne = "ID: "
-                + keyOne
-                + "\r\n"
-                + "Name: name\r\n"
-                + "Description: desc2\r\n";
-        String stIDTwo = "ID: "
-                + keyTwo
-                + "\r\n"
-                + "Name: name\r\n"
-                + "Description: desc4\r\n"
-                + "--------------------------------------\r\n";
+        String stFind = String.format("------------Find Item by Name---------%n");
+        String stIDOne = String.format("ID: %s%nName: name%nDescription: desc2%n", keyOne);
+        String stIDTwo = String.format("ID: %s%nName: name%nDescription: desc4%n"
+                + "--------------------------------------%n", keyTwo);
         stExpect = stMenu + stFind + stIDOne + stIDTwo + stMenu;
         assertThat(new String(out.toByteArray()), is(stExpect));
     }
