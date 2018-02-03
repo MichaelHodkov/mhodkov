@@ -40,8 +40,8 @@ public class SortUserTest {
     @Test
     public void whenSortListByLengthName() {
         SortUser sortUser = new SortUser();
-        List<User> list = new ArrayList<User>();
-        list.addAll(
+        List<User> testList = new ArrayList<User>();
+        testList.addAll(
                 Arrays.asList(
                         new User("Petr", 48),
                         new User("Vadim", 22),
@@ -61,14 +61,15 @@ public class SortUserTest {
 
                 )
         );
-        assertThat(sortUser.sortNameLength(list), is(expect));
+        sortUser.sortNameLength(testList);
+        assertThat(testList, is(expect));
     }
 
     @Test
     public void whenSortListByAllFields() {
         SortUser sortUser = new SortUser();
-        List<User> list = new ArrayList<User>();
-        list.addAll(
+        List<User> testList = new ArrayList<User>();
+        testList.addAll(
                 Arrays.asList(
                         new User("Petr", 48),
                         new User("Mike", 23),
@@ -89,6 +90,7 @@ public class SortUserTest {
                         new User("Vlad", 34)
                 )
         );
-        assertThat(sortUser.sortByAllFields(list), is(expect));
+        sortUser.sortByAllFields(testList);
+        assertThat(testList, is(expect));
     }
 }
