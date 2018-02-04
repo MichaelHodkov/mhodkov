@@ -14,28 +14,11 @@ import static org.junit.Assert.assertThat;
  * @since 0.1
  */
 public class AutomatTest {
-    private final ByteArrayOutputStream mem = new ByteArrayOutputStream();
-    private final PrintStream out = System.out;
 
-    @Before
-    public void loadMem() {
-        System.setOut(new PrintStream(this.mem));
-    }
-
-    @After
-    public void loadSys() {
-        System.setOut(this.out);
-    }
-
-    @Test
+    @Test(expected = NotEnoughMoney.class)
     public void whenSmallMoney() {
         Automat automat = new Automat();
-        try {
-            automat.changes(30, 35);
-        } catch (NotEnoughMoney nem) {
-            System.out.println(nem.getMessage());
-        }
-        assertThat(this.mem.toString(), is(String.format("Not enough money.%n")));
+        automat.changes(30, 35);
     }
 
     @Test
