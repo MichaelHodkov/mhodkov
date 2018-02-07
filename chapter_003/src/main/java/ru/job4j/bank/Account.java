@@ -24,6 +24,10 @@ public class Account {
         return requisites;
     }
 
+    public void setValue(double value) {
+        this.value = value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -33,11 +37,16 @@ public class Account {
             return false;
         }
         Account account = (Account) o;
-        return Double.compare(account.value, value) == 0 && Objects.equals(requisites, account.requisites);
+        return Objects.equals(requisites, account.requisites);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(value, requisites);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("req:%s = %.2f", this.requisites, this.value);
     }
 }

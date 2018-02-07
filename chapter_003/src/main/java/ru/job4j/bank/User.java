@@ -38,6 +38,11 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, pasport);
+        return Objects.hash(pasport);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s", this.name, this.pasport);
     }
 }
