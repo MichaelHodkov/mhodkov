@@ -11,7 +11,9 @@ chapter_001 Базовый Синтаксис.
 
 chapter_002 ООП.
 
-chapter_003 Collections. Lite./n
+chapter_003 Collections. Lite.
+
+chapter_004 Collections. Pro.
 
 
 http://job4j.ru
