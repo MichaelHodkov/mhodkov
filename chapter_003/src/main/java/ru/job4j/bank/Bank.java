@@ -49,15 +49,13 @@ public class Bank {
 
     //получить список счетов для пользователя.
     public List<Account> getUserAccounts(String passport) {
-        ArrayList<Account> list = new ArrayList<>();
         User newUser = new User("Test", passport);
         for (Map.Entry entry : users.entrySet()) {
             if (entry.getKey().hashCode() == newUser.hashCode()) {
-                list = (ArrayList<Account>) entry.getValue();
-                break;
+                return (List<Account>) entry.getValue();
             }
         }
-        return list;
+        return null;
     }
 
     //метод для перечисления денег с одного счёта на другой счёт:
