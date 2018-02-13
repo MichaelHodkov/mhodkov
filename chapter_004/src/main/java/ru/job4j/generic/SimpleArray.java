@@ -9,7 +9,7 @@ import java.util.Iterator;
  * @since 0.1
  */
 public class SimpleArray<T> implements Iterable<T> {
-    ArrayList<T> simpleList = new ArrayList<>();
+    private ArrayList<T> simpleList = new ArrayList<>();
 
     public void add(T model) {
         simpleList.add(model);
@@ -25,6 +25,10 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public T get(int index) {
         return simpleList.get(index);
+    }
+
+    public int size() {
+        return simpleList.size();
     }
 
     @Override

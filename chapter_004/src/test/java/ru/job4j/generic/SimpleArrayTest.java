@@ -27,19 +27,19 @@ public class SimpleArrayTest {
     @Test
     public void whenAddNewItem() {
         list.add(7);
-        assertThat(list.simpleList.get(list.simpleList.size() - 1), is(7));
+        assertThat(list.get(list.size() - 1), is(7));
     }
 
     @Test
     public void whenSetItem() {
         list.set(0, -5);
-        assertThat(list.simpleList.get(0), is(-5));
+        assertThat(list.get(0), is(-5));
     }
 
     @Test
     public void whenDeleteItem() {
         list.delete(0);
-        assertThat(list.simpleList.get(0), is(5));
+        assertThat(list.get(0), is(5));
     }
 
     @Test
