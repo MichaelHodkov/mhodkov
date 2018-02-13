@@ -39,30 +39,30 @@ public class DepartmentTest {
 
     @Test
     public void whenNormalSortedDepartament() {
-        String expect = "K1\r\n"
-                + "K1\\SK1\r\n"
-                + "K1\\SK1\\SSK1\r\n"
-                + "K1\\SK1\\SSK2\r\n"
-                + "K1\\SK2\r\n"
-                + "K2\r\n"
-                + "K2\\SK1\r\n"
-                + "K2\\SK1\\SSK1\r\n"
-                + "K2\\SK1\\SSK2\r\n";
+        String expect = String.format("K1%n"
+                + "K1\\SK1%n"
+                + "K1\\SK1\\SSK1%n"
+                + "K1\\SK1\\SSK2%n"
+                + "K1\\SK2%n"
+                + "K2%n"
+                + "K2\\SK1%n"
+                + "K2\\SK1\\SSK1%n"
+                + "K2\\SK1\\SSK2%n");
         department.print();
         assertThat(this.mem.toString(), is(expect));
     }
 
     @Test
     public void whenSortedByDecDepartament() {
-        String expect = "K2\r\n"
-                + "K2\\SK1\r\n"
-                + "K2\\SK1\\SSK2\r\n"
-                + "K2\\SK1\\SSK1\r\n"
-                + "K1\r\n"
-                + "K1\\SK2\r\n"
-                + "K1\\SK1\r\n"
-                + "K1\\SK1\\SSK2\r\n"
-                + "K1\\SK1\\SSK1\r\n";
+        String expect = String.format("K2%n"
+                + "K2\\SK1%n"
+                + "K2\\SK1\\SSK2%n"
+                + "K2\\SK1\\SSK1%n"
+                + "K1%n"
+                + "K1\\SK2%n"
+                + "K1\\SK1%n"
+                + "K1\\SK1\\SSK2%n"
+                + "K1\\SK1\\SSK1%n");
         department.printByDec();
         assertThat(this.mem.toString(), is(expect));
     }
