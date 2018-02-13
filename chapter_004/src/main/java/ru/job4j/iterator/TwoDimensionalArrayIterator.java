@@ -1,6 +1,8 @@
 package ru.job4j.iterator;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * @author Michael Hodkov
  * @version $Id$
@@ -25,6 +27,9 @@ public class TwoDimensionalArrayIterator implements Iterator {
     @Override
     public boolean hasNext() {
         boolean flagNextItem = false;
+        if (values.length == 0) {
+            return false;
+        }
         if (indexX == values[indexY].length && indexY < values.length - 1) {
             return true;
         }
@@ -39,6 +44,9 @@ public class TwoDimensionalArrayIterator implements Iterator {
      */
     @Override
     public Object next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException("No such Element");
+        }
         if (indexX == values[indexY].length) {
             indexY++;
             indexX = 0;

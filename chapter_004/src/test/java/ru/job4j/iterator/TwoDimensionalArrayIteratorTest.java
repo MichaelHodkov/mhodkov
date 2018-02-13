@@ -3,6 +3,7 @@ package ru.job4j.iterator;
 import org.junit.Test;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -12,6 +13,13 @@ import static org.hamcrest.Matchers.is;
  * @since 0.1
  */
 public class TwoDimensionalArrayIteratorTest {
+
+    @Test(expected = NoSuchElementException.class)
+    public void whenNotElementInMatrix() {
+        Iterator<Integer> it = new TwoDimensionalArrayIterator(new int[][]{});
+        assertThat(it.hasNext(), is(false));
+        it.next();
+    }
 
     @Test
     public void whenTestSquareMatrix() {
