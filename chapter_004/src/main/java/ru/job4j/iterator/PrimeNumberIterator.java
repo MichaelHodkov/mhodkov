@@ -22,6 +22,7 @@ public class PrimeNumberIterator implements Iterator {
         for (int i = index; i < values.length; i++) {
             if (isItPrime(values[i])) {
                 flagNextPrime = true;
+                index = i;
                 break;
             }
         }
@@ -30,12 +31,10 @@ public class PrimeNumberIterator implements Iterator {
 
     @Override
     public Object next() {
-        do {
-            if (index == values.length) {
-                throw new NoSuchElementException("Not more prime numbers");
-            }
-        } while (!isItPrime(values[index++]));
-        return values[index - 1];
+        if (!hasNext()) {
+            throw new NoSuchElementException("Not more prime numbers");
+        }
+        return values[index++];
     }
 
     private boolean isItPrime(int number) {
