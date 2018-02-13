@@ -17,11 +17,10 @@ public class RoleStoreTest {
         roleStore.add(new Role("Admin"));
         roleStore.add(new Role("User"));
         roleStore.add(new Role("SC"));
-        ArrayList<Role> expect = new ArrayList<Role>();
-        expect.add(new Role("Admin"));
-        expect.add(new Role("User"));
-        expect.add(new Role("SC"));
-        assertThat(roleStore.list.simpleList, is(expect));
+        assertThat(roleStore.list.size(), is(3));
+        assertThat(roleStore.list.get(0), is(new Role("Admin")));
+        assertThat(roleStore.list.get(1), is(new Role("User")));
+        assertThat(roleStore.list.get(2), is(new Role("SC")));
     }
     @Test
     public void whenDeleteRole() {
@@ -30,10 +29,8 @@ public class RoleStoreTest {
         roleStore.add(new Role("User"));
         roleStore.add(new Role("SC"));
         roleStore.delete("SC");
-        ArrayList<Role> expect = new ArrayList<Role>();
-        expect.add(new Role("Admin"));
-        expect.add(new Role("User"));
-        assertThat(roleStore.list.simpleList, is(expect));
+        assertThat(roleStore.list.size(), is(2));
+        assertThat(roleStore.list.get(1), is(new Role("User")));
     }
     @Test
     public void whenReplaceRole() {
@@ -42,11 +39,7 @@ public class RoleStoreTest {
         roleStore.add(new Role("User"));
         roleStore.add(new Role("SC"));
         roleStore.replace("SC", new Role("Programmer"));
-        ArrayList<Role> expect = new ArrayList<Role>();
-        expect.add(new Role("Admin"));
-        expect.add(new Role("User"));
-        expect.add(new Role("Programmer"));
-        assertThat(roleStore.list.simpleList, is(expect));
+        assertThat(roleStore.list.get(2), is(new Role("Programmer")));
     }
     @Test
     public void whenFindByIdRole() {

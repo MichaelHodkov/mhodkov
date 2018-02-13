@@ -15,7 +15,7 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean replace(String id, T model) {
-        for (int i = 0; i < list.simpleList.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId().equals(id)) {
                 list.set(i, model);
                 return true;
@@ -26,7 +26,7 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean delete(String id) {
-        for (int i = 0; i < list.simpleList.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId().equals(id)) {
                 list.delete(i);
                 return true;
@@ -37,7 +37,7 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
 
     @Override
     public T findById(String id) {
-        for (int i = 0; i < list.simpleList.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId().equals(id)) {
                 return list.get(i);
             }

@@ -1,6 +1,7 @@
 package ru.job4j.generic;
 
 import org.junit.Test;
+
 import java.util.ArrayList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -17,11 +18,11 @@ public class UserStoreTest {
         userStore.add(new User("Mike"));
         userStore.add(new User("Ivan"));
         userStore.add(new User("Alex"));
-        ArrayList<User> expect = new ArrayList<User>();
-        expect.add(new User("Mike"));
-        expect.add(new User("Ivan"));
-        expect.add(new User("Alex"));
-        assertThat(userStore.list.simpleList, is(expect));
+        assertThat(userStore.list.size(), is(3));
+        assertThat(userStore.list.get(0), is(new User("Mike")));
+        assertThat(userStore.list.get(1), is(new User("Ivan")));
+        assertThat(userStore.list.get(2), is(new User("Alex")));
+
     }
     @Test
     public void whenDeleteUser() {
@@ -30,10 +31,8 @@ public class UserStoreTest {
         userStore.add(new User("Ivan"));
         userStore.add(new User("Alex"));
         userStore.delete("Ivan");
-        ArrayList<User> expect = new ArrayList<User>();
-        expect.add(new User("Mike"));
-        expect.add(new User("Alex"));
-        assertThat(userStore.list.simpleList, is(expect));
+        assertThat(userStore.list.size(), is(2));
+        assertThat(userStore.list.get(1), is(new User("Alex")));
     }
     @Test
     public void whenReplaceUser() {
@@ -42,11 +41,7 @@ public class UserStoreTest {
         userStore.add(new User("Ivan"));
         userStore.add(new User("Alex"));
         userStore.replace("Ivan", new User("Fedor"));
-        ArrayList<User> expect = new ArrayList<User>();
-        expect.add(new User("Mike"));
-        expect.add(new User("Fedor"));
-        expect.add(new User("Alex"));
-        assertThat(userStore.list.simpleList, is(expect));
+        assertThat(userStore.list.get(1), is(new User("Fedor")));
     }
     @Test
     public void whenFindByIdUser() {
