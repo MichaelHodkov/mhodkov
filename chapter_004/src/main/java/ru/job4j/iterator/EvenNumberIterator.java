@@ -20,6 +20,7 @@ public class EvenNumberIterator implements Iterator {
     public boolean hasNext() {
         for (int i = index; i < values.length; i++) {
             if (values[i] % 2 == 0) {
+                index = i;
                 return true;
             }
         }
@@ -28,11 +29,9 @@ public class EvenNumberIterator implements Iterator {
 
     @Override
     public Object next() {
-        do {
-            if (index == values.length) {
-                throw new NoSuchElementException("Not more even numbers");
-            }
-        } while (values[index++] % 2 != 0);
-        return values[index - 1];
+        if (!hasNext()) {
+            throw new NoSuchElementException("Not more even numbers");
+        }
+        return values[index++];
     }
 }
