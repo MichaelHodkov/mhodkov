@@ -33,4 +33,9 @@ public class UserAndEquals extends User {
                 && user.getBirthday().equals(this.birthday)
                 && user.getChildren() == this.children;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
