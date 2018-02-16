@@ -23,12 +23,11 @@ public class SimpleHashSet<T> {
     }
 
     public boolean add(T t) {
-        if (hashArray[t.hashCode() % hashArray.length] != null
-                && hashArray[t.hashCode() % hashArray.length].equals(t)) {
+        Object value = hashArray[t.hashCode() % hashArray.length];
+        if (value != null && value.equals(t)) {
             return false;
         }
-        if (size >= hashArray.length
-                || hashArray[t.hashCode() % hashArray.length] != null) {
+        if (size >= hashArray.length || value != null) {
             resize(t, 0);
         }
         hashArray[t.hashCode() % hashArray.length] = t;
