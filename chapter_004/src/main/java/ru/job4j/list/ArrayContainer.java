@@ -71,4 +71,13 @@ public class ArrayContainer<T> implements SimpleContainer<T> {
     public int getSize() {
         return index;
     }
+
+    public boolean contains(T t) {
+        for (Object element: container) {
+            if (element != null && element.equals(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -10,11 +10,8 @@ import ru.job4j.list.ArrayContainer;
 public class SimpleSet<T> extends ArrayContainer<T> {
     @Override
     public void add(T o) {
-        for (int i = 0; i < super.getSize(); i++) {
-            if (super.get(i).equals(o)) {
-                return;
-            }
+        if (!super.contains(o)) {
+            super.add(o);
         }
-        super.add(o);
     }
 }

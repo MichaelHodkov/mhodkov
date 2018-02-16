@@ -63,4 +63,12 @@ public class ArrayContainerTest {
         assertThat(iter.next(), is(0));
         iter.next();
     }
+
+    @Test
+    public void whenTestContainsTwoElementInArray() {
+        ArrayContainer<Integer> arrayContainer = new ArrayContainer<>();
+        arrayContainer.add(77);
+        assertThat(arrayContainer.contains(77), is(true));
+        assertThat(arrayContainer.contains(0), is(false));
+    }
 }
