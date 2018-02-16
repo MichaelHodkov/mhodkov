@@ -69,4 +69,11 @@ public class TestListTest {
         arrayNode[3].next = arrayNode[2];
         assertThat(testList.hasCycle(arrayNode[0]), is(false));
     }
+
+    @Test
+    public void whenOneNodeInList() {
+        TestList.Node<Integer>[] arrayNode = new TestList.Node[1];
+        arrayNode[0] = new TestList.Node<>(1);
+        assertThat(testList.hasCycle(arrayNode[0]), is(false));
+    }
 }

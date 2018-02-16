@@ -9,16 +9,19 @@ import java.util.ArrayList;
  */
 public class TestList {
     boolean hasCycle(Node node) {
-        ArrayList<Node> list = new ArrayList<>();
+        Node turtle = node;
+        Node rabbit = node.next;
         do {
-            list.add(node);
-            for (int i = 0; i < list.size() - 1; i++) {
-                if (list.get(i) == node) {
-                    return true;
-                }
+            if (turtle.equals(rabbit)) {
+                return true;
             }
-            node = node.next;
-        } while (node != null);
+            turtle = turtle.next;
+            if (rabbit != null && rabbit.next != null) {
+                rabbit = rabbit.next.next;
+            } else {
+                return false;
+            }
+        } while (turtle != null);
         return false;
     }
 
