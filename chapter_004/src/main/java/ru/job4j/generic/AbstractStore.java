@@ -37,9 +37,9 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
 
     @Override
     public T findById(String id) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getId().equals(id)) {
-                return list.get(i);
+        for (T element: list) {
+            if (element.getId().equals(id)) {
+                return element;
             }
         }
         return null;
