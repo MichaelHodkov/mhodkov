@@ -38,4 +38,18 @@ public class TestMapTest {
         testMap.put(userTwo, 1);
         System.out.println(testMap.getMap());
     }
+    @Test
+    public void whenCreatedTwoSameObjectUserWhereOverrideEqualsAndHashCodeAndPutInMap() {
+        TestMap<UserHandE> testMap = new TestMap<>();
+        UserHandE userOne = new UserHandE("Name", 0, null);
+        UserHandE userTwo = new UserHandE("Name", 0, null);
+        System.out.println(String.format("Hash code User One: %d", userOne.hashCode()));
+        System.out.println(String.format("Hash code User Two: %d", userTwo.hashCode()));
+        System.out.print("User One equals user Two?: ");
+        System.out.println(userOne.equals(userTwo));
+        assertThat(userOne.equals(userTwo), is(true));
+        testMap.put(userOne, 1);
+        testMap.put(userTwo, 1);
+        System.out.println(testMap.getMap());
+    }
 }
