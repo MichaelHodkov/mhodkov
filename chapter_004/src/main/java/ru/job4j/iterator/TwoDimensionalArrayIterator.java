@@ -24,16 +24,20 @@ public class TwoDimensionalArrayIterator implements Iterator {
      *
      * @return {@code true} if the iteration has more elements
      */
+//    @Override
+//    public boolean hasNext() {
+//        boolean flagNextItem = false;
+//        if (values.length == 0) {
+//            return false;
+//        }
+//        if (indexX == values[indexY].length && indexY < values.length - 1) {
+//            return true;
+//        }
+//        return values.length > indexY && values[indexY].length > indexX;
+//    }
     @Override
     public boolean hasNext() {
-        boolean flagNextItem = false;
-        if (values.length == 0) {
-            return false;
-        }
-        if (indexX == values[indexY].length && indexY < values.length - 1) {
-            return true;
-        }
-        return values.length > indexY && values[indexY].length > indexX;
+        return (values.length > 0 && (indexY < values.length - 1 || indexX < values[indexY].length));
     }
 
     /**
