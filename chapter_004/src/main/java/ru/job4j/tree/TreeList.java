@@ -57,4 +57,21 @@ public class TreeList<E extends Comparable<E>> implements SimpleTree<E> {
     public Iterator iterator() {
         return null;
     }
+
+    public boolean isBinary() {
+        return search(root);
+    }
+
+    private boolean search(Node<E> node) {
+        if (node.leaves().size() > 2) {
+            return false;
+        } else {
+            for (Node<E> child : node.leaves()) {
+                if (!search(child)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
