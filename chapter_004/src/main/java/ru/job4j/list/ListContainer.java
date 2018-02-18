@@ -11,13 +11,12 @@ import java.util.NoSuchElementException;
  */
 public class ListContainer<T> implements SimpleContainer<T> {
     private Node head;
-    private Node feet;
+    private Node first;
     private int size;
     private int modCount;
 
     public ListContainer() {
         this.head = null;
-        this.feet = null;
         this.size = 0;
         modCount = 0;
 
@@ -26,13 +25,13 @@ public class ListContainer<T> implements SimpleContainer<T> {
     @Override
     public void add(T t) {
         Node node = new Node(t);
-        if (head == null) {
-            head = node;
-            feet = node;
+        if (this.head == null) {
+            this.head = node;
+            this.first = this.head;
         } else {
-            node.feet = this.feet;
-            node.feet.head = node;
-            feet = node;
+            node.feet = this.head;
+            this.head.head = node;
+            head = node;
         }
         size++;
         modCount++;
@@ -41,7 +40,7 @@ public class ListContainer<T> implements SimpleContainer<T> {
     @Override
     public T get(int index) {
         int indexSearch = 0;
-        Node node = head;
+        Node node = first;
         while (indexSearch != index) {
             node = node.head;
             indexSearch++;
@@ -52,7 +51,7 @@ public class ListContainer<T> implements SimpleContainer<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            private Node linkNext = head;
+            private Node linkNext = first;
             private int expectedModCount = modCount;
             @Override
             public boolean hasNext() {
@@ -77,6 +76,31 @@ public class ListContainer<T> implements SimpleContainer<T> {
         return size;
     }
 
+    public void remove(int index) {
+        int indexSearch = 0;
+        size--;
+        modCount++;
+        if (index == 0) {
+            first = first.head;
+            return;
+        }
+        Node node = first;
+        while (indexSearch != index) {
+            node = node.head;
+            indexSearch++;
+        }
+        node.feet.head = node.head;
+    }
+
+    public void see() {
+        Node node = first;
+        while (node != null) {
+            System.out.print(node.item + " ");
+            node = node.head;
+        }
+        System.out.println();
+    }
+
     private static class Node<E> {
         E item;
         Node<E> head;
@@ -87,13 +111,5 @@ public class ListContainer<T> implements SimpleContainer<T> {
             this.head = null;
             this.feet = null;
         }
-    }
-
-    public static void main(String[] args) {
-        ListContainer<Integer> listContainer = new ListContainer<>();
-        listContainer.add(0);
-        listContainer.add(1);
-        listContainer.add(2);
-        System.out.println(listContainer.get(2));
     }
 }
