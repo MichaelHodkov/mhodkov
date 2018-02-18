@@ -14,6 +14,10 @@ public class QueueList<T> {
         list.add(value);
     }
 
+    public int getSize() {
+        return list.getSize();
+    }
+
     public T pull() {
         if (list.getSize() == 0) {
             throw new NoSuchElementException("Queue is empty.");
