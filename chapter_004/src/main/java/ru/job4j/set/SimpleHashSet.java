@@ -23,16 +23,22 @@ public class SimpleHashSet<T> {
     }
 
     public boolean add(T t) {
-        Object value = hashArray[t.hashCode() % hashArray.length];
-        if (value != null && value.equals(t)) {
+        int index = newHash(t, hashArray.length);
+        if (t == null || (hashArray[index] != null && hashArray[index].equals(t))) {
             return false;
         }
-        if (size >= hashArray.length || value != null) {
+        if (size >= hashArray.length * 2 / 3) {
             resize(t, 0);
         }
-        hashArray[t.hashCode() % hashArray.length] = t;
+        hashArray[index] = t;
         size++;
         return true;
+    }
+
+    private int newHash(T t, int size) {
+        int h = t.hashCode();
+        h = h >= 0 ? h : h * -1;
+        return h % size;
     }
 
     private void restartResize(T t, int capacity) {
@@ -43,11 +49,12 @@ public class SimpleHashSet<T> {
         Object[] newHash = new Object[hashArray.length * 3 / 2 + 1 + bigProblem];
         for (int i = 0; i < hashArray.length; i++) {
             if (hashArray[i] != null) {
-                if (newHash[hashArray[i].hashCode() % newHash.length] != null) {
+                int index = newHash((T) hashArray[i], newHash.length);
+                if (newHash[index] != null) {
                     restartResize(t, newHash.length);
                     return;
                 }
-                newHash[hashArray[i].hashCode() % newHash.length] = hashArray[i];
+                newHash[index] = hashArray[i];
             }
         }
         hashArray = newHash;
@@ -55,21 +62,19 @@ public class SimpleHashSet<T> {
     }
 
     public boolean contains(T t) {
-        for (int i = 0; i < hashArray.length; i++) {
-            if (hashArray[i] != null && hashArray[i].equals(t)) {
-                return true;
-            }
+        int index = newHash(t, hashArray.length);
+        if (hashArray[index] != null && hashArray[index].equals(t)) {
+            return true;
         }
         return false;
     }
 
     boolean remove(T t) {
-        for (int i = 0; i < hashArray.length; i++) {
-            if (hashArray[i] != null && hashArray[i].equals(t)) {
-                hashArray[i] = null;
-                size--;
-                return true;
-            }
+        int index = newHash(t, hashArray.length);
+        if (hashArray[index] != null && hashArray[index].equals(t)) {
+            hashArray[index] = null;
+            size--;
+            return true;
         }
         return false;
     }
