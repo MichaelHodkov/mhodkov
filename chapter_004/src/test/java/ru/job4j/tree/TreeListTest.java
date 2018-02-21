@@ -91,7 +91,7 @@ public class TreeListTest {
         Iterator iter = tree.iterator();
         assertThat(iter.hasNext(), is(true));
         assertThat(iter.next(), is(1));
-        tree.add(2,3);
+        tree.add(2, 3);
         iter.next();
     }
 
