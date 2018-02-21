@@ -93,16 +93,18 @@ public class TreeList<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     public boolean isBinary() {
-        return search(root);
-    }
-
-    private boolean search(Node<E> node) {
-        if (node.leaves().size() > 2) {
+        if (root.leaves().size() > 2) {
             return false;
         } else {
-            for (Node<E> child : node.leaves()) {
-                if (!search(child)) {
+            Queue<Node<E>> data = new LinkedList<>();
+            data.offer(this.root);
+            while (!data.isEmpty()) {
+                Node<E> el = data.poll();
+                if (el.leaves().size() > 2) {
                     return false;
+                }
+                for (Node<E> child : el.leaves()) {
+                    data.offer(child);
                 }
             }
         }
