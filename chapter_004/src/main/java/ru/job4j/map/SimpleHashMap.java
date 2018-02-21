@@ -3,6 +3,7 @@ package ru.job4j.map;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
  * @author Michael Hodkov
@@ -10,7 +11,7 @@ import java.util.NoSuchElementException;
  * @since 0.1
  */
 public class SimpleHashMap<K, V> implements Iterable {
-    private Object[][] array;
+    private EntryItems[] array;
     private int defaultSize = 10;
     private int size = 0;
     private int modCount = 0;
@@ -19,41 +20,39 @@ public class SimpleHashMap<K, V> implements Iterable {
         if (capacity < defaultSize) {
             capacity = defaultSize;
         }
-        array = new Object[2][capacity];
+        array = new EntryItems[capacity];
     }
 
     public SimpleHashMap() {
-        array = new Object[2][defaultSize];
+        array = new EntryItems[defaultSize];
     }
 
     public boolean insert(K key, V value) {
-        int factor = array[0].length;
+        int factor = array.length;
         if (size > factor * 2 / 3) {
             resize(0);
-            factor = array[0].length;
+            factor = array.length;
         }
         int index = myHash(key, factor);
-        if (array[0][index] != null) {
+        if (array[index] != null) {
             return false;
         }
-        array[0][index] = key;
-        array[1][index] = value;
+        array[index] = new EntryItems(key, value);
         modCount++;
         size++;
         return true;
     }
 
     private void resize(int bigProblem) {
-        Object[][] newArray = new Object[2][array[0].length * 2 + bigProblem];
-        int factor = newArray[0].length;
-        for (int i = 0; i < array[0].length; i++) {
-            if (array[0][i] != null) {
-                int index = myHash((K) array[0][i], factor);
-                if (newArray[0][index] != null) {
+        EntryItems[] newArray = new EntryItems[array.length * 2 + bigProblem];
+        int factor = newArray.length;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null) {
+                int index = myHash((K) array[i].key, factor);
+                if (newArray[index] != null) {
                     restart(factor);
                 } else {
-                    newArray[0][index] = array[0][i];
-                    newArray[1][index] = array[1][i];
+                    newArray[index] = array[i];
                 }
             }
         }
@@ -75,22 +74,20 @@ public class SimpleHashMap<K, V> implements Iterable {
     }
 
     public V get(K key) {
-        for (int i = 0; i < array[0].length; i++) {
-            if (array[0][i] != null && array[0][i].equals(key)) {
-                return (V) array[1][i];
-            }
+        int index = myHash(key, array.length);
+        if (array[index] != null && array[index].key.equals(key)) {
+            return (V) array[index].value;
         }
         return null;
     }
 
     public boolean delete(K key) {
         modCount++;
-        for (int i = 0; i < array[0].length; i++) {
-            if (array[0][i] != null && array[0][i].equals(key)) {
-                array[0][i] = null;
-                array[1][i] = null;
-                return true;
-            }
+        int index = myHash(key, array.length);
+        if (array[index] != null && array[index].key.equals(key)) {
+            array[index] = null;
+            size--;
+            return true;
         }
         return false;
     }
@@ -100,7 +97,7 @@ public class SimpleHashMap<K, V> implements Iterable {
     }
 
     public int getCapacity() {
-        return array[0].length;
+        return array.length;
     }
 
     @Override
@@ -111,7 +108,7 @@ public class SimpleHashMap<K, V> implements Iterable {
             @Override
             public boolean hasNext() {
                 while (iterIndex < getCapacity()) {
-                    if (array[0][iterIndex] != null) {
+                    if (array[iterIndex] != null) {
                         return true;
                     } else {
                         iterIndex++;
@@ -129,14 +126,43 @@ public class SimpleHashMap<K, V> implements Iterable {
                     throw new NoSuchElementException("Not more elements.");
                 }
                 hasNext();
-                return (V) array[1][iterIndex++];
+                return (V) array[iterIndex++].value;
             }
         };
     }
 
     public void see() {
-        for (int i = 0; i < array[0].length; i++) {
-            System.out.println("key: " + array[0][i] + ", value: " + array[1][i]);
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null) {
+                System.out.println("key: " + array[i].key + ", value: " + array[i].value);
+            }
+        }
+    }
+
+    class EntryItems<K, V> {
+        private K key;
+        private V value;
+
+        public EntryItems(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            EntryItems that = (EntryItems) o;
+            return Objects.equals(key, that.key) && Objects.equals(value, that.value);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(key, value);
         }
     }
 }
