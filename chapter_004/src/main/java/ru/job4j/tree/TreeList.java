@@ -1,9 +1,8 @@
 package ru.job4j.tree;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Optional;
-import java.util.Queue;
+import ru.job4j.list.StackList;
+
+import java.util.*;
 
 /**
  * @author Michael Hodkov
@@ -12,6 +11,7 @@ import java.util.Queue;
  */
 public class TreeList<E extends Comparable<E>> implements SimpleTree<E> {
     private Node<E> root;
+    private int modCount;
 
     public TreeList(E element) {
         Node<E> node = new Node<>(element);
@@ -20,19 +20,20 @@ public class TreeList<E extends Comparable<E>> implements SimpleTree<E> {
 
     @Override
     public boolean add(E parent, E child) {
+        modCount++;
         Optional<Node<E>> oNode = findBy(parent);
-        if (oNode == null) {
+        if (!oNode.isPresent()) {
             return false;
         }
         Node<E> node = oNode.get();
-        for (Node<E> tempNode : node.leaves()) {
-            if (tempNode.eqValue(child)) {
-                return false;
-            }
+        oNode = findBy(child);
+        if (!oNode.isPresent()) {
+            Node<E> childNode = new Node<>(child);
+            node.add(childNode);
+            return true;
+        } else {
+            return false;
         }
-        Node<E> childNode = new Node<>(child);
-        node.add(childNode);
-        return true;
     }
 
     @Override
@@ -55,7 +56,40 @@ public class TreeList<E extends Comparable<E>> implements SimpleTree<E> {
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new Iterator() {
+            private Node<E> node = root;
+            private StackList<E> list = new StackList<>();
+            private boolean flagNewIter = true;
+            private int notChange = modCount;
+            @Override
+            public boolean hasNext() {
+                if (flagNewIter) {
+                    addNodesInStack(node);
+                    flagNewIter = false;
+                }
+                return list.getSize() > 0;
+            }
+
+            @Override
+            public Object next() {
+                if (notChange != modCount) {
+                    throw new ConcurrentModificationException("Iterator only for read.");
+                }
+                if (!hasNext()) {
+                    throw new NoSuchElementException("Not more elements.");
+                }
+                return list.pull();
+            }
+
+            private void addNodesInStack(Node<E> node) {
+                if (node.leaves() != null) {
+                    for (Node<E> items: node.leaves()) {
+                        addNodesInStack(items);
+                    }
+                }
+                list.push(node.getValue());
+            }
+        };
     }
 
     public boolean isBinary() {
