@@ -47,8 +47,4 @@ public class Item {
     public void setComments(String[] comments) {
         this.comments = comments;
     }
-
-    public static void main(String[] args) {
-
-    }
 }
