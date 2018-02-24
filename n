@@ -1,0 +1,37 @@
+[33mcommit f6730aca92d098e1ed8bb077d83e5a200ea88fc6[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: MichaelHodkov <happymike19@gmail.com>
+Date:   Wed Feb 21 20:26:13 2018 +0300
+
+    переписал поиск бинарности дерева без рекурсии.
+
+[1mdiff --git a/chapter_004/src/main/java/ru/job4j/tree/TreeList.java b/chapter_004/src/main/java/ru/job4j/tree/TreeList.java[m
+[1mindex 5dfe7f4..b5a94a1 100644[m
+[1m--- a/chapter_004/src/main/java/ru/job4j/tree/TreeList.java[m
+[1m+++ b/chapter_004/src/main/java/ru/job4j/tree/TreeList.java[m
+[36m@@ -93,17 +93,19 @@[m [mpublic class TreeList<E extends Comparable<E>> implements SimpleTree<E> {[m
+     }[m
+ [m
+     public boolean isBinary() {[m
+[31m-        return search(root);[m
+[31m-    }[m
+[31m-[m
+[31m-    private boolean search(Node<E> node) {[m
+[31m-        if (node.leaves().size() > 2) {[m
+[32m+[m[32m        if (root.leaves().size() > 2) {[m
+             return false;[m
+         } else {[m
+[31m-            for (Node<E> child : node.leaves()) {[m
+[31m-                if (!search(child)) {[m
+[32m+[m[32m            Queue<Node<E>> data = new LinkedList<>();[m
+[32m+[m[32m            data.offer(this.root);[m
+[32m+[m[32m            while (!data.isEmpty()) {[m
+[32m+[m[32m                Node<E> el = data.poll();[m
+[32m+[m[32m                if (el.leaves().size() > 2) {[m
+                     return false;[m
+                 }[m
+[32m+[m[32m                for (Node<E> child : el.leaves()) {[m
+[32m+[m[32m                    data.offer(child);[m
+[32m+[m[32m                }[m
+             }[m
+         }[m
+         return true;[m
