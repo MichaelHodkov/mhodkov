@@ -247,27 +247,4 @@ public class Glass {
             }
         }
     }
-
-    public static void main(String[] args) {
-        Glass glass = new Glass();
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.BID, 135, 10));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.BID, 131, 7));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.BID, 136, 2));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.BID, 131, 1));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.BID, 129, 22));
-        glass.insertClaim(new Claim("LUK", Claim.Type.ADD, Claim.Action.BID, 1305, 5));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.BID, 135, 7));
-        glass.insertClaim(new Claim("LUK", Claim.Type.ADD, Claim.Action.BID, 1300, 2));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.ASK, 150, 1));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.DEL, Claim.Action.ASK, 150, 1));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.ASK, 150, 5));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.ASK, 147, 7));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.ASK, 138, 9));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.BID, 139, 10));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.ASK, 120, 5));
-        glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.ASK, 139, 1));
-//        glass.seeBid();
-//        glass.seeAsk();
-        glass.printGlass();
-    }
 }
