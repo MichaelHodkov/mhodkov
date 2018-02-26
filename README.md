@@ -5,7 +5,7 @@
 
 
 
-Пройти обучние по Java и найти работу программистом Java в феврале-марте 2018г.
+Пройти обучние по Java и найти работу программистом Java в марте-апреле 2018г.
 
 chapter_001 Базовый Синтаксис.
 
@@ -14,6 +14,8 @@ chapter_002 ООП.
 chapter_003 Collections. Lite.
 
 chapter_004 Collections. Pro.
+
+chapter_005 Multithreading
 
 
 http://job4j.ru
