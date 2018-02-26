@@ -8,7 +8,8 @@ package ru.job4j.threads;
  */
 public class CountChar {
     public void counter(String st) {
-        new Thread() {
+        System.out.println("Start analiz...");
+        Thread threadChar = new Thread(new Runnable() {
             @Override
             public void run() {
                 int sum = 0;
@@ -20,8 +21,8 @@ public class CountChar {
                 }
                 System.out.println(String.format("Sum char = %d", sum));
             }
-        }.start();
-        new Thread() {
+        });
+        Thread threadSpace = new Thread(new Runnable() {
             @Override
             public void run() {
                 int sum = 0;
@@ -33,8 +34,16 @@ public class CountChar {
                 }
                 System.out.println(String.format("Sum space = %d", sum));
             }
-        }.start();
-    }
+        });
+        threadChar.start();
+        threadSpace.start();
+        try {
+            threadChar.join();
+            threadSpace.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Analiz finish.");    }
 
     public static void main(String[] args) {
         CountChar countChar = new CountChar();
