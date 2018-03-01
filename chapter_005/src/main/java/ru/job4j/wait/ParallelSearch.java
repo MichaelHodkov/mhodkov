@@ -70,7 +70,7 @@ public class ParallelSearch {
                             if (Files.isReadable(path)) {
                                 try {
                                     String content = new String(Files.readAllBytes(path));
-                                    if(text!=null && content.indexOf(text) != -1) {
+                                    if (text != null && content.indexOf(text) != -1) {
                                         paths.add(path.toString());
                                     }
                                 } catch (IOException e) {

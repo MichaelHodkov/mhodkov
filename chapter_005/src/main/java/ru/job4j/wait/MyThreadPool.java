@@ -47,13 +47,13 @@ public class MyThreadPool {
         }
     }
 
-    static class Work implements Runnable{
+    static class Work implements Runnable {
         @Override
         public void run() {
             System.out.println("Todo...");
             int sum = 0;
             for (int i = 0; i < 100000; i++) {
-                sum +=i;
+                sum += i;
             }
             System.out.println(String.format("Sum = %d", sum));
         }
