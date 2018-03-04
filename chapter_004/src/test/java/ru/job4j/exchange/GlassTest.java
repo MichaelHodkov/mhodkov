@@ -14,13 +14,9 @@ public class GlassTest {
     @Test
     public void whenAddAndDelClaimInGlass() {
         glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.BID, 145, 150));
-        glass.seeBid();
         glass.insertClaim(new Claim("GAZ", Claim.Type.DEL, Claim.Action.BID, 145, 150));
-        glass.seeBid();
         glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.ASK, 140, 200));
-        glass.seeAsk();
         glass.insertClaim(new Claim("GAZ", Claim.Type.DEL, Claim.Action.ASK, 140, 200));
-        glass.seeAsk();
         glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.BID, 150, 2));
         glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.ASK, 145, 2));
         glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.BID, 150, 1));
@@ -30,6 +26,5 @@ public class GlassTest {
         glass.printGlass();
         glass.insertClaim(new Claim("GAZ", Claim.Type.ADD, Claim.Action.ASK, 145, 5));
         glass.printGlass();
-        glass.seeBid();
     }
 }

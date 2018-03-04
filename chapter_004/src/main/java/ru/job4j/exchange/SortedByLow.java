@@ -8,9 +8,9 @@ import java.util.LinkedList;
  * @version $Id$
  * @since 0.1
  * */
-public class SortedByLow implements Comparator<LinkedList<Claim>> {
+public class SortedByLow implements Comparator<Claim> {
     @Override
-    public int compare(LinkedList<Claim> o1, LinkedList<Claim> o2) {
-        return Float.compare(o1.element().getPrice(), o2.element().getPrice());
+    public int compare(Claim o1, Claim o2) {
+        return Float.compare(o1.getPrice(), o2.getPrice());
     }
 }
