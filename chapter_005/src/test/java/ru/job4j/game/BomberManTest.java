@@ -8,7 +8,7 @@ import org.junit.Test;
  */
 public class BomberManTest {
     @Test
-    public void whenTestBomberMan() {
+    public void whenTestBomberMan() throws InterruptedException {
         BomberMan bomberMan = new BomberMan(5);
         bomberMan.start();
     }

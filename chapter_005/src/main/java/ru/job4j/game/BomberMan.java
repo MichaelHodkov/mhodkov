@@ -28,17 +28,14 @@ public class BomberMan {
         }
     }
 
-    public void start() {
+    public void start() throws InterruptedException {
         Thread hero = new Thread(new HeroThread(board, new Position(0, 0), 500));
         Thread see = new Thread(new SeeBoardThread(this.board, 1000));
         see.start();
         hero.start();
-        try {
-            see.join();
-            hero.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(10000);
+        hero.interrupt();
+        see.interrupt();
 
     }
 }
