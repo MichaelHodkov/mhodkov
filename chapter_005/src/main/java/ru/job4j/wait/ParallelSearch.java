@@ -2,6 +2,7 @@ package ru.job4j.wait;
 
 import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
 /**
  * @author Michael Hodkov
  * @version $Id$
@@ -38,24 +40,24 @@ public class ParallelSearch {
             @Override
             public void run() {
                 Path path = Paths.get(root);
-                synchronized (files) {
-                    try {
-                        Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
-                            @Override
-                            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                                for (String ends: exts) {
-                                    if (file.toString().endsWith(ends)) {
+                try {
+                    Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
+                        @Override
+                        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                            for (String ends : exts) {
+                                if (file.toString().endsWith(ends)) {
+                                    synchronized (files) {
                                         files.add(file.toString());
                                         files.notify();
-                                        break;
                                     }
+                                    break;
                                 }
-                                return FileVisitResult.CONTINUE;
                             }
-                        });
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                            return FileVisitResult.CONTINUE;
+                        }
+                    });
+                } catch (IOException e1) {
+                    e1.printStackTrace();
                 }
                 finish = true;
             }
@@ -63,27 +65,31 @@ public class ParallelSearch {
         Thread read = new Thread() {
             @Override
             public void run() {
-                while (!finish || !files.isEmpty()) {
-                    synchronized (files) {
-                        if (!files.isEmpty()) {
-                            Path path = Paths.get(files.poll());
-                            if (Files.isReadable(path)) {
-                                try {
-                                    String content = new String(Files.readAllBytes(path));
-                                    if (text != null && content.indexOf(text) != -1) {
+                Path path;
+                while (!finish) {
+                    if (!files.isEmpty()) {
+                        synchronized (files) {
+                            path = Paths.get(files.poll());
+                        }
+                        if (Files.isReadable(path)) {
+                            try {
+                                String content = new String(Files.readAllBytes(path));
+                                if (text != null && content.indexOf(text) != -1) {
+                                    synchronized (paths) {
                                         paths.add(path.toString());
                                     }
-                                } catch (IOException e) {
-                                    e.printStackTrace();
                                 }
-                            }
-                        } else {
-                            try {
-                                files.wait();
-                                yield();
-                            } catch (InterruptedException e) {
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                        }
+                    } else {
+                        try {
+                            while (files.isEmpty()) {
+                                files.wait();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
@@ -97,7 +103,6 @@ public class ParallelSearch {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     synchronized List<String> result() {
