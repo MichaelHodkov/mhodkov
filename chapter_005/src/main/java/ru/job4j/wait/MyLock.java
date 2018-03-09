@@ -16,14 +16,14 @@ public class MyLock {
     private String nameThreadLock;
 
     public void getLock() {
-        if (freeLock) {
-            synchronized (lock) {
+        synchronized (lock) {
+            if (freeLock) {
                 freeLock = false;
                 System.out.println(String.format("%s i'm lock : lock", Thread.currentThread().getName()));
                 nameThreadLock = Thread.currentThread().getName();
+            } else {
+                System.out.println(String.format("%s not free lock!", Thread.currentThread().getName()));
             }
-        } else {
-            System.out.println(String.format("%s not free lock!", Thread.currentThread().getName()));
         }
     }
 
