@@ -9,7 +9,7 @@ import org.junit.Test;
 public class BomberManTest {
     @Test
     public void whenTestBomberMan() throws InterruptedException {
-        BomberMan bomberMan = new BomberMan(5);
+        BomberMan bomberMan = new BomberMan(5, 10, Difficulty.Dif.EASY, Difficulty.Dif.HARD);
         bomberMan.start();
     }
 

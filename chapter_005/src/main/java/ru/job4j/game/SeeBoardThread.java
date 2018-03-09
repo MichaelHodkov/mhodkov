@@ -23,7 +23,13 @@ public class SeeBoardThread implements Runnable {
             for (int i = 0; i < this.board.length; i++) {
                 for (int j = 0; j < this.board[i].length; j++) {
                     if (this.board[i][j].isLocked()) {
-                        System.out.print("|h");
+                        if (this.board[i][j].toString().contains("thread main")) {
+                            System.out.print("|X");
+                        } else if (this.board[i][j].toString().contains("pool-1")) {
+                            System.out.print("|M");
+                        } else {
+                            System.out.print("|h");
+                        }
                     } else {
                         System.out.print("| ");
                     }

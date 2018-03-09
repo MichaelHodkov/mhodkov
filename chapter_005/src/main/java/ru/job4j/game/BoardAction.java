@@ -37,6 +37,29 @@ public class BoardAction {
         return !board[position.getY()][position.getX()].isLocked();
     }
 
+    /** Метод атомарной блокировки клетки.
+     * @param board - доска где блокируем.
+     * @param position - клетка которую блокируем.
+     * @return - резултат блокировки, смогли ли занять клетку.
+     */
+    public boolean tryLockBoard(ReentrantLock[][] board, Position position) {
+        return board[position.getY()][position.getX()].tryLock();
+    }
+
+    /** Метод возвращает слючайную свободную позицию.
+     * @param board - доска где ищем свободную клетку.
+     * @return - координаты свободной клетки.
+     */
+    public Position generateRandomFreePosition(ReentrantLock[][] board) {
+        int x;
+        int y;
+        do {
+            x = (int) (Math.random() * board[0].length);
+            y = (int) (Math.random() * board.length);
+        } while (board[y][x].isLocked());
+        return new Position(x, y);
+    }
+
     /** Метод паузы во времени.
      * @param time - сколько времени в миллесикундах нужно ждать.
      */

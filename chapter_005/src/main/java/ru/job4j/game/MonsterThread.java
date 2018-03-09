@@ -1,23 +1,22 @@
 package ru.job4j.game;
 
 import java.util.concurrent.locks.ReentrantLock;
-
 /**
  * @author Michael Hodkov
  * @version $Id$
  * @since 0.1
  */
-public class HeroThread implements Runnable {
+public class MonsterThread implements Runnable {
     private Position position;
     private final ReentrantLock[][] board;
     private final Motion motion = new Motion();
     private final BoardAction action = new BoardAction();
     private final int time;
 
-    HeroThread(ReentrantLock[][] board, Position position, int time) {
-        this.position = position;
+    public MonsterThread(ReentrantLock[][] board, Position position, int time) {
         this.board = board;
         this.time = time;
+        this.position = position;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class HeroThread implements Runnable {
                 action.sleep(this.time);
             }
         }
-
+        BomberMan.stop();
     }
 
     private boolean capture(Position newPosition, int time) {
@@ -41,10 +40,20 @@ public class HeroThread implements Runnable {
         boolean capture = false;
         do {
             timeStop = System.currentTimeMillis();
-            if (!capture && action.tryLockBoard(board, newPosition)) {
-                action.unlockBoard(board, position);
-                position = newPosition;
-                capture = true;
+            if (!capture) {
+                if (action.tryLockBoard(board, newPosition)) {
+                    action.unlockBoard(board, position);
+                    position = newPosition;
+                    capture = true;
+                } else {
+                    if (board[newPosition.getY()][newPosition.getX()].toString().contains("Thread-0")) {
+                        Thread.currentThread().interrupt();
+                    }
+                    if (board[newPosition.getY()][newPosition.getX()].toString().contains("thread pool")) {
+                        action.sleep(4500);
+                        break;
+                    }
+                }
             }
         } while (timeStop - timeStart < time);
         return capture;
