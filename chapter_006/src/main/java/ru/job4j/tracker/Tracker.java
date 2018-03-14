@@ -17,8 +17,8 @@ public class Tracker {
     private final SQLRequestTrecker request;
 
     public Tracker() {
-        setup = new Setup(this);
-        connect = new SQLConnect(setup.getUrl(), setup.getLogin(), setup.getPassword());
+        setup = new Setup(this, "chapter_006/tracker.ini");
+        connect = new SQLConnect(setup.getUrl(), setup.getLogin(), setup.getPassword(), false);
         request = new SQLRequestTrecker(connect.getConnection());
         if (setup.getExecuteSQLList().size() > 0) {
             request.executeSQL(setup.getExecuteSQLList());

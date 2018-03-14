@@ -62,7 +62,7 @@ public class ConsoleUtilSQL {
         date = new MyDate();
         date.printDate("Star");
         date.printDate("Connect");
-        this.connect = new SQLConnect(getUrl(), getLogin(), getPassword());
+        this.connect = new SQLConnect(getUrl(), getLogin(), getPassword(), false);
         this.request = new SQLRequest(this.connect.getConnection());
         date.printDate("done");
         date.printDate("Create table TEST");

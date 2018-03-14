@@ -18,9 +18,9 @@ public class Setup {
     private String password;
     private List<String> executeSQLList = new LinkedList<>();
 
-    public Setup(Tracker tracker) {
+    public Setup(Tracker tracker, String fileName) {
         try {
-            FileInputStream fileInputStream = new FileInputStream("chapter_006/tracker.ini");
+            FileInputStream fileInputStream = new FileInputStream(fileName);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
             String stLine;
             while ((stLine = bufferedReader.readLine()) != null) {

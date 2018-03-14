@@ -14,12 +14,6 @@ public class SQLRequestTrecker {
 
     public SQLRequestTrecker(Connection conn) {
         this.conn = conn;
-        try {
-            conn.setAutoCommit(true);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public void executeSQL(String text) {
