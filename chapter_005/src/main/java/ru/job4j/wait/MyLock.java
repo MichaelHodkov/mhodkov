@@ -10,17 +10,19 @@ import net.jcip.annotations.ThreadSafe;
  */
 @ThreadSafe
 public class MyLock {
-    @GuardedBy("this")
+    @GuardedBy("lock")
     private final Object lock = new Object();
+    @GuardedBy("freeLock")
     private boolean freeLock = true;
-    private String nameThreadLock;
+    @GuardedBy("lockThread")
+    private Thread lockThread;
 
     public void getLock() {
         synchronized (lock) {
             if (freeLock) {
                 freeLock = false;
                 System.out.println(String.format("%s i'm lock : lock", Thread.currentThread().getName()));
-                nameThreadLock = Thread.currentThread().getName();
+                lockThread = Thread.currentThread();
             } else {
                 System.out.println(String.format("%s not free lock!", Thread.currentThread().getName()));
             }
@@ -29,9 +31,10 @@ public class MyLock {
 
     public void unlock() {
         synchronized (lock) {
-            if (nameThreadLock.equals(Thread.currentThread().getName())) {
+            if (lockThread != null && lockThread.equals(Thread.currentThread())) {
                 System.out.println(String.format("%s i'm unlock : lock", Thread.currentThread().getName()));
                 freeLock = true;
+                lockThread = null;
             } else {
                 System.out.println(String.format("%s not my lock", Thread.currentThread().getName()));
             }
