@@ -17,5 +17,8 @@ chapter_004 Collections. Pro.
 
 chapter_005 Multithreading
 
+chapter_006. SQL, JDBC
+
+chapter_007. Serlvet JSP
 
 http://job4j.ru
