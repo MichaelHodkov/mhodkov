@@ -24,5 +24,7 @@ pot.xml
 
 target
 
+out
+
 .idea
 *.iml
