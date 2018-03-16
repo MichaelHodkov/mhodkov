@@ -21,7 +21,6 @@ public class Setup {
     private String startUrl;
     private String login;
     private String password;
-    private List<String> executeSQLList = new LinkedList<>();
     private int hour = 24;
     private boolean flagProvlem = false;
 
@@ -40,8 +39,6 @@ public class Setup {
                     this.login = stLine.replace("#login=", "");
                 } else if (stLine.contains("#password=")) {
                     this.password = stLine.replace("#password=", "");
-                } else if (stLine.contains("#sql=")) {
-                    this.executeSQLList.add(stLine.replace("#sql=", ""));
                 } else if (stLine.contains("#hr=")) {
                     this.hour = Integer.valueOf(stLine.replace("#hr=", ""));
                 }
@@ -75,10 +72,6 @@ public class Setup {
 
     public String getPassword() {
         return password;
-    }
-
-    public List<String> getExecuteSQLList() {
-        return executeSQLList;
     }
 
     public int getHour() {

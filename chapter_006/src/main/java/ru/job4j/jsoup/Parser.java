@@ -36,7 +36,7 @@ public class Parser {
         }
         connect = new SQLConnect(setup.getUrl(), setup.getLogin(), setup.getPassword(), true);
         sqlReq = new MySQLReq(connect.getConnection());
-        sqlReq.executeSQL(setup.getExecuteSQLList());
+        sqlReq.createTable();
         url = setup.getStartUrl();
         hour = setup.getHour();
         start();
@@ -103,12 +103,24 @@ public class Parser {
         String text = elements.get(1).text();
         elements = document.getElementsByClass("msgFooter");
         Date time = correctTime(elements.get(0).text());
-        if (time.after(stopLine)) {
+        if (time.after(stopLine) && isSPB(text)) {
             sqlReq.add(url, title, text, time);
             return true;
         } else {
             return false;
         }
+    }
+
+    private boolean isSPB(String text) {
+        text = text.toLowerCase();
+        if (text.contains("санкт-петербург")) {
+            return true;
+        } else if (text.contains("спб")) {
+            return true;
+        } else if (text.contains("питер")) {
+            return true;
+        }
+        return false;
     }
 
     private Date correctTime(String time) {

@@ -19,21 +19,11 @@ public class MySQLReq {
         this.conn = conn;
     }
 
-    public void executeSQL(String text) {
+    public void createTable() {
         try {
+            PreparedStatement ps = conn.prepareStatement("CREATE TABLE IF NOT EXISTS JOB (id serial PRIMARY KEY, title CHARACTER VARYING(500) NOT NULL, text CHARACTER VARYING(5000) NOT NULL, url CHARACTER VARYING(1000) NOT NULL, created TIMESTAMP NOT NULL);");
+            ps.executeUpdate();
             Statement st = conn.createStatement();
-            st.execute(text);
-        } catch (SQLException e) {
-            log.error(e);
-        }
-    }
-
-    public void executeSQL(List<String> list) {
-        try {
-            Statement st = conn.createStatement();
-            for (String text: list) {
-                st.execute(text);
-            }
         } catch (SQLException e) {
             log.error(e);
         }
