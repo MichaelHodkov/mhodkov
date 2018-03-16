@@ -3,7 +3,7 @@ package ru.job4j.sql;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MyDate {
+public class Print {
 
     public void printDate(String text) {
         int max = 50 - text.length();

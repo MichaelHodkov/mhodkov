@@ -15,7 +15,7 @@ public class Main {
             url = "jdbc:postgresql://localhost:5432/test";
             login = "postgres";
             password = "Qwerty123";
-            n = 500000;
+            n = 10;
         } else if (args.length == 4) {
             url = args[0];
             login = args[1];
@@ -25,8 +25,6 @@ public class Main {
             System.out.println("Error input..");
             return;
         }
-        sql.setup(url, login, password, n);
-        sql.start();
-        sql.stop();
+        sql.work(url, login, password, n);
     }
 }

@@ -1,13 +1,9 @@
 package ru.job4j.sql;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import javax.xml.parsers.*;
+import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 import java.io.IOException;
 
 /**
@@ -17,16 +13,12 @@ import java.io.IOException;
  */
 public class ParsingWork {
     public long work(String sourceXML) {
-        long sum = 0;
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        Parser parser = null;
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(sourceXML);
-            NodeList nodeList = document.getElementsByTagName("entry");
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Element element = (Element) nodeList.item(i);
-                sum += Integer.parseInt(element.getAttribute("field"));
-            }
+            SAXParser saxParser = factory.newSAXParser();
+            parser = new Parser();
+            saxParser.parse(sourceXML, parser);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
@@ -34,6 +26,22 @@ public class ParsingWork {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return sum;
+        return parser.getSum();
+    }
+
+    private class Parser extends DefaultHandler {
+
+        private long sum;
+
+        public long getSum() {
+            return sum;
+        }
+
+        @Override
+        public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+            if (qName.equals("entry")) {
+                sum += Integer.valueOf(attributes.getValue("field"));
+            }
+        }
     }
 }
