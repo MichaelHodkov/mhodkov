@@ -48,4 +48,29 @@
         <servlet-name>AddServlet</servlet-name>
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditServJSP</servlet-name>
+        <servlet-class>ru.job4j.jsp.EditServJSP</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditServJSP</servlet-name>
+        <url-pattern>/editJSP</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DelServJSP</servlet-name>
+        <servlet-class>ru.job4j.jsp.DelServJSP</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelServJSP</servlet-name>
+        <url-pattern>/delJSP</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddServJSP</servlet-name>
+        <servlet-class>ru.job4j.jsp.AddServJSP</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddServJSP</servlet-name>
+        <url-pattern>/addJSP</url-pattern>
+    </servlet-mapping>
 </web-app>
