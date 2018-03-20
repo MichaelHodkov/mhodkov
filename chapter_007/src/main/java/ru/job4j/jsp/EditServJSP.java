@@ -28,7 +28,7 @@ public class EditServJSP extends HttpServlet {
             req.setAttribute("name", name);
             req.setAttribute("login", login);
             req.setAttribute("email", email);
-            this.getServletContext().getRequestDispatcher("/edit.jsp").forward(req, resp );
+            this.getServletContext().getRequestDispatcher("/edit.jsp").forward(req, resp);
         } else {
             users.updateUser(id, new User(name, login, email, new Date()));
             resp.sendRedirect(String.format("%s/index.jsp ", req.getContextPath()));
