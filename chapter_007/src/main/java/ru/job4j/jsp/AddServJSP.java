@@ -22,7 +22,7 @@ public class AddServJSP extends HttpServlet {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String email = req.getParameter("email");
-        if (name == null || name == "" || login == null || login == "" || email == null || email == "") {
+        if (name == null || name.equals("") || login == null || login.equals("") || email == null || email.equals("")) {
             req.setAttribute("name", name);
             req.setAttribute("login", login);
             req.setAttribute("email", email);
