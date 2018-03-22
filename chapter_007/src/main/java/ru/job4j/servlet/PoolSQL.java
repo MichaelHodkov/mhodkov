@@ -23,14 +23,20 @@ public class PoolSQL {
     private static final PoolingDataSource POOL = new PoolingDataSource();
 
     public PoolSQL() {
-        DriverManagerConnectionFactory dmcf = new DriverManagerConnectionFactory(
-                "jdbc:postgresql://localhost:5432/crud", "postgres", "Qwerty123");
-        new PoolableConnectionFactory(dmcf, new GenericObjectPool() {
-            {
-                POOL.setPool(this);
-            }
-        },
-                null, null, false, true);
+        try {
+            Class.forName("org.postgresql.Driver");
+            DriverManagerConnectionFactory dmcf = new DriverManagerConnectionFactory(
+                    "jdbc:postgresql://localhost:5432/crud", "postgres", "Qwerty123");
+            new PoolableConnectionFactory(dmcf, new GenericObjectPool() {
+                {
+                    POOL.setPool(this);
+                }
+            },
+                    null, null, false, true);
+        } catch (ClassNotFoundException e) {
+            LOG.error(String.format("Proble start connect: %s", e));
+        }
+
     }
 
     private void connect() {

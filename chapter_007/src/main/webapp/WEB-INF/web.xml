@@ -1,76 +1,34 @@
 <web-app>
     <servlet>
-        <servlet-name>EchoServlet</servlet-name>
-        <servlet-class>ru.job4j.firstservlet.EchoServlet</servlet-class>
+        <servlet-name>User Controller</servlet-name>
+        <servlet-class>ru.job4j.jstl.UserController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EchoServlet</servlet-name>
-        <url-pattern>/echo</url-pattern>
+        <servlet-name>User Controller</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>UserServlet</servlet-name>
-        <servlet-class>ru.job4j.crudservlet.UserServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <servlet-name>Add User</servlet-name>
+        <servlet-class>ru.job4j.jstl.AddUser</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/users</url-pattern>
+        <servlet-name>Add User</servlet-name>
+        <url-pattern>/add</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ShowAllServlet</servlet-name>
-        <servlet-class>ru.job4j.servlet.ShowAllServlet</servlet-class>
+        <servlet-name>Edit User</servlet-name>
+        <servlet-class>ru.job4j.jstl.EditUser</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ShowAllServlet</servlet-name>
-        <url-pattern>/u</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>EditServlet</servlet-name>
-        <servlet-class>ru.job4j.servlet.EditServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EditServlet</servlet-name>
+        <servlet-name>Edit User</servlet-name>
         <url-pattern>/edit</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>DelServlet</servlet-name>
-        <servlet-class>ru.job4j.servlet.DelServlet</servlet-class>
+        <servlet-name>Delete User</servlet-name>
+        <servlet-class>ru.job4j.jstl.DelUser</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>DelServlet</servlet-name>
-        <url-pattern>/del</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>AddServlet</servlet-name>
-        <servlet-class>ru.job4j.servlet.AddServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddServlet</servlet-name>
-        <url-pattern>/add</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>EditServJSP</servlet-name>
-        <servlet-class>ru.job4j.jsp.EditServJSP</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EditServJSP</servlet-name>
-        <url-pattern>/editJSP</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>DelServJSP</servlet-name>
-        <servlet-class>ru.job4j.jsp.DelServJSP</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DelServJSP</servlet-name>
-        <url-pattern>/delJSP</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>AddServJSP</servlet-name>
-        <servlet-class>ru.job4j.jsp.AddServJSP</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddServJSP</servlet-name>
-        <url-pattern>/addJSP</url-pattern>
+        <servlet-name>Delete User</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
 </web-app>

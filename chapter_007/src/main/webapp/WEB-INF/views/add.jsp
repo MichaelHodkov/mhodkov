@@ -1,20 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Add user</title>
 </head>
     <body>
         <br>
-        <form action="<%=request.getContextPath()%>/addJSP" method="post">
+        <form action="${pageContext.servletContext.contextPath}/add" method="get">
             <table>
-                <td> Name: <input type="text" name="name" value="<%=request.getParameter("name") == null ? "" : request.getParameter("name")%>"></td>
-                <td> Login: <input type="text" name="login" value="<%=request.getParameter("login") == null ? "" : request.getParameter("login")%>"></td>
-                <td> E-mail: <input type="text" name="email" value="<%=request.getParameter("email") == null ? "" : request.getParameter("email")%>"></td>
+                <td> Name: <input type="text" name="name" value="${requestScope.get("name")}"></td>
+                <td> Login: <input type="text" name="login" value="${requestScope.get("login")}"></td>
+                <td> E-mail: <input type="text" name="email" value="${requestScope.get("email")}"></td>
                 <td> <input type="submit" value="Add new user"></td>
             </table>
         </form>
         <br>
-        <form action="index.jsp" method="get">
+        <form action="${pageContext.servletContext.contextPath}/" method="get">
             <input type="submit" value="Back">
         </form>
     </body>

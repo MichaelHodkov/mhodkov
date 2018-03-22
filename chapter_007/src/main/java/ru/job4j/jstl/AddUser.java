@@ -1,4 +1,4 @@
-package ru.job4j.jsp;
+package ru.job4j.jstl;
 
 import ru.job4j.crudservlet.User;
 import ru.job4j.servlet.UserStore;
@@ -14,24 +14,26 @@ import java.util.Date;
  * @version $Id$
  * @since 0.1
  */
-public class EditServJSP extends HttpServlet {
+public class AddUser extends HttpServlet {
     private final UserStore users = UserStore.getInstance();
-
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String email = req.getParameter("email");
         if (name == null || name.equals("") || login == null || login.equals("") || email == null || email.equals("")) {
-            req.setAttribute("id", id);
             req.setAttribute("name", name);
             req.setAttribute("login", login);
             req.setAttribute("email", email);
-            this.getServletContext().getRequestDispatcher("/edit.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/add.jsp").forward(req, resp);
         } else {
-            users.updateUser(id, new User(name, login, email, new Date()));
-            resp.sendRedirect(String.format("%s/UsersView.jsp ", req.getContextPath()));
+            users.addUser(new User(name, login, email, new Date()));
+            resp.sendRedirect(String.format("%s/", req.getContextPath()));
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/WEB-INF/views/add.jsp").forward(req, resp);
     }
 }

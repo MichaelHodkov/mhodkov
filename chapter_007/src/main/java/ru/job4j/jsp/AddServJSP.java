@@ -29,7 +29,7 @@ public class AddServJSP extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/add.jsp").forward(req, resp);
         } else {
             users.addUser(new User(name, login, email, new Date()));
-            resp.sendRedirect(String.format("%s/index.jsp ", req.getContextPath()));
+            resp.sendRedirect(String.format("%s/UsersView.jsp ", req.getContextPath()));
         }
     }
 }
