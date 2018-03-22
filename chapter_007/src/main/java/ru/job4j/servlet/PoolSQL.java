@@ -37,7 +37,7 @@ public class PoolSQL {
         try {
             connection = POOL.getConnection();
         } catch (SQLException e) {
-            LOG.error(e);
+            LOG.error(String.format("Problem get connect: %s", e));
         }
     }
 
@@ -47,7 +47,7 @@ public class PoolSQL {
                 connection.close();
                 connection = null;
             } catch (SQLException e) {
-                LOG.error(e);
+                LOG.error(String.format("Problem disconect connect: %s", e));
             }
         }
         if (preparedStatement != null) {
@@ -55,7 +55,7 @@ public class PoolSQL {
                 preparedStatement.close();
                 preparedStatement = null;
             } catch (SQLException e) {
-                LOG.error(e);
+                LOG.error(String.format("Problem disconect Prepared Statement: %s", e));
             }
         }
     }
@@ -68,7 +68,7 @@ public class PoolSQL {
                     "CREATE TABLE IF NOT EXISTS crud (id serial PRIMARY KEY, name CHARACTER VARYING(100) NOT NULL, login CHARACTER VARYING(100) NOT NULL, email CHARACTER VARYING(100) NOT NULL, createdate TIMESTAMP NOT NULL);");
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            LOG.error(e);
+            LOG.error(String.format("Problem create table: %s", e));
         } finally {
             disconnect();
         }
@@ -84,7 +84,7 @@ public class PoolSQL {
             preparedStatement.setTimestamp(4, new Timestamp(user.getCreatedate().getTime()));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            LOG.error(e);
+            LOG.error(String.format("Problem add user: %s", e));
         } finally {
             disconnect();
         }
@@ -101,7 +101,7 @@ public class PoolSQL {
             preparedStatement.setInt(5, Integer.valueOf(id));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            LOG.error(e);
+            LOG.error(String.format("Problem update user: %s", e));
         } finally {
             disconnect();
         }
@@ -117,7 +117,7 @@ public class PoolSQL {
             preparedStatement.setTimestamp(4, new Timestamp(user.getCreatedate().getTime()));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            LOG.error(e);
+            LOG.error(String.format("Problem del(user): %s", e));
         } finally {
             disconnect();
         }
@@ -130,7 +130,7 @@ public class PoolSQL {
             preparedStatement.setInt(1, Integer.valueOf(id));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            LOG.error(e);
+            LOG.error(String.format("Problem del(id): %s", e));
         } finally {
             disconnect();
         }
@@ -152,7 +152,7 @@ public class PoolSQL {
                 list.add(user);
             }
         } catch (SQLException e) {
-            LOG.error(e);
+            LOG.error(String.format("Problem get list users: %s", e));
         } finally {
             disconnect();
         }
