@@ -103,7 +103,7 @@ public class Parser {
         String text = elements.get(1).text();
         elements = document.getElementsByClass("msgFooter");
         Date time = correctTime(elements.get(0).text());
-        if (time.after(stopLine) && isSPB(text)) {
+        if (time.after(stopLine) ) {
             sqlReq.add(url, title, text, time);
             return true;
         } else {
