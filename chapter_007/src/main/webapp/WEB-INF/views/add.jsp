@@ -18,5 +18,8 @@
         <form action="${pageContext.servletContext.contextPath}/" method="get">
             <input type="submit" value="Back">
         </form>
+        <c:if test="${error != ''}">
+            ${requestScope.get("error")}
+        </c:if>
     </body>
 </html>

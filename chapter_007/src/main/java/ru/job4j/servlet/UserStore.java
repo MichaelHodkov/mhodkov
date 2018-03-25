@@ -28,15 +28,46 @@ public class UserStore {
         POOL_SQL.updateUser(id, userNew);
     }
 
-    public void delUser(User user) {
-        POOL_SQL.delUser(user);
-    }
-
     public void delUser(String id) {
         POOL_SQL.delUser(id);
     }
 
+    public boolean isDublicat(String login) {
+        boolean exist = false;
+        for (User user : getUsers()) {
+            if (user.getLogin().equals(login)) {
+                exist = true;
+                break;
+            }
+        }
+        return exist;
+    }
+
+    public boolean isEnter(String login, String email) {
+        boolean exist = false;
+        for (User user : getUsers()) {
+            if (user.getLogin().equals(login) && user.getEmail().equals(email)) {
+                exist = true;
+                break;
+            }
+        }
+        return exist;
+    }
+
+    public User getUser(String login) {
+        for (User user : getUsers()) {
+            if (user.getLogin().equals(login)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     public List<User> getUsers() {
         return POOL_SQL.getUsers();
+    }
+
+    public List<String> getRoles() {
+        return POOL_SQL.getRoles();
     }
 }

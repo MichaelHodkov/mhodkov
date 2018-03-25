@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Date;
 
 /**
  * @author Michael Hodkov
@@ -23,13 +23,23 @@ public class EditUser extends HttpServlet {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String email = req.getParameter("email");
-        if (name == null || name.equals("") || login == null || login.equals("") || email == null || email.equals("")) {
+        String role = req.getParameter("role");
+        String mainrole = req.getParameter("mainrole");
+        if (name == null || name.equals("") || email == null || email.equals("")) {
+            req.setAttribute("id", id);
             req.setAttribute("name", name);
             req.setAttribute("login", login);
             req.setAttribute("email", email);
+            req.setAttribute("role", role);
+            req.setAttribute("mainrole", mainrole);
             this.getServletContext().getRequestDispatcher("/WEB-INF/views/edit.jsp").forward(req, resp);
         } else {
-            users.updateUser(id, new User(name, login, email, new Date()));
+            users.updateUser(id, new User(name, login, email, role));
+            HttpSession session = req.getSession();
+            User user = (User) session.getAttribute("user");
+            if (user.getLogin().equals(login)) {
+                session.setAttribute("user", users.getUser(login));
+            }
             resp.sendRedirect(String.format("%s/", req.getContextPath()));
         }
     }
@@ -40,10 +50,15 @@ public class EditUser extends HttpServlet {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String email = req.getParameter("email");
+        String role = req.getParameter("role");
+        String mainrole = req.getParameter("mainrole");
         req.setAttribute("id", id);
         req.setAttribute("name", name);
         req.setAttribute("login", login);
         req.setAttribute("email", email);
+        req.setAttribute("role", role);
+        req.setAttribute("mainrole", mainrole);
+        req.setAttribute("roles", users.getRoles());
         req.getRequestDispatcher("/WEB-INF/views/edit.jsp").forward(req, resp);
     }
 }

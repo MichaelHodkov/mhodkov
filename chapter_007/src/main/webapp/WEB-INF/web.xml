@@ -1,4 +1,13 @@
 <web-app>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.job4j.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>User Controller</servlet-name>
         <servlet-class>ru.job4j.jstl.UserController</servlet-class>
@@ -30,5 +39,21 @@
     <servlet-mapping>
         <servlet-name>Delete User</servlet-name>
         <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SignIn</servlet-name>
+        <servlet-class>ru.job4j.filter.SignIn</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignIn</servlet-name>
+        <url-pattern>/SignIn</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Exit</servlet-name>
+        <servlet-class>ru.job4j.filter.CloseSession</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Exit</servlet-name>
+        <url-pattern>/exit</url-pattern>
     </servlet-mapping>
 </web-app>

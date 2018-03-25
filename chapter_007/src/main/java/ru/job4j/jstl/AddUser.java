@@ -21,13 +21,17 @@ public class AddUser extends HttpServlet {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String email = req.getParameter("email");
+        req.setAttribute("name", name);
+        req.setAttribute("login", login);
+        req.setAttribute("email", email);
         if (name == null || name.equals("") || login == null || login.equals("") || email == null || email.equals("")) {
-            req.setAttribute("name", name);
-            req.setAttribute("login", login);
-            req.setAttribute("email", email);
+            req.setAttribute("error", "Enter NULL value!");
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/add.jsp").forward(req, resp);
+        } else if (users.isDublicat(login)) {
+            req.setAttribute("error", "This Login is busy");
             this.getServletContext().getRequestDispatcher("/WEB-INF/views/add.jsp").forward(req, resp);
         } else {
-            users.addUser(new User(name, login, email, new Date()));
+            users.addUser(new User(name, login, email, "user"));
             resp.sendRedirect(String.format("%s/", req.getContextPath()));
         }
     }

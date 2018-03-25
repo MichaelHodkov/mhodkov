@@ -12,20 +12,29 @@ public class User {
     private String name;
     private String login;
     private String email;
+    private String role;
     private Date createdate;
 
     public User() {
     }
 
-    public User(String name, String login, String email, Date createdate) {
+    public User(String name, String login, String email, String role) {
         this.name = name;
         this.login = login;
         this.email = email;
+        this.role = role;
+        this.createdate = new Date();
+    }
+
+    public User(String name, String login, String email, String role, Date createdate) {
+        this.name = name;
+        this.login = login;
+        this.email = email;
+        this.role = role;
         this.createdate = createdate;
     }
 
-    public User(String id, String name, String login, String email, Date createdate) {
-        this.id = id;
+    public User(String name, String login, String email, Date createdate) {
         this.name = name;
         this.login = login;
         this.email = email;
@@ -38,6 +47,10 @@ public class User {
 
     public String getLogin() {
         return login;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     public String getEmail() {
@@ -64,6 +77,10 @@ public class User {
         this.login = login;
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -74,6 +91,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("id: %s, name: %s, log: %s, e-mail: %s, create date: %s", id, name, login, email, createdate);
+        return String.format("id: %s, name: %s, log: %s, e-mail: %s, role: %s, create date: %s",
+                id, name, login, email, role, createdate);
     }
 }

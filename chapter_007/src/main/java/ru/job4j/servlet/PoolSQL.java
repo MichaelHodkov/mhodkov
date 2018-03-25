@@ -33,6 +33,10 @@ public class PoolSQL {
                 }
             },
                     null, null, false, true);
+            createTable();
+            if (isEmpty()) {
+                addUser(new User("root", "root", "root@root", "admin"));
+            }
         } catch (ClassNotFoundException e) {
             LOG.error(String.format("Proble start connect: %s", e));
         }
@@ -66,12 +70,17 @@ public class PoolSQL {
         }
     }
 
-
     public void createTable() {
         connect();
         try {
-            preparedStatement = connection.prepareStatement(
-                    "CREATE TABLE IF NOT EXISTS crud (id serial PRIMARY KEY, name CHARACTER VARYING(100) NOT NULL, login CHARACTER VARYING(100) NOT NULL, email CHARACTER VARYING(100) NOT NULL, createdate TIMESTAMP NOT NULL);");
+            preparedStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS crud ".concat(
+                    "(id serial PRIMARY KEY, ").concat(
+                            "name CHARACTER VARYING(100) NOT NULL, ").concat(
+                                    "login CHARACTER VARYING(100) NOT NULL, ").concat(
+                                            "email CHARACTER VARYING(100) NOT NULL, ").concat(
+                                                    "role CHARACTER VARYING(100) NOT NULL, ").concat(
+                                                            "createdate TIMESTAMP NOT NULL);"));
+
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOG.error(String.format("Problem create table: %s", e));
@@ -80,14 +89,32 @@ public class PoolSQL {
         }
     }
 
+    private boolean isEmpty() {
+        connect();
+        boolean rezult = false;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM crud;");
+            ResultSet rs = preparedStatement.executeQuery();
+            if (!rs.next()) {
+                rezult = true;
+            }
+        } catch (SQLException e) {
+            LOG.error(String.format("Problem test empty: %s", e));
+        } finally {
+            disconnect();
+        }
+        return rezult;
+    }
+
     public void addUser(User user) {
         connect();
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO crud (name, login, email, createdate) VALUES (?, ?, ?, ?);");
+            preparedStatement = connection.prepareStatement("INSERT INTO crud (name, login, email, role, createdate) VALUES (?, ?, ?, ?, ?);");
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getLogin());
             preparedStatement.setString(3, user.getEmail());
-            preparedStatement.setTimestamp(4, new Timestamp(user.getCreatedate().getTime()));
+            preparedStatement.setString(4, user.getRole());
+            preparedStatement.setTimestamp(5, new Timestamp(user.getCreatedate().getTime()));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOG.error(String.format("Problem add user: %s", e));
@@ -99,31 +126,15 @@ public class PoolSQL {
     public void updateUser(String id, User user) {
         connect();
         try {
-            preparedStatement = connection.prepareStatement("UPDATE crud SET name = ?, login = ? , email = ?, createdate = ? WHERE id = ?;");
+            preparedStatement = connection.prepareStatement("UPDATE crud SET name = ?, email = ?, role = ?, createdate = ? WHERE id = ?;");
             preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getLogin());
-            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getRole());
             preparedStatement.setTimestamp(4, new Timestamp(user.getCreatedate().getTime()));
             preparedStatement.setInt(5, Integer.valueOf(id));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOG.error(String.format("Problem update user: %s", e));
-        } finally {
-            disconnect();
-        }
-    }
-
-    public void delUser(User user) {
-        connect();
-        try {
-            preparedStatement = connection.prepareStatement("DELETE FROM crud WHERE name = ? and login = ? and email = ? and createdate = ?;");
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getLogin());
-            preparedStatement.setString(3, user.getEmail());
-            preparedStatement.setTimestamp(4, new Timestamp(user.getCreatedate().getTime()));
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            LOG.error(String.format("Problem del(user): %s", e));
         } finally {
             disconnect();
         }
@@ -154,11 +165,29 @@ public class PoolSQL {
                 user.setName(rs.getString(2));
                 user.setLogin(rs.getString(3));
                 user.setEmail(rs.getString(4));
-                user.setCreatedate(new Date(rs.getTimestamp(5).getTime()));
+                user.setRole(rs.getString(5));
+                user.setCreatedate(new Date(rs.getTimestamp(6).getTime()));
                 list.add(user);
             }
         } catch (SQLException e) {
             LOG.error(String.format("Problem get list users: %s", e));
+        } finally {
+            disconnect();
+        }
+        return list;
+    }
+
+    public List<String> getRoles() {
+        List<String> list = new LinkedList<>();
+        connect();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT role FROM crud GROUP BY role;");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            LOG.error(String.format("Problem get list roles: %s", e));
         } finally {
             disconnect();
         }
