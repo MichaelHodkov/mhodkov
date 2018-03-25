@@ -3,6 +3,7 @@ package ru.job4j.wait;
 import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -41,25 +42,14 @@ public class ParallelSearch {
             public void run() {
                 Path path = Paths.get(root);
                 try {
-                    Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
-                        @Override
-                        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                            for (String ends : exts) {
-                                if (file.toString().endsWith(ends)) {
-                                    synchronized (files) {
-                                        files.add(file.toString());
-                                        files.notify();
-                                    }
-                                    break;
-                                }
-                            }
-                            return FileVisitResult.CONTINUE;
-                        }
-                    });
+                    Files.walkFileTree(path,new MyFileVisitor());
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
                 finish = true;
+                synchronized (files) {
+                    files.notify();
+                }
             }
         };
         Thread read = new Thread() {
@@ -85,7 +75,7 @@ public class ParallelSearch {
                         }
                     } else {
                         try {
-                            while (files.isEmpty()) {
+                            synchronized (files) {
                                 files.wait();
                             }
                         } catch (InterruptedException e) {
@@ -107,5 +97,49 @@ public class ParallelSearch {
 
     synchronized List<String> result() {
         return this.paths;
+    }
+
+    class MyFileVisitor implements FileVisitor<Object> {
+        @Override
+        public FileVisitResult preVisitDirectory(Object dir, BasicFileAttributes attrs) throws IOException {
+            return FileVisitResult.CONTINUE;
+        }
+
+        @Override
+        public FileVisitResult visitFile(Object file, BasicFileAttributes attrs) throws IOException {
+            for (String ends : exts) {
+                if (file.toString().endsWith(ends)) {
+                    synchronized (files) {
+                        files.add(file.toString());
+                        files.notify();
+                    }
+                    break;
+                }
+            }
+            return FileVisitResult.CONTINUE;
+        }
+
+        @Override
+        public FileVisitResult visitFileFailed(Object file, IOException exc) throws IOException {
+            return FileVisitResult.CONTINUE;
+        }
+
+        @Override
+        public FileVisitResult postVisitDirectory(Object dir, IOException exc) throws IOException {
+            return FileVisitResult.CONTINUE;
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        List<String> ext = new ArrayList<>();
+        ext.add(".txt");
+
+        ParallelSearch search = new ParallelSearch("C:\\", "t", ext);
+        search.init();
+        List<String> list = search.result();
+        for (String s : list) {
+            System.out.println(s);
+        }
+
     }
 }
