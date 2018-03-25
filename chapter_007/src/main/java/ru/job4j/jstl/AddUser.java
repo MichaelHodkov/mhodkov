@@ -26,10 +26,10 @@ public class AddUser extends HttpServlet {
         req.setAttribute("email", email);
         if (name == null || name.equals("") || login == null || login.equals("") || email == null || email.equals("")) {
             req.setAttribute("error", "Enter NULL value!");
-            this.getServletContext().getRequestDispatcher("/WEB-INF/views/add.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/add.jsp").forward(req, resp);
         } else if (users.isDublicat(login)) {
             req.setAttribute("error", "This Login is busy");
-            this.getServletContext().getRequestDispatcher("/WEB-INF/views/add.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/add.jsp").forward(req, resp);
         } else {
             users.addUser(new User(name, login, email, "user"));
             resp.sendRedirect(String.format("%s/", req.getContextPath()));

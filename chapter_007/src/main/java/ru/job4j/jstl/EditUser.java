@@ -32,12 +32,12 @@ public class EditUser extends HttpServlet {
             req.setAttribute("email", email);
             req.setAttribute("role", role);
             req.setAttribute("mainrole", mainrole);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/views/edit.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/edit.jsp").forward(req, resp);
         } else {
             users.updateUser(id, new User(name, login, email, role));
             HttpSession session = req.getSession();
             User user = (User) session.getAttribute("user");
-            if (user.getLogin().equals(login)) {
+            if (user != null && user.getLogin().equals(login)) {
                 session.setAttribute("user", users.getUser(login));
             }
             resp.sendRedirect(String.format("%s/", req.getContextPath()));
