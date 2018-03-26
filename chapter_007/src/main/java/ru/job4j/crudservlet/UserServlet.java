@@ -44,7 +44,7 @@ public class UserServlet extends HttpServlet {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String email = req.getParameter("email");
-        if (id != null && name != null && login != null && email != null) {
+        if (!id.isEmpty() && !name.isEmpty() && !login.isEmpty() && !email.isEmpty()) {
             users.updateUser(id, new User(name, login, email, new Date()));
         }
     }
@@ -55,7 +55,7 @@ public class UserServlet extends HttpServlet {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String email = req.getParameter("email");
-        if (name != null && login != null && email != null) {
+        if (!name.isEmpty() && !login.isEmpty() && !email.isEmpty()) {
             users.addUser(new User(name, login, email, new Date()));
         }
     }
@@ -64,7 +64,7 @@ public class UserServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOG.info("do DELETE:");
         String id = req.getParameter("id");
-        if (id != null) {
+        if (!id.isEmpty()) {
             LOG.info(String.format("id= %s", id));
             users.delUser(id);
         }
