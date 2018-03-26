@@ -42,7 +42,7 @@ public class ParallelSearch {
             public void run() {
                 Path path = Paths.get(root);
                 try {
-                    Files.walkFileTree(path,new MyFileVisitor());
+                    Files.walkFileTree(path, new MyFileVisitor());
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
