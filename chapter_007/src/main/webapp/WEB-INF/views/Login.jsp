@@ -6,15 +6,16 @@
 </head>
 <body>
 <form action="${pageContext.servletContext.contextPath}/SignIn" method="post">
-    <table>
+    <table style="margin: auto; margin-top: 20%;" >
         <tr><td>Login:</td><td><input type="text" name="login" value="${requestScope.get("login")}"></td></tr>
         <tr><td>E-mail:</td><td><input type="text" name="email" value="${requestScope.get("email")}"></td></tr>
         <tr><td></td><td> <input type="submit" value="Join"></td></tr>
     </table>
 </form>
-<br>
 <c:if test="${error ne ''}">
-    ${requestScope.get("error")}
+    <p align="center">
+            ${requestScope.get("error")}
+    </p>
 </c:if>
 </body>
 </html>
