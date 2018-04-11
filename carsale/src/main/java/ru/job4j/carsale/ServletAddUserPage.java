@@ -15,7 +15,7 @@ import java.util.List;
  * @since 0.1
  */
 public class ServletAddUserPage extends HttpServlet {
-    private final CarStorage carStorage = CarStorage.getINSTANCE();
+    private final CarStorage carStorage = CarStorage.INSTANCE;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

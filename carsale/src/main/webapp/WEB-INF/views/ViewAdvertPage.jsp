@@ -14,9 +14,9 @@
 <div>
     <table border="1">
         <tr>
-            <% Advert advert = CarStorage.getINSTANCE().getAdvert(Integer.parseInt(request.getParameter("id")));%>
-            <td><%=CarStorage.getINSTANCE().getBrand(advert.getIdBrand()).getName()%></td>
-            <td><%=CarStorage.getINSTANCE().getModel(advert.getIdModel()).getName()%></td>
+            <% Advert advert = CarStorage.INSTANCE.getAdvert(Integer.parseInt(request.getParameter("id")));%>
+            <td><%=CarStorage.INSTANCE.getBrand(advert.getIdBrand()).getName()%></td>
+            <td><%=CarStorage.INSTANCE.getModel(advert.getIdModel()).getName()%></td>
             <td><%=advert.getTime()%></td>
         </tr>
         <tr>
@@ -26,7 +26,9 @@
             <td colspan="3"><%=advert.getDescription()%></td>
         </tr>
         <tr>
+            <% if (advert.getPic().length() > 0) { %>
             <td colspan="3"><img src="data:image/jpg;base64,<%=advert.getPic()%>"  width="300"></td>
+            <% } %>
         </tr>
     </table>
 </div>

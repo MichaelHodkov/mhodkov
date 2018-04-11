@@ -14,7 +14,7 @@ import java.io.PrintWriter;
  * @since 0.1
  */
 public class ServletGetListModels extends HttpServlet {
-    private final CarStorage carStorage = CarStorage.getINSTANCE();
+    private final CarStorage carStorage = CarStorage.INSTANCE;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");

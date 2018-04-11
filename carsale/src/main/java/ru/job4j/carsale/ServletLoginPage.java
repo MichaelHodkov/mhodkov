@@ -15,7 +15,7 @@ import java.util.List;
  * @since 0.1
  */
 public class ServletLoginPage extends HttpServlet {
-    private final CarStorage carStorage = CarStorage.getINSTANCE();
+    private final CarStorage carStorage = CarStorage.INSTANCE;
     private int id = -1;
 
     @Override

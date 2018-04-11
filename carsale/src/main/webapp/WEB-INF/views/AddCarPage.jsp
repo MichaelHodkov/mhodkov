@@ -40,7 +40,7 @@
         <table>
             <tr><td>Марка: <select id="selBrand" name="selBrand" onchange="select(this)">
                 <option value="-1">Выбрать марку</option>
-                <% for (Object obj : CarStorage.getINSTANCE().getList(Brand.class.getSimpleName())) {%>
+                <% for (Object obj : CarStorage.INSTANCE.getList(Brand.class.getSimpleName())) {%>
                     <% Brand brand = (Brand) obj; %>
                     <option value="<%=brand.getId()%>"><%=brand.getName()%></option>
                     <% } %>

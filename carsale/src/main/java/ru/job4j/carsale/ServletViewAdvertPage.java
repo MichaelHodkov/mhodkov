@@ -11,12 +11,12 @@ import java.io.IOException;
  * @version $Id$
  * @since 0.1
  */
-public class ServletViewActiveAdvertPage extends HttpServlet {
-    private final CarStorage carStorage = CarStorage.getINSTANCE();
+public class ServletViewAdvertPage extends HttpServlet {
+    private final CarStorage carStorage = CarStorage.INSTANCE;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("::test::" + carStorage.getAdvert(Integer.parseInt(req.getParameter("id"))).getPicture().length);
-        req.getRequestDispatcher("/WEB-INF/views/ViewActiveAdvertPage.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/ViewAdvertPage.jsp").forward(req, resp);
     }
 }

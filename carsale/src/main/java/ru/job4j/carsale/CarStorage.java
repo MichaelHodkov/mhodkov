@@ -8,6 +8,8 @@ import ru.job4j.models.Advert;
 import ru.job4j.models.Brand;
 import ru.job4j.models.Model;
 import ru.job4j.models.User;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -15,17 +17,12 @@ import java.util.List;
  * @version $Id$
  * @since 0.1
  */
-public class CarStorage {
-    private final static CarStorage INSTANCE = new CarStorage();
+public enum CarStorage {
+
+    INSTANCE;
+
     private SessionFactory factory;
     private Session session;
-
-    private CarStorage() {
-    }
-
-    public static synchronized CarStorage getINSTANCE() {
-        return INSTANCE;
-    }
 
     public void start() {
         factory = new Configuration().configure().buildSessionFactory();
@@ -56,6 +53,24 @@ public class CarStorage {
     public List<Advert> getActivAdvert() {
         connect();
         List<Advert> list = session.createQuery("FROM Advert WHERE status = true ORDER BY id ASC").list();
+        disconnect();
+        return list;
+    }
+
+    public List<Advert> getAdvertDay() {
+        connect();
+        Query query = session.createQuery("FROM Advert WHERE timecreated > :time ORDER BY id ASC");
+        query.setParameter("time", new Timestamp(System.currentTimeMillis() - 86400000));
+        List<Advert> list = query.list();
+        disconnect();
+        return list;
+    }
+
+    public List<Advert> getAdvertBrand(int idBrand) {
+        connect();
+        Query query = session.createQuery("FROM Advert WHERE id_brand = :idBrand ORDER BY id ASC");
+        query.setParameter("idBrand", idBrand);
+        List<Advert> list = query.list();
         disconnect();
         return list;
     }

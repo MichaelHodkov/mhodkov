@@ -14,14 +14,13 @@ import java.io.IOException;
  * @since 0.1
  */
 public class ServletEditStatusAdvert extends HttpServlet {
-    private final CarStorage carStorage = CarStorage.getINSTANCE();
+    private final CarStorage carStorage = CarStorage.INSTANCE;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         Advert advert = carStorage.getAdvert(Integer.parseInt(id));
-        boolean status = advert.isStatus() ? false : true;
-        advert.setStatus(status);
+        advert.setStatus(!advert.isStatus());
         carStorage.addObject(advert);
         resp.sendRedirect("useradvert");
     }

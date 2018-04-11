@@ -56,7 +56,7 @@
 
     <servlet>
         <servlet-name>Servlet View Active Advert Page</servlet-name>
-        <servlet-class>ru.job4j.carsale.ServletViewActiveAdvertPage</servlet-class>
+        <servlet-class>ru.job4j.carsale.ServletViewAdvertPage</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet View Active Advert Page</servlet-name>

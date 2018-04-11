@@ -38,10 +38,10 @@
             <th>Status</th>
             <th>Delete</th>
         </tr>
-        <% for (Advert advert : CarStorage.getINSTANCE().getAdvertUser((Integer) session.getAttribute("user_id"))) { %>
+        <% for (Advert advert : CarStorage.INSTANCE.getAdvertUser((Integer) session.getAttribute("user_id"))) { %>
         <tr>
-            <td><%=CarStorage.getINSTANCE().getBrand(advert.getIdBrand()).getName()%></td>
-            <td><%=CarStorage.getINSTANCE().getModel(advert.getIdModel()).getName()%></td>
+            <td><%=CarStorage.INSTANCE.getBrand(advert.getIdBrand()).getName()%></td>
+            <td><%=CarStorage.INSTANCE.getModel(advert.getIdModel()).getName()%></td>
             <td><%=advert.getTime()%></td>
             <td><%=advert.getName()%></td>
             <% if (advert.isStatus()) { %>

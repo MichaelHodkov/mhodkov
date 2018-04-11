@@ -14,7 +14,7 @@ import java.io.IOException;
  * @since 0.1
  */
 public class ServletViewUserAdvertPage extends HttpServlet {
-    private final CarStorage carStorage = CarStorage.getINSTANCE();
+    private final CarStorage carStorage = CarStorage.INSTANCE;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

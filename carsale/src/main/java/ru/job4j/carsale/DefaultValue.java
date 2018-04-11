@@ -12,7 +12,7 @@ import java.util.List;
  * @since 0.1
  */
 public class DefaultValue {
-    private final CarStorage carStorage = CarStorage.getINSTANCE();
+    private final CarStorage carStorage = CarStorage.INSTANCE;
 
     public void addBrand() {
         if (carStorage.getList(Brand.class.getSimpleName()).size() == 0) {

@@ -22,7 +22,7 @@ import java.util.Iterator;
  * @since 0.1
  */
 public class ServletAddAdvertPage extends HttpServlet {
-    private final CarStorage carStorage = CarStorage.getINSTANCE();
+    private final CarStorage carStorage = CarStorage.INSTANCE;
     private DiskFileItemFactory factory;
 
     @Override
