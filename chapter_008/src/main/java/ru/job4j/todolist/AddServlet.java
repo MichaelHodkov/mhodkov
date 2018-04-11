@@ -1,5 +1,6 @@
 package ru.job4j.todolist;
 
+import ru.job4j.models.Item;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,10 +13,10 @@ import java.io.IOException;
  * @since 0.1
  */
 public class AddServlet extends HttpServlet {
-    private final ItemStorage items = ItemStorage.getInstance();
+    private final EnumSingleton items = EnumSingleton.INSTANCE;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        items.addItem(req.getParameter("desc"));
+        items.addOrUpadateItem(new Item(req.getParameter("desc")));
     }
 }

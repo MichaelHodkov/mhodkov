@@ -13,6 +13,15 @@ public class Item {
     private Timestamp created;
     private boolean done;
 
+    public Item() {
+    }
+
+    public Item(String desc) {
+        this.desc = desc;
+        this.created = new Timestamp(System.currentTimeMillis());
+        this.done = false;
+    }
+
     public int getId() {
         return id;
     }
