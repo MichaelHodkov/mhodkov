@@ -2,9 +2,12 @@ package ru.job4j.todolist;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import ru.job4j.models.Item;
+
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * @author Michael Hodkov
@@ -22,40 +25,46 @@ public enum EnumSingleton {
         session = factory.openSession();
     }
 
-    private void connect() {
-        session.beginTransaction();
-    }
-
-    private void disconnect() {
-        session.getTransaction().commit();
-    }
-
     public void finish() {
         session.close();
         factory.close();
     }
 
-    public List<Item> getList() {
-        connect();
-        List<Item> list = session.createQuery("FROM Item ORDER BY id ASC").list();
-        disconnect();
-        return list;
-    }
-
-    public void addOrUpadateItem(Item item) {
-        connect();
-        session.saveOrUpdate(item);
-        disconnect();
-    }
-
-    public Item getItem(String id) {
-        connect();
-        List<Item> list = session.createQuery(String.format("FROM Item WHERE id = '%s'", id)).list();
-        Item item = null;
-        if (!list.isEmpty()) {
-            item = list.get(0);
+    private <T> T tx(final Function<Session, T> command) {
+        final Transaction tx = session.beginTransaction();
+        try {
+            return command.apply(session);
+        } catch (final Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            tx.commit();
         }
-        disconnect();
-        return item;
+    }
+
+    public void addOrUpadateItem(final Item item) {
+        this.tx(
+                session -> {
+                    session.saveOrUpdate(item);
+                    return null;
+                }
+        );
+    }
+
+    public List<Item> getList() {
+        return this.tx(session -> session.createQuery("FROM Item ORDER BY id ASC").list());
+    }
+
+    public Item getItem(final String id) {
+        return this.tx(
+                session -> {
+                    List<Item> list = session.createQuery(String.format("FROM Item WHERE id = '%s'", id)).list();
+                    Item item = null;
+                    if (!list.isEmpty()) {
+                        item = list.get(0);
+                    }
+                    return item;
+                }
+        );
     }
 }
