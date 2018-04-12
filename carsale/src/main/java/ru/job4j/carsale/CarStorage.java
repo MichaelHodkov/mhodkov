@@ -39,8 +39,12 @@ public enum CarStorage {
     }
 
     public void finish() {
-        session.close();
-        factory.close();
+        if (session != null) {
+            session.close();
+        }
+        if (factory != null) {
+            factory.close();
+        }
     }
 
     public List getList(String table) {

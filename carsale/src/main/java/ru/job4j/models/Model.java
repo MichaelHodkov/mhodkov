@@ -1,4 +1,7 @@
 package ru.job4j.models;
+
+import java.util.Objects;
+
 /**
  * @author Michael Hodkov
  * @version $Id$
@@ -39,5 +42,22 @@ public class Model {
 
     public void setIdBrand(int idBrand) {
         this.idBrand = idBrand;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Model model = (Model) o;
+        return id == model.id && idBrand == model.idBrand && Objects.equals(name, model.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, idBrand);
     }
 }

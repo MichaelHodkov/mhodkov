@@ -1,6 +1,8 @@
 package ru.job4j.models;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * @author Michael Hodkov
@@ -106,5 +108,32 @@ public class Advert {
 
     public void setPicture(byte[] picture) {
         this.picture = picture;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Advert advert = (Advert) o;
+        return id == advert.id
+                && idBrand == advert.idBrand
+                && idModel == advert.idModel
+                && status == advert.status
+                && Objects.equals(user, advert.user)
+                && Objects.equals(name, advert.name)
+                && Objects.equals(description, advert.description)
+                && Objects.equals(time, advert.time)
+                && Arrays.equals(picture, advert.picture);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, user, idBrand, idModel, name, description, time, status);
+        result = 31 * result + Arrays.hashCode(picture);
+        return result;
     }
 }
