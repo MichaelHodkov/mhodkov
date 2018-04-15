@@ -14,7 +14,7 @@
 * chapter 005: ***Multithreading*** - Threads, JMM, Monitor, Synchronized, Wait, Notify, Notify-All, Non Blocking Algorithm.
 * chapter 006: ***SQL, JDBC*** - CRUD, Query, Outer join, JDBC, XML-XSLT.
 * chapter 007: ***Servlet, JSP*** - Структура клиент-серверных приложений, HTTP, Servlet, JSP, JSTL, Filter, Security, Mockito, HTML, CSS, JS.
-* Chapter 008: ***Hibernate,*** - Состояния объекта (Transient, Persistent и т.д.), уровни транзакции, интеграционное тестирование.
+* Chapter 008: ***Hibernate,*** - Hibernate: Состояние объекта (Transient, Persistent и т.д.), уровни транзакции, интеграционное тестирование.
 * carsale: web приложение(площадка продаж машин), задача к 8 части по hibernate.
 
 #### http://job4j.ru
