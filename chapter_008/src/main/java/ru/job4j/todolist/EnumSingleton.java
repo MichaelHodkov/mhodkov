@@ -22,15 +22,16 @@ public enum EnumSingleton {
 
     public void start() {
         factory = new Configuration().configure().buildSessionFactory();
-        session = factory.openSession();
     }
 
     public void finish() {
-        session.close();
-        factory.close();
+        if (factory != null) {
+            factory.close();
+        }
     }
 
     private <T> T tx(final Function<Session, T> command) {
+        session = factory.openSession();
         final Transaction tx = session.beginTransaction();
         try {
             return command.apply(session);
@@ -39,6 +40,9 @@ public enum EnumSingleton {
             throw e;
         } finally {
             tx.commit();
+            if (session != null) {
+                session.close();
+            }
         }
     }
 

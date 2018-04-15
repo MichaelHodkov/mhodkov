@@ -32,7 +32,6 @@ public class JsonController extends HttpServlet {
         writer.flush();
     }
 
-    @Override
     public void destroy() {
         items.finish();
     }
