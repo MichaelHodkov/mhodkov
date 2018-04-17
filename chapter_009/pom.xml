@@ -37,7 +37,7 @@
             <version>9.1-901-1.jdbc4</version>
         </dependency>
     </dependencies>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <parent>
         <groupId>ru.job4j</groupId>
         <artifactId>mhodkov</artifactId>
