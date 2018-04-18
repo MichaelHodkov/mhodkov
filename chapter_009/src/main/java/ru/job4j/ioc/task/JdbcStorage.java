@@ -27,26 +27,7 @@ public class JdbcStorage implements Storage<User> {
         this.autoCommit = autoCommit;
         execute("CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY, name CHARACTER VARYING(100) NOT NULL);");
     }
-
-//    private void connect() {
-//        try {
-//            conn = DriverManager.getConnection(url, username, password);
-//            conn.setAutoCommit(autoCommit);
-//        } catch (SQLException e) {
-//            LOG.error(String.format("Error: open connect (%s)", e));
-//        }
-//    }
-//
-//    private void close() {
-//        if (conn != null) {
-//            try {
-//                conn.close();
-//            } catch (SQLException e) {
-//                LOG.error(String.format("Error: close connect (%s)", e));
-//            }
-//        }
-//    }
-
+    
     private <T> T tx(final Function<PreparedStatement, T> command) {
         try {
             conn = DriverManager.getConnection(url, username, password);
