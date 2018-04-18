@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * @author Michael Hodkov
@@ -12,6 +13,7 @@ import java.util.List;
  */
 public class JdbcStorage implements Storage<User> {
     private static final Logger LOG = Logger.getLogger(JdbcStorage.class);
+    private PreparedStatement ps;
     private Connection conn = null;
     private final String url;
     private final String username;
@@ -26,55 +28,77 @@ public class JdbcStorage implements Storage<User> {
         execute("CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY, name CHARACTER VARYING(100) NOT NULL);");
     }
 
-    private void connect() {
+//    private void connect() {
+//        try {
+//            conn = DriverManager.getConnection(url, username, password);
+//            conn.setAutoCommit(autoCommit);
+//        } catch (SQLException e) {
+//            LOG.error(String.format("Error: open connect (%s)", e));
+//        }
+//    }
+//
+//    private void close() {
+//        if (conn != null) {
+//            try {
+//                conn.close();
+//            } catch (SQLException e) {
+//                LOG.error(String.format("Error: close connect (%s)", e));
+//            }
+//        }
+//    }
+
+    private <T> T tx(final Function<PreparedStatement, T> command) {
         try {
             conn = DriverManager.getConnection(url, username, password);
             conn.setAutoCommit(autoCommit);
-        } catch (SQLException e) {
-            LOG.error(String.format("Error: open connect (%s)", e));
-        }
-    }
-
-    private void close() {
-        if (conn != null) {
+            return command.apply(ps);
+        } catch (final Exception e) {
+            LOG.error("Ошибка Connection", e);
+        } finally {
             try {
                 conn.close();
             } catch (SQLException e) {
-                LOG.error(String.format("Error: close connect (%s)", e));
+                LOG.error("Ошибка закрытия Connection", e);
             }
-        }
-    }
-
-    private void execute(String sql) {
-        try {
-            connect();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.executeUpdate();
-            ps.close();
-            close();
-        } catch (SQLException e) {
-            LOG.error(String.format("Error: execute %s (%s)", sql, e));
-        }
-    }
-
-    private List<User> executeGet(String sql) {
-        try {
-            connect();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            List<User> list = new ArrayList<>();
-            while (rs.next()) {
-                int id = rs.getInt(1);
-                String name = rs.getString(2);
-                list.add(new User(id, name));
-            }
-            ps.close();
-            close();
-            return list;
-        } catch (SQLException e) {
-            LOG.error(String.format("Error: executeGet %s (%s)", sql, e));
         }
         return null;
+    }
+
+    public void execute(final String sql) {
+        this.tx(
+                ps -> {
+                    try {
+                        ps = conn.prepareStatement(sql);
+                        ps.executeUpdate();
+                        ps.close();
+                    } catch (SQLException e) {
+                        LOG.error(String.format("Error: execute %s ", sql), e);
+                    }
+                    return null;
+                }
+        );
+    }
+
+    public List<User> executeGet(final String sql) {
+        return this.tx(
+                ps -> {
+                    try {
+                        ps = conn.prepareStatement(sql);
+                        ResultSet rs = ps.executeQuery();
+                        List<User> list = new ArrayList<>();
+                        while (rs.next()) {
+                            int id = rs.getInt(1);
+                            String name = rs.getString(2);
+                            list.add(new User(id, name));
+                        }
+                        ps.close();
+                        return list;
+                    } catch (SQLException e) {
+                        LOG.error(String.format("Error: execute %s ", sql), e);
+                    }
+                    return null;
+                }
+        );
     }
 
     @Override
