@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.models.Advert;
 import ru.job4j.models.Model;
+import ru.job4j.storage.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -25,7 +27,7 @@ import java.util.List;
 @Controller
 public class AdvertController {
     private static final Logger LOG = Logger.getLogger(AdvertController.class);
-    private final CarStorage carStorage = CarStorage.INSTANCE;
+    private final CarStor carStor = CarStor.INSTANCE;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getNewAdvertPage(HttpSession session) {
@@ -48,16 +50,15 @@ public class AdvertController {
 
     @RequestMapping(value = "/useradverts", method = RequestMethod.POST)
     public String delAdvert(@RequestParam("id") String id) {
-        Advert advert = carStorage.getAdvert(Integer.parseInt(id));
-        carStorage.delObject(advert);
+        carStor.getaStor().del(Integer.parseInt(id));
         return "ViewUserAdvertPage";
     }
 
     @RequestMapping(value = "/editstatus", method = RequestMethod.POST)
     public String editStatusAdvert(@RequestParam("id") String id) {
-        Advert advert = carStorage.getAdvert(Integer.parseInt(id));
+        Advert advert = carStor.getaStor().findById(Integer.parseInt(id));
         advert.setStatus(!advert.isStatus());
-        carStorage.addObject(advert);
+        carStor.getaStor().add(advert);
         return "redirect:view";
     }
 
@@ -65,7 +66,7 @@ public class AdvertController {
     @ResponseBody
     public  List<Model> getModelsList(@RequestParam("id") String id) {
         if (id != null) {
-            return carStorage.getModels(Integer.parseInt(id));
+            return carStor.getmStor().findByBrand(carStor.getbStor().findById(Integer.parseInt(id)));
         }
         return null;
     }
@@ -103,7 +104,12 @@ public class AdvertController {
                     }
                 }
                 if (!name.isEmpty() && !desc.isEmpty() && idBrand > 0 && idModel > 0) {
-                    carStorage.addObject(new Advert(carStorage.getUser(id), idBrand, idModel, name, desc, picture));
+                    carStor.getaStor().add(new Advert(carStor.getuStor().findById(id),
+                            carStor.getbStor().findById(idBrand),
+                            carStor.getmStor().findById(idModel),
+                            name,
+                            desc,
+                            picture));
                 }
             }
             return "redirect:main";

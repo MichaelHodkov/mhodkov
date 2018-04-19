@@ -1,5 +1,9 @@
 package ru.job4j.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
 /**
@@ -7,9 +11,14 @@ import java.util.Objects;
  * @version $Id$
  * @since 0.1
  */
+@Entity(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String login;
+
     private String password;
 
     public User() {

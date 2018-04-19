@@ -6,6 +6,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.models.Advert;
 import ru.job4j.models.Brand;
+import ru.job4j.storage.AdvertStorage;
+import ru.job4j.storage.BrandStorage;
+import ru.job4j.storage.CarStor;
+import ru.job4j.storage.DefaultValue;
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +23,9 @@ import java.util.List;
 @Controller
 public class MainController {
     private static final Logger LOG = Logger.getLogger(MainController.class);
-    private final CarStorage carStorage = CarStorage.INSTANCE;
+    private final CarStor carStor = CarStor.INSTANCE;
 
     public MainController() {
-        carStorage.start();
         new DefaultValue().addRoot();
         new DefaultValue().addBrand();
         new DefaultValue().addModel();
@@ -32,28 +37,53 @@ public class MainController {
                                ModelMap model) {
         if (filter != null && !filter.isEmpty()) {
             if (filter.equals("day")) {
-                model.addAttribute("Adverts", this.carStorage.getAdvertDay());
+                model.addAttribute("Adverts", getDayAdvert());
             } else if (filter.equals("pic")) {
-                model.addAttribute("Adverts", getAdvertsPic(carStorage.getActivAdvert()));
+                model.addAttribute("Adverts", getPicAdvert());
             } else if (filter.equals("brand")) {
-                model.addAttribute("Adverts", this.carStorage.getAdvertBrand(Integer.parseInt(selBrand)));
+                model.addAttribute("Adverts",
+                        carStor.getaStor().findByBrand(carStor.getbStor().findById(Integer.parseInt(selBrand))));
             } else if (filter.equals("all")) {
-                model.addAttribute("Adverts", this.carStorage.getActivAdvert());
+                model.addAttribute("Adverts", getActivAdvert());
             }
         } else {
-            model.addAttribute("Adverts", this.carStorage.getActivAdvert());
+            model.addAttribute("Adverts", getActivAdvert());
         }
-        model.addAttribute("Brands", this.carStorage.getList(Brand.class.getSimpleName()));
+        model.addAttribute("Brands", carStor.getbStor().getAll());
         return "MainPage";
     }
 
-    private List<Advert> getAdvertsPic(List<Advert> list) {
-        List<Advert> newList = new ArrayList<Advert>();
-        for (Advert advert : list) {
-            if (advert.getPicture().length > 0) {
-                newList.add(advert);
+    private List<Advert> getActivAdvert() {
+        List<Advert> list = carStor.getaStor().getAll();
+        List<Advert> activeList = new ArrayList<>();
+        for (Advert advert: list) {
+            if (advert.isStatus()) {
+                activeList.add(advert);
             }
         }
-        return newList;
+        return activeList;
+    }
+
+    private List<Advert> getPicAdvert() {
+        List<Advert> list = carStor.getaStor().getAll();
+        List<Advert> picList = new ArrayList<>();
+        for (Advert advert: list) {
+            if (advert.getPicture().length > 0) {
+                picList.add(advert);
+            }
+        }
+        return picList;
+    }
+
+    private List<Advert> getDayAdvert() {
+        List<Advert> list = carStor.getaStor().getAll();
+        List<Advert> dayList = new ArrayList<>();
+        Timestamp time = new Timestamp(System.currentTimeMillis() - 86400000);
+        for (Advert advert: list) {
+            if (advert.getTime().after(time)) {
+                dayList.add(advert);
+            }
+        }
+        return dayList;
     }
 }

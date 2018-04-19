@@ -24,7 +24,7 @@
 		<module>chapter_008</module>
 		<module>carsale</module>
 		<module>chapter_009</module>
-		<module>carsale1</module>
+		<module>carsale1</module>		
     </modules>
 	
 	<dependencies>

@@ -1,5 +1,5 @@
-<%@ page import="ru.job4j.carsale.CarStorage" %>
 <%@ page import="ru.job4j.models.Advert" %>
+<%@ page import="ru.job4j.storage.CarStor" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,9 +14,9 @@
 <div>
     <table border="1">
         <tr>
-            <% Advert advert = CarStorage.INSTANCE.getAdvert(Integer.parseInt(request.getParameter("id")));%>
-            <td><%=CarStorage.INSTANCE.getBrand(advert.getIdBrand()).getName()%></td>
-            <td><%=CarStorage.INSTANCE.getModel(advert.getIdModel()).getName()%></td>
+            <% Advert advert = CarStor.INSTANCE.getaStor().findById(Integer.parseInt(request.getParameter("id")));%>
+            <td><%=advert.getBrand().getName()%></td>
+            <td><%=advert.getModel().getName()%></td>
             <td><%=advert.getTime()%></td>
         </tr>
         <tr>

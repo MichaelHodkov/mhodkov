@@ -1,5 +1,5 @@
-<%@ page import="ru.job4j.carsale.CarStorage" %>
 <%@ page import="ru.job4j.models.Brand" %>
+<%@ page import="ru.job4j.storage.CarStor" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -40,8 +40,7 @@
         <table>
             <tr><td>Марка: <select id="selBrand" name="selBrand" onchange="select(this)">
                 <option value="-1">Выбрать марку</option>
-                <% for (Object obj : CarStorage.INSTANCE.getList(Brand.class.getSimpleName())) {%>
-                    <% Brand brand = (Brand) obj; %>
+                <% for (Brand brand : CarStor.INSTANCE.getbStor().getAll()) {%>
                     <option value="<%=brand.getId()%>"><%=brand.getName()%></option>
                     <% } %>
             </select></td></tr>

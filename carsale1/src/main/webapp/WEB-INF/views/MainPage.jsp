@@ -1,8 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="ru.job4j.carsale.CarStorage" %>
+<%@ page import="ru.job4j.storage.CarStor" %>
+<%@ page import="ru.job4j.models.Brand" %>
 <%@ page import="ru.job4j.models.Advert" %>
 <%@ page import="java.util.List" %>
-<%@ page import="ru.job4j.models.Brand" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Cars</title>
@@ -23,7 +23,7 @@
     <h4><a href="${pageContext.servletContext.contextPath}/login">Войти</a></h4>
         <% } else { %>
     <h4>Привет, <%=session.getAttribute("login")%></h4>
-    <% if (CarStorage.INSTANCE.getAdvertUser((Integer) session.getAttribute("user_id")).size() > 0) { %>
+    <% if (CarStor.INSTANCE.getaStor().findByUser(CarStor.INSTANCE.getuStor().findById((Integer) session.getAttribute("user_id"))).size() > 0) { %>
     <h5><a href="${pageContext.servletContext.contextPath}/useradverts">Мои объявления</a></h5>
     <% } %>
     <h5><a href="${pageContext.servletContext.contextPath}/exit">Выйти</a></h5>
@@ -45,8 +45,7 @@
             <td><input name="filter" type="radio" value="brand" onChange="Selected(this)"> Объявления марки:</td>
             <td>
                 <select id="selBrand" name="selBrand" onchange="select(this)" style="display: none">
-                    <% for (Object obj : (List) request.getAttribute("Brands")) {%>
-                    <% Brand brand = (Brand) obj; %>
+                    <% for (Brand brand: CarStor.INSTANCE.getbStor().getAll()) {%>
                     <option value="<%=brand.getId()%>"><%=brand.getName()%></option>
                     <% } %>
                 </select>
@@ -73,8 +72,8 @@
             </tr>
             <% for (Advert advert : list) { %>
             <tr>
-                <td><%=CarStorage.INSTANCE.getBrand(advert.getIdBrand()).getName()%></td>
-                <td><%=CarStorage.INSTANCE.getModel(advert.getIdModel()).getName()%></td>
+                <td><%=advert.getBrand().getName()%></td>
+                <td><%=advert.getModel().getName()%></td>
                 <td><%=advert.getName()%></td>
                 <td><%=advert.getTime()%></td>
                 <td><%=advert.getUser().getLogin()%></td>

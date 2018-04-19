@@ -1,5 +1,5 @@
 <%@ page import="ru.job4j.models.Advert" %>
-<%@ page import="ru.job4j.carsale.CarStorage" %>
+<%@ page import="ru.job4j.storage.CarStor" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -38,10 +38,10 @@
             <th>Status</th>
             <th>Delete</th>
         </tr>
-        <% for (Advert advert : CarStorage.INSTANCE.getAdvertUser((Integer) session.getAttribute("user_id"))) { %>
+        <% for (Advert advert : CarStor.INSTANCE.getaStor().findByUser(CarStor.INSTANCE.getuStor().findById((Integer) session.getAttribute("user_id")))) { %>
         <tr>
-            <td><%=CarStorage.INSTANCE.getBrand(advert.getIdBrand()).getName()%></td>
-            <td><%=CarStorage.INSTANCE.getModel(advert.getIdModel()).getName()%></td>
+            <td><%=advert.getBrand().getName()%></td>
+            <td><%=advert.getModel().getName()%></td>
             <td><%=advert.getTime()%></td>
             <td><%=advert.getName()%></td>
             <% if (advert.isStatus()) { %>

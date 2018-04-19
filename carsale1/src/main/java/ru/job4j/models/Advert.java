@@ -1,5 +1,6 @@
 package ru.job4j.models;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Objects;
@@ -9,24 +10,43 @@ import java.util.Objects;
  * @version $Id$
  * @since 0.1
  */
+@Entity(name = "advert")
 public class Advert {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user")
     private User user;
-    private int idBrand;
-    private int idModel;
+
+    @ManyToOne
+    @JoinColumn(name = "id_brand")
+    private Brand brand;
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_model")
+    private Model model;
+
     private String name;
+
     private String description;
+
+    @Column(name = "timecreated")
     private Timestamp time;
+
     private boolean status;
+
     private byte[] picture;
 
     public Advert() {
     }
 
-    public Advert(User user, int idBrand, int idModel, String name, String description, byte[] picture) {
+    public Advert(User user, Brand brand, Model model, String name, String description, byte[] picture) {
         this.user = user;
-        this.idBrand = idBrand;
-        this.idModel = idModel;
+        this.brand = brand;
+        this.model = model;
         this.name = name;
         this.description = description;
         this.time = new Timestamp(System.currentTimeMillis());
@@ -50,20 +70,20 @@ public class Advert {
         this.user = user;
     }
 
-    public int getIdBrand() {
-        return idBrand;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setIdBrand(int idBrand) {
-        this.idBrand = idBrand;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
-    public int getIdModel() {
-        return idModel;
+    public Model getModel() {
+        return model;
     }
 
-    public void setIdModel(int idModel) {
-        this.idModel = idModel;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public String getName() {
@@ -120,10 +140,10 @@ public class Advert {
         }
         Advert advert = (Advert) o;
         return id == advert.id
-                && idBrand == advert.idBrand
-                && idModel == advert.idModel
                 && status == advert.status
                 && Objects.equals(user, advert.user)
+                && Objects.equals(brand, advert.brand)
+                && Objects.equals(model, advert.model)
                 && Objects.equals(name, advert.name)
                 && Objects.equals(description, advert.description)
                 && Objects.equals(time, advert.time)
@@ -132,7 +152,7 @@ public class Advert {
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, user, idBrand, idModel, name, description, time, status);
+        int result = Objects.hash(id, user, brand, model, name, description, time, status);
         result = 31 * result + Arrays.hashCode(picture);
         return result;
     }

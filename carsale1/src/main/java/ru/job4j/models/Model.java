@@ -1,5 +1,6 @@
 package ru.job4j.models;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -7,17 +8,24 @@ import java.util.Objects;
  * @version $Id$
  * @since 0.1
  */
+@Entity(name = "model")
 public class Model {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
-    private int idBrand;
+
+    @ManyToOne
+    @JoinColumn(name = "id_brand")
+    private Brand brand;
 
     public Model() {
     }
 
-    public Model(String name, int idBrand) {
+    public Model(String name, Brand brand) {
         this.name = name;
-        this.idBrand = idBrand;
+        this.brand = brand;
     }
 
     public int getId() {
@@ -36,12 +44,12 @@ public class Model {
         this.name = name;
     }
 
-    public int getIdBrand() {
-        return idBrand;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setIdBrand(int idBrand) {
-        this.idBrand = idBrand;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     @Override
@@ -53,11 +61,13 @@ public class Model {
             return false;
         }
         Model model = (Model) o;
-        return id == model.id && idBrand == model.idBrand && Objects.equals(name, model.name);
+        return id == model.id
+                && Objects.equals(name, model.name)
+                && Objects.equals(brand, model.brand);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, idBrand);
+        return Objects.hash(id, name, brand);
     }
 }
