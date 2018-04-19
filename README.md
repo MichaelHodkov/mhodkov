@@ -15,8 +15,8 @@
 * chapter 006: ***SQL, JDBC*** - CRUD, Query, Outer join, JDBC, XML-XSLT;
 * chapter 007: ***Servlet, JSP*** - Структура клиент-серверных приложений, HTTP, Servlet, JSP, JSTL, Filter, Security, Mockito, HTML, CSS, JS;
 * Chapter 008: ***Hibernate*** - Состояние объекта (Transient, Persistent и т.д.), уровни транзакции, Mapping, HQL, интеграционное тестирование;
-* carsale: web приложение(площадка продаж машин), задача к 8 части по hibernate (технологии: Tomcat Servlet Container, Hibernate ORM, PostgreSQL, Apache Commons FileUpload, HTML, CSS, JavaScript, jQuery, Ajax);
+* carsale: web приложение(площадка продаж машин), задача к 8 части по hibernate (технологии: Tomcat Servlet Container, Hibernate ORM, PostgreSQL, Apache Commons FileUpload, JSP, HTML, CSS, JavaScript, jQuery, Ajax, Log4j);
 * Chapter 009: ***Spring*** - IoC, MVC, Template, Data, Security, Boost, Tests, Deploy;
-* carsale1: приложение аналогично carsale + spring;
+* carsale1: приложение аналогично carsale + Spring;
 
 #### http://job4j.ru
