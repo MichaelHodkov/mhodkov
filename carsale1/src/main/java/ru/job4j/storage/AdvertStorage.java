@@ -4,7 +4,6 @@ import ru.job4j.config.AppContext;
 import ru.job4j.models.Advert;
 import ru.job4j.models.Brand;
 import ru.job4j.models.User;
-
 import java.util.List;
 
 /**

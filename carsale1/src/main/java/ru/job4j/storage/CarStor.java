@@ -1,22 +1,5 @@
 package ru.job4j.storage;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.job4j.models.Advert;
-import ru.job4j.models.Brand;
-import ru.job4j.models.Model;
-import ru.job4j.models.User;
-
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-
 /**
  * @author Michael Hodkov
  * @version $Id$

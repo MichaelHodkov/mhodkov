@@ -3,7 +3,6 @@ package ru.job4j.storage;
 import org.springframework.data.repository.CrudRepository;
 import ru.job4j.models.Brand;
 import ru.job4j.models.Model;
-
 import java.util.List;
 
 /**

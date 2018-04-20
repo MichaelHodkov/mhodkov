@@ -13,6 +13,10 @@ import java.util.Objects;
  */
 @Entity(name = "users")
 public class User {
+    private static final String USER = "ROLE_USER";
+    private static final String ADMIN = "ROLE_ADMIN";
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,12 +25,15 @@ public class User {
 
     private String password;
 
+    private String role;
+
     public User() {
     }
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
+        this.role = USER;
     }
 
     public int getId() {
@@ -53,6 +60,22 @@ public class User {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setAdmin() {
+        this.role = ADMIN;
+    }
+
+    public void setUser() {
+        this.role = USER;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -62,11 +85,14 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return id == user.id && Objects.equals(login, user.login) && Objects.equals(password, user.password);
+        return id == user.id
+                && Objects.equals(login, user.login)
+                && Objects.equals(password, user.password)
+                && Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password);
+        return Objects.hash(id, login, password, role);
     }
 }

@@ -17,6 +17,6 @@
 * Chapter 008: ***Hibernate*** - Состояние объекта (Transient, Persistent и т.д.), уровни транзакции, Mapping, HQL, интеграционное тестирование;
 * carsale: web приложение(площадка продаж машин), задача к 8 части по hibernate (технологии: Tomcat Servlet Container, Hibernate ORM, PostgreSQL, Apache Commons FileUpload, JSP, HTML, CSS, JavaScript, jQuery, Ajax, Log4j);
 * Chapter 009: ***Spring*** - IoC, MVC, Template, Data, Security, Boost, Tests, Deploy;
-* carsale1: приложение аналогично carsale + Spring MVC DATA;
+* carsale1: приложение аналогично carsale + Spring (MVC, Data, Security);
 
 #### http://job4j.ru

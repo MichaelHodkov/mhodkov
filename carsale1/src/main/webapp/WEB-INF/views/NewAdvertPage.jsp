@@ -1,5 +1,8 @@
 <%@ page import="ru.job4j.models.Brand" %>
 <%@ page import="ru.job4j.storage.CarStor" %>
+<%@ page import="ru.job4j.models.User" %>
+<%@ page import="ru.job4j.models.Model" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -27,8 +30,8 @@
 </head>
 <body>
 <div>
-    <h4><%=session.getAttribute("login")%></h4>
-    <h5><a href="${pageContext.servletContext.contextPath}/exit">Выйти</a></h5>
+    <h4><%=((User) session.getAttribute("user")).getLogin()%></h4>
+    <h5><a href="${pageContext.servletContext.contextPath}/main/login/exit">Выйти</a></h5>
 </div>
 <div>
     <form action="${pageContext.servletContext.contextPath}/main" method="get">
@@ -36,15 +39,21 @@
     </form>
 </div>
 <div>
-    <form action="${pageContext.servletContext.contextPath}/add" method="post" enctype="multipart/form-data">
+    <form action="${pageContext.servletContext.contextPath}/user/addadvert" method="post" enctype="multipart/form-data">
         <table>
             <tr><td>Марка: <select id="selBrand" name="selBrand" onchange="select(this)">
-                <option value="-1">Выбрать марку</option>
-                <% for (Brand brand : CarStor.INSTANCE.getbStor().getAll()) {%>
-                    <option value="<%=brand.getId()%>"><%=brand.getName()%></option>
-                    <% } %>
+                <% List<Brand> brandList = CarStor.INSTANCE.getbStor().getAll();
+                    Brand firstBrand = brandList.get(0);
+                    brandList.remove(0); %>
+                <option selected value="<%=firstBrand.getId()%>"><%=firstBrand.getName()%></option>
+                <% for (Brand brand : brandList) { %>
+                <option value="<%=brand.getId()%>"><%=brand.getName()%></option>
+                <% } %>
             </select></td></tr>
             <tr><td>Модель:<select id="selModel" name="selModel">
+                <% for (Model model: CarStor.INSTANCE.getmStor().findByBrand(firstBrand)) { %>
+                <option value="<%=model.getId()%>"><%=model.getName()%></option>
+                <% } %>
             </select></td></tr>
             <tr><td>Краткое описание:<input type="text" name="name" required value="" style="width: 80%;"></td></tr>
             <tr><td>Описание:</td></tr>

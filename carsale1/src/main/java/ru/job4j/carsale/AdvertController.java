@@ -8,13 +8,15 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.job4j.config.SetValue;
 import ru.job4j.models.Advert;
 import ru.job4j.models.Model;
+import ru.job4j.models.User;
 import ru.job4j.storage.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
@@ -29,32 +31,20 @@ public class AdvertController {
     private static final Logger LOG = Logger.getLogger(AdvertController.class);
     private final CarStor carStor = CarStor.INSTANCE;
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String getNewAdvertPage(HttpSession session) {
-        if (session.getAttribute("login") == null) {
-            return "redirect:login";
-        } else {
-            return "NewAdvertPage";
-        }
-    }
 
-    @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public String getAdvert(@RequestParam("id") String id) {
-        return "ViewAdvertPage";
-    }
 
-    @RequestMapping(value = "/useradverts", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/adverts", method = RequestMethod.GET)
     public String getUserAdvertsPage() {
         return "ViewUserAdvertPage";
     }
 
-    @RequestMapping(value = "/useradverts", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/adverts", method = RequestMethod.POST)
     public String delAdvert(@RequestParam("id") String id) {
         carStor.getaStor().del(Integer.parseInt(id));
         return "ViewUserAdvertPage";
     }
 
-    @RequestMapping(value = "/editstatus", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/editstatus", method = RequestMethod.POST)
     public String editStatusAdvert(@RequestParam("id") String id) {
         Advert advert = carStor.getaStor().findById(Integer.parseInt(id));
         advert.setStatus(!advert.isStatus());
@@ -62,7 +52,7 @@ public class AdvertController {
         return "redirect:view";
     }
 
-    @RequestMapping(value = "/getmodel", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/getmodel", method = RequestMethod.POST)
     @ResponseBody
     public  List<Model> getModelsList(@RequestParam("id") String id) {
         if (id != null) {
@@ -71,13 +61,19 @@ public class AdvertController {
         return null;
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/addadvert", method = RequestMethod.GET)
+    public String getNewAdvertPage(Principal principal, HttpSession session) {
+        new SetValue().setUserInSession(principal, session);
+        return "NewAdvertPage";
+    }
+
+    @RequestMapping(value = "/user/addadvert", method = RequestMethod.POST)
     public String addAdvert(HttpSession session, HttpServletRequest req) {
         try {
             DiskFileItemFactory factory = new DiskFileItemFactory();
             boolean isMultipart = ServletFileUpload.isMultipartContent(req);
             if (isMultipart) {
-                int id = (int) req.getSession().getAttribute("user_id");
+                User user = (User) req.getSession().getAttribute("user");
                 String name = "";
                 String desc = "";
                 int idBrand = -1;
@@ -104,20 +100,23 @@ public class AdvertController {
                     }
                 }
                 if (!name.isEmpty() && !desc.isEmpty() && idBrand > 0 && idModel > 0) {
-                    carStor.getaStor().add(new Advert(carStor.getuStor().findById(id),
-                            carStor.getbStor().findById(idBrand),
-                            carStor.getmStor().findById(idModel),
-                            name,
-                            desc,
-                            picture));
+                    carStor.getaStor().add(
+                            new Advert(
+                                user,
+                                carStor.getbStor().findById(idBrand),
+                                carStor.getmStor().findById(idModel),
+                                name,
+                                desc,
+                                picture)
+                    );
                 }
             }
-            return "redirect:main";
+            return "redirect:/main";
         } catch (FileUploadException e) {
             LOG.error("Ошибка при работе с загрузкой файла", e);
         } catch (IOException e) {
             LOG.error("Ошибка при работе с потоком", e);
         }
-        return "redirect:add";
+        return "redirect:addadvert";
     }
 }

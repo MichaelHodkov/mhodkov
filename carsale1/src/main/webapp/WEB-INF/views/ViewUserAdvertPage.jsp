@@ -1,5 +1,7 @@
 <%@ page import="ru.job4j.models.Advert" %>
 <%@ page import="ru.job4j.storage.CarStor" %>
+<%@ page import="ru.job4j.models.User" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -29,6 +31,8 @@
     </form>
 </div>
 <div>
+    <% List<Advert> list = CarStor.INSTANCE.getaStor().findByUser((User) session.getAttribute("user"));
+        if (list.size() > 0) { %>
     <table border="1" class="myTable">
         <tr>
             <th>Brand</th>
@@ -38,22 +42,23 @@
             <th>Status</th>
             <th>Delete</th>
         </tr>
-        <% for (Advert advert : CarStor.INSTANCE.getaStor().findByUser(CarStor.INSTANCE.getuStor().findById((Integer) session.getAttribute("user_id")))) { %>
+        <% for (Advert advert : list) { %>
         <tr>
             <td><%=advert.getBrand().getName()%></td>
             <td><%=advert.getModel().getName()%></td>
             <td><%=advert.getTime()%></td>
             <td><%=advert.getName()%></td>
             <% if (advert.isStatus()) { %>
-                <td><input id="<%=advert.getId()%>" type='checkbox' checked/></td>
+            <td><input id="<%=advert.getId()%>" type='checkbox' checked/></td>
             <% } else { %>
-                <td><input id="<%=advert.getId()%>" type='checkbox'/></td>
+            <td><input id="<%=advert.getId()%>" type='checkbox'/></td>
             <% } %>
-            <form action="${pageContext.servletContext.contextPath}/useradverts" method="post">
+            <form action="${pageContext.servletContext.contextPath}/user/adverts" method="post">
                 <input type="hidden" name="id" value="<%=advert.getId()%>">
                 <td><input type="submit" value="удалить"></td>
             </form>
         </tr>
+        <% } %>
         <% } %>
     </table>
 </div>

@@ -1,9 +1,9 @@
 package ru.job4j.storage;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ru.job4j.models.Brand;
 import ru.job4j.models.Model;
 import ru.job4j.models.User;
-
 import java.util.List;
 
 /**
@@ -58,15 +58,17 @@ public class DefaultValue {
 
     public void addRoot() {
         List<User> list = carStor.getuStor().getAll();
+        User root = new User("root", new BCryptPasswordEncoder().encode("root"));
+        root.setAdmin();
         if (list.size() == 0) {
-            carStor.getuStor().add(new User("root", "root"));
+            carStor.getuStor().add(root);
         } else {
             for (User user : list) {
                 if (user.getLogin().equals("root")) {
                     return;
                 }
             }
-            carStor.getuStor().add(new User("root", "root"));
+            carStor.getuStor().add(root);
         }
     }
 
