@@ -1,5 +1,5 @@
 <%@ page import="ru.job4j.models.Brand" %>
-<%@ page import="ru.job4j.storage.CarStor" %>
+<%@ page import="ru.job4j.web.CarStor" %>
 <%@ page import="ru.job4j.models.User" %>
 <%@ page import="ru.job4j.models.Model" %>
 <%@ page import="java.util.List" %>

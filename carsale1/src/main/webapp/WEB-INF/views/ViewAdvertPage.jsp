@@ -1,5 +1,5 @@
 <%@ page import="ru.job4j.models.Advert" %>
-<%@ page import="ru.job4j.storage.CarStor" %>
+<%@ page import="ru.job4j.web.CarStor" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
