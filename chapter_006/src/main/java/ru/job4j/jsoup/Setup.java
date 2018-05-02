@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,14 +19,14 @@ import java.util.List;
 public class Setup {
     private static Logger log = Logger.getLogger(Parser.class);
     private String url;
-    private String startUrl;
+    private List<String> jobUrls = new ArrayList<>();
     private String login;
     private String password;
     private int hour = 24;
     private boolean flagProvlem = false;
 
     Setup(String fileName) {
-        log.info(String.format("read seting (%s)", fileName));
+        log.info(String.format("read setting (%s)", fileName));
         try {
             FileInputStream fileInputStream = new FileInputStream(fileName);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
@@ -33,8 +34,8 @@ public class Setup {
             while ((stLine = bufferedReader.readLine()) != null) {
                 if (stLine.contains("#url=")) {
                     this.url = stLine.replace("#url=", "");
-                } else if (stLine.contains("#start_url=")) {
-                    this.startUrl = stLine.replace("#start_url=", "");
+                } else if (stLine.contains("#joburl=")) {
+                    this.jobUrls.add(stLine.replace("#joburl=", ""));
                 } else if (stLine.contains("#login=")) {
                     this.login = stLine.replace("#login=", "");
                 } else if (stLine.contains("#password=")) {
@@ -49,8 +50,8 @@ public class Setup {
                 throw new NullPointerException("login is null");
             } else if (password == null) {
                 throw new NullPointerException("password is null");
-            } else if (startUrl == null) {
-                throw new NullPointerException("first page is null");
+            } else if (jobUrls.isEmpty()) {
+                throw new NullPointerException("job urls is null");
             }
         } catch (Exception e) {
             flagProvlem = true;
@@ -59,26 +60,26 @@ public class Setup {
     }
 
     public String getUrl() {
-        return url;
+        return this.url;
     }
 
-    public String getStartUrl() {
-        return startUrl;
+    public List<String> getJobUrls() {
+        return this.jobUrls;
     }
 
     public String getLogin() {
-        return login;
+        return this.login;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public int getHour() {
-        return hour;
+        return this.hour;
     }
 
     public boolean isFlagProvlem() {
-        return flagProvlem;
+        return this.flagProvlem;
     }
 }

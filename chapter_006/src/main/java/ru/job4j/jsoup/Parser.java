@@ -22,9 +22,9 @@ public class Parser {
     private final Setup setup;
     private final SQLConnect connect;
     private final MySQLReq sqlReq;
-    private String url;
-    private Date stopLine;
     private final int hour;
+    private final static int DEFAULT_STOP = 10;
+
 
     public Parser() {
         this.setup = new Setup("chapter_006/parser.ini");
@@ -37,7 +37,6 @@ public class Parser {
         connect = new SQLConnect(setup.getUrl(), setup.getLogin(), setup.getPassword(), true);
         sqlReq = new MySQLReq(connect.getConnection());
         sqlReq.createTable();
-        url = setup.getStartUrl();
         hour = setup.getHour();
         start();
     }
@@ -68,37 +67,45 @@ public class Parser {
         }).start();
     }
 
-    private void work() {
-        Document document;
-        Elements elements;
-        int indexPage = 1;
-        int stopCount = 0;
+    private Date getStopLine() {
+        Date stopLine;
         if (sqlReq.isEmptyBD()) {
             stopLine = firstDayOfYear();
-
         } else {
             stopLine = sqlReq.lastJob();
         }
-        log.info(String.format("Stop serach data: %s", stopLine));
-        do {
-            document = jsoupConnect(String.format("%s%d", url, indexPage++));
-            elements = document.getElementsByClass("postslisttopic");
-            for (Element element : elements) {
-                if (isJavaJob(element.text())) {
-                    if (!testAndAddUrlJob(element.select("a").attr("href"), stopLine)) {
-                        stopCount++;
+        return stopLine;
+    }
+
+    private void work() {
+        Elements elements;
+        Date stopLine = getStopLine();
+        log.info(String.format("Stop search data: %s", stopLine));
+        for (String url: setup.getJobUrls()) {
+            int indexPage = 1;
+            int stopCount = 0;
+            do {
+                Document document = jsoupConnect(String.format("%s%d", url, indexPage++));
+                elements = document.getElementsByClass("postslisttopic");
+                for (Element element : elements) {
+                    if (isJavaJob(element.text())) {
+                        if (!testAndAddUrlJob(element.select("a").attr("href"), stopLine)) {
+                            stopCount++;
+                        }
                     }
                 }
-            }
-            if (stopCount > 4) {
-                break;
-            }
-        } while (elements.size() > 0);
+                if (stopCount > DEFAULT_STOP) {
+                    break;
+                }
+            } while (elements.size() > 0);
+        }
     }
 
     private boolean testAndAddUrlJob(String url, Date stopLine) {
         Document document = jsoupConnect(url);
-        String title = document.title().replace(" / Вакансии / Sql.ru", "");
+        String title = document.title()
+                .replace(" / Вакансии / Sql.ru", "")
+                .replace(" / Работа / Sql.ru", "");
         Elements elements = document.getElementsByClass("msgBody");
         String text = elements.get(1).text();
         elements = document.getElementsByClass("msgFooter");
@@ -165,7 +172,11 @@ public class Parser {
     }
 
     private boolean isJavaJob(String text) {
-        text = text.toLowerCase().replace("java script", "").replace("javascript", "");
+        if (!text.toLowerCase().contains("java")) {
+            return false;
+        } else {
+            text = text.toLowerCase().replace("java script", "").replace("javascript", "");
+        }
         return text.contains("java");
     }
 
@@ -177,7 +188,7 @@ public class Parser {
         try {
             return Jsoup.connect(url).get();
         } catch (IOException e) {
-            log.error(e);
+            log.error(String.format("Error: connect url %s %s", url, e));
         }
         return null;
     }
