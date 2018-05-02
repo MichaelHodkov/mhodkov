@@ -71,7 +71,7 @@ public class DeleteBlockWord {
     private String getWord(List<Integer> list) {
         StringBuilder word = new StringBuilder();
         for (Integer value: list) {
-            word.append(Character.toChars( value));
+            word.append(Character.toChars(value));
         }
         return word.toString();
     }
