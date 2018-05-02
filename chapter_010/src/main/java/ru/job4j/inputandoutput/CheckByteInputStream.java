@@ -23,7 +23,7 @@ public class CheckByteInputStream {
             bufferedInputStream = new BufferedInputStream(in);
             byteArrayOutputStream = new ByteArrayOutputStream();
             int stream = bufferedInputStream.read();
-            while(stream != -1) {
+            while (stream != -1) {
                 byteArrayOutputStream.write((byte) stream);
                 stream = bufferedInputStream.read();
             }
