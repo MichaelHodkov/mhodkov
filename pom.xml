@@ -27,7 +27,7 @@
 		<module>carsale1</module>
 		<module>chapter_010</module>
 		<!--<module>carsale2</module>-->
-		<!--<module>tests</module>-->
+		<!--<module>testtask</module>-->
     </modules>
 	
 	<dependencies>
