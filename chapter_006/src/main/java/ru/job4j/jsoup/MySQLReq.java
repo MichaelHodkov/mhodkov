@@ -21,7 +21,7 @@ public class MySQLReq {
 
     public void createTable() {
         try {
-            PreparedStatement ps = conn.prepareStatement("CREATE TABLE IF NOT EXISTS JOB (id serial PRIMARY KEY, title CHARACTER VARYING(500) NOT NULL, text CHARACTER VARYING(5000) NOT NULL, url CHARACTER VARYING(1000) NOT NULL, created TIMESTAMP NOT NULL);");
+            PreparedStatement ps = conn.prepareStatement("CREATE TABLE IF NOT EXISTS JOB (id serial PRIMARY KEY, title CHARACTER VARYING(500) NOT NULL, text CHARACTER VARYING(10000) NOT NULL, url CHARACTER VARYING(1000) NOT NULL, created TIMESTAMP NOT NULL);");
             ps.executeUpdate();
             Statement st = conn.createStatement();
         } catch (SQLException e) {
@@ -31,7 +31,7 @@ public class MySQLReq {
 
     public void add(String url, String title, String text, Date time) {
         if (newURL(url)) {
-            log.info(String.format("%s %s %s", time, url, title));
+//            log.info(String.format("%s %s %s", time, url, title));
             try {
                 PreparedStatement ps = conn.prepareStatement("INSERT INTO JOB (TITLE, TEXT, URL, CREATED) VALUES (?, ?, ?, ?);");
                 ps.setString(1, title);

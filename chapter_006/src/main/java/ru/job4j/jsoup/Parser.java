@@ -71,6 +71,7 @@ public class Parser {
         Date stopLine;
         if (sqlReq.isEmptyBD()) {
             stopLine = firstDayOfYear();
+//            stopLine = fiveYearsAgo();
         } else {
             stopLine = sqlReq.lastJob();
         }
@@ -81,6 +82,7 @@ public class Parser {
         Elements elements;
         Date stopLine = getStopLine();
         log.info(String.format("Stop search data: %s", stopLine));
+        int countAdd = 0;
         for (String url: setup.getJobUrls()) {
             int indexPage = 1;
             int stopCount = 0;
@@ -91,6 +93,9 @@ public class Parser {
                     if (isJavaJob(element.text())) {
                         if (!testAndAddUrlJob(element.select("a").attr("href"), stopLine)) {
                             stopCount++;
+                        } else {
+                            stopCount = 0;
+                            countAdd++;
                         }
                     }
                 }
@@ -99,6 +104,7 @@ public class Parser {
                 }
             } while (elements.size() > 0);
         }
+        log.info(String.format("Add: %d", countAdd));
     }
 
     private boolean testAndAddUrlJob(String url, Date stopLine) {
@@ -157,6 +163,11 @@ public class Parser {
     private Date minusHour(int value) {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.HOUR, -value);
+        return cal.getTime();
+    }
+
+    private Date fiveYearsAgo() {
+        Calendar cal = new GregorianCalendar(2013, 1, 1);
         return cal.getTime();
     }
 
