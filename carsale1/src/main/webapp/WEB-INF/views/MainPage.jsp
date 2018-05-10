@@ -1,8 +1,8 @@
-<%@ page import="ru.job4j.web.CarStor" %>
 <%@ page import="ru.job4j.models.Brand" %>
 <%@ page import="ru.job4j.models.Advert" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ru.job4j.models.User" %>
+<%@ page import="ru.job4j.storage.CarStor" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
