@@ -16,12 +16,10 @@ public class CheckByteInputStream {
 
     //метод должен проверить. что в байтовом потоке записано четное число.
     public boolean isNumber(InputStream in) {
-        BufferedInputStream bufferedInputStream = null;
-        ByteArrayOutputStream byteArrayOutputStream = null;
         boolean result = false;
-        try {
-            bufferedInputStream = new BufferedInputStream(in);
-            byteArrayOutputStream = new ByteArrayOutputStream();
+        try (BufferedInputStream bufferedInputStream = new BufferedInputStream(in);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()
+        ) {
             int stream = bufferedInputStream.read();
             while (stream != -1) {
                 byteArrayOutputStream.write((byte) stream);
@@ -36,21 +34,6 @@ public class CheckByteInputStream {
             }
         } catch (IOException e) {
             LOG.error("Error: read input stream", e);
-        } finally {
-            if (bufferedInputStream != null) {
-                try {
-                    bufferedInputStream.close();
-                } catch (IOException e) {
-                    LOG.error("Error: close buffered input stream", e);
-                }
-            }
-            if (byteArrayOutputStream != null) {
-                try {
-                    byteArrayOutputStream.close();
-                } catch (IOException e) {
-                    LOG.error("Error: close byte array output stream", e);
-                }
-            }
         }
         return result;
     }
