@@ -3,10 +3,6 @@
 [![Build Status](https://travis-ci.org/MichaelHodkov/mhodkov.svg?branch=master)](https://travis-ci.org/MichaelHodkov/mhodkov)
 [![codecov](https://codecov.io/gh/MichaelHodkov/mhodkov/branch/master/graph/badge.svg)](https://codecov.io/gh/MichaelHodkov/mhodkov)
 
-
-
-Пройти обучение по Java и найти работу программистом Java в апреле-мае 2018г.
-
 * chapter 001: ***Базовый синтаксис*** - типы данных, условный оператор, циклы, массивы и т.д;
 * chapter 002: ***ООП*** - классы и объекты, наследование, инкапсуляция, полиморфизм, исключения и т.д;
 * chapter 003: ***Collections - lite*** - обобщения, сортировка, Collections framework;
