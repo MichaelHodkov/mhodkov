@@ -32,7 +32,7 @@ public class ReadDirAndFiles {
                 listTable.setSize("<DIR>");
                 countDirs++;
             } else {
-                listTable.setSize(String.valueOf(item.length()));
+                listTable.setSize(ConvertByte.conv(item.length()));
                 countFiles++;
                 sumSizeFiles +=item.length();
             }
@@ -40,7 +40,7 @@ public class ReadDirAndFiles {
         }
         pathTable.setCountDir(countDirs);
         pathTable.setCountFile(countFiles);
-        pathTable.setSumFile(sumSizeFiles);
+        pathTable.setSumFile(ConvertByte.conv(sumSizeFiles));
         return list;
     }
 }

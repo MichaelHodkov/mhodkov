@@ -26,7 +26,7 @@ public class PathTable {
 
     private int countFile;
 
-    private long sumFile;
+    private String sumFile;
 
     public PathTable() {
     }
@@ -75,11 +75,11 @@ public class PathTable {
         this.countFile = countFile;
     }
 
-    public long getSumFile() {
+    public String getSumFile() {
         return sumFile;
     }
 
-    public void setSumFile(long sumFile) {
+    public void setSumFile(String sumFile) {
         this.sumFile = sumFile;
     }
 }
