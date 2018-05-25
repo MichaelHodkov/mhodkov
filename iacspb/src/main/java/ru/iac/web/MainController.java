@@ -32,6 +32,7 @@ public class MainController {
 
     @Autowired
     public MainController(PathService pathService, ListService listService) {
+        LOG.info("Загрузка контроллера 'MainController'.");
         this.pathService = pathService;
         this.listService = listService;
         this.disk = new ReadDirAndFiles();
@@ -39,14 +40,17 @@ public class MainController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String showMainPage(ModelMap model) {
+        LOG.info("Загрузка данных на главную страницу.");
         model.addAttribute("paths", pathService.getAll());
         return "main";
     }
 
     @PostMapping("/main")
     public String add(@RequestParam("path") String path, ModelMap model) {
+        LOG.info("Запрос на добавление новой директории.");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         if (disk.isDir(path)) {
+            LOG.info("Директория найдена.");
             PathTable pathTable = new PathTable();
             pathTable.setPath(path);
             pathTable.setTime(timestamp);
@@ -56,13 +60,16 @@ public class MainController {
             }
             return "redirect:main";
         } else {
+            LOG.info("Директория не найдена.");
             model.addAttribute("error", path);
+            model.addAttribute("paths", pathService.getAll());
         }
         return "main";
     }
 
     @PostMapping("/view")
     public String view(@RequestParam("path") String id, ModelMap model) {
+        LOG.info("Загрузка вложенных директорий и файлов.");
         PathTable pathTable = pathService.findById(Integer.parseInt(id));
         List<ListTable> listTables = listService.getById(pathTable);
         Collections.sort(listTables);

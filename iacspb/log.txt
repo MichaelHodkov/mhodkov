@@ -1,0 +1,2 @@
+2018-05-25 15:29:27 INFO  MainController:35 - Загрузка контроллера 'MainController'.
+2018-05-25 15:29:33 INFO  MainController:43 - Загрузка данных на главную страницу.
