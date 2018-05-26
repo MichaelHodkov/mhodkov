@@ -9,10 +9,45 @@
             margin-left: 10px;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        function loadFiles(id) {
+            $.ajax('./json', {
+                method : 'get',
+                data: {"id": id},
+                complete: function (data) {
+                    var items = JSON.parse(data.responseText);
+                    var title = items[0].pathTable.path + " " + items[0].pathTable.time;
+                    var info = items.realtimeinfo;
+                    var winPrinter = window.open(this.href,'_blank','left=200, top=200, location=no, directories=no, status=no, menubar=yes, scrollbars=yes, width=400, height=600');
+                    var result = "<!DOCTYPE html><html>";
+                    result += "<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' />";
+                    result += "<title>" + title + "</title></head>";
+                    result += "<body><div style='margin-left: 10px'>";
+                    result += "<table border='1' id='table_items'><thead><tr bgcolor='#dcdcdc'><td>Файл</td><td>Размер</td></tr></thead><tbody>";
+                    result += "</tbody></table></div>";
+                    result += "<br><button type='button' onclick='window.close()'>Закрыть</button></body></html>";
+                    winPrinter.document.write(result);
+                    var table = winPrinter.document.getElementById("table_items");
+                    for (var i=0; i != items.length; i++) {
+                        var row = table.insertRow(-1);
+                        row.insertCell(-1).innerHTML = items[i].name;
+                        if (items[i].size == 'DIR') {
+                            row.insertCell(-1).innerHTML = '&lt' + items[i].size + '&gt';
+                        } else {
+                            row.insertCell(-1).innerHTML = items[i].size;
+                        }
+                    }
+                    winPrinter.document.close();
+                    winPrinter.blur();
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <div class="marginLeft">
-<h1>Директории и файлы</h1>
+    <h1>Директории и файлы</h1>
 </div>
 <div class="marginLeft">
     <form th:action="@{/main}" method="post">
@@ -44,9 +79,7 @@
             <td th:text="${item.countDir}" align="center"></td>
             <td th:text="${item.countFile}" align="center"></td>
             <td th:text="${item.sumFile}" align="right"></td>
-            <td><form th:action="@{/view}" method="post"><input type="submit" value="Файлы">
-                <input type="hidden" name="path" th:value="${item.id}">
-            </form></td>
+            <td><input type="button" value="Файл" th:onclick="|loadFiles('${item.id}')|"></td>
         </tr>
         </tbody>
     </table>

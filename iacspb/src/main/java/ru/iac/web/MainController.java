@@ -10,11 +10,7 @@ import ru.iac.domain.PathTable;
 import ru.iac.service.ListService;
 import ru.iac.service.PathService;
 import ru.iac.utils.ReadDirAndFiles;
-
-import javax.servlet.http.HttpSession;
-import java.security.Principal;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,7 +34,7 @@ public class MainController {
         this.disk = new ReadDirAndFiles();
     }
 
-    @RequestMapping(value = "/main", method = RequestMethod.GET)
+    @GetMapping("/main")
     public String showMainPage(ModelMap model) {
         LOG.info("Загрузка данных на главную страницу.");
         model.addAttribute("paths", pathService.getAll());
@@ -67,14 +63,13 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("/view")
-    public String view(@RequestParam("path") String id, ModelMap model) {
-        LOG.info("Загрузка вложенных директорий и файлов.");
+    @GetMapping("/json")
+    @ResponseBody
+    public List<ListTable> listPaths(@RequestParam("id") String id) {
+        LOG.info("Передача данных через JSON.");
         PathTable pathTable = pathService.findById(Integer.parseInt(id));
         List<ListTable> listTables = listService.getById(pathTable);
         Collections.sort(listTables);
-        model.addAttribute("path", pathTable.getPath());
-        model.addAttribute("list", listTables);
-        return "view";
+        return listTables;
     }
 }

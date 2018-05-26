@@ -29,12 +29,12 @@ public class ReadDirAndFiles {
             listTable.setPathTable(pathTable);
             listTable.setName(item.getName());
             if (item.isDirectory()) {
-                listTable.setSize("<DIR>");
+                listTable.setSize("DIR");
                 countDirs++;
             } else {
                 listTable.setSize(ConvertByte.conv(item.length()));
                 countFiles++;
-                sumSizeFiles +=item.length();
+                sumSizeFiles += item.length();
             }
             list.add(listTable);
         }

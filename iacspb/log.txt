@@ -50,3 +50,454 @@
 2018-05-25 16:21:04 INFO  MainController:53 - Директория найдена.
 2018-05-25 16:21:05 INFO  MainController:43 - Загрузка данных на главную страницу.
 2018-05-25 16:21:07 INFO  MainController:72 - Загрузка вложенных директорий и файлов.
+2018-05-25 16:45:04 INFO  MainController:35 - Загрузка контроллера 'MainController'.
+2018-05-25 16:45:12 INFO  MainController:43 - Загрузка данных на главную страницу.
+2018-05-25 18:17:38 INFO  MainController:37 - Загрузка контроллера 'MainController'.
+2018-05-25 18:17:45 INFO  MainController:45 - Загрузка данных на главную страницу.
+2018-05-25 18:25:32 INFO  MainController:37 - Загрузка контроллера 'MainController'.
+2018-05-25 18:25:47 INFO  MainController:45 - Загрузка данных на главную страницу.
+2018-05-25 18:27:46 INFO  MainController:37 - Загрузка контроллера 'MainController'.
+2018-05-25 18:27:51 INFO  MainController:45 - Загрузка данных на главную страницу.
+2018-05-25 18:31:25 INFO  MainController:45 - Загрузка данных на главную страницу.
+2018-05-25 18:34:43 INFO  MainController:74 - Загрузка вложенных директорий и файлов.
+2018-05-25 18:34:45 INFO  MainController:45 - Загрузка данных на главную страницу.
+2018-05-25 18:56:09 INFO  MainController:45 - Загрузка данных на главную страницу.
+2018-05-25 18:58:07 INFO  MainController:37 - Загрузка контроллера 'MainController'.
+2018-05-25 18:58:13 INFO  MainController:45 - Загрузка данных на главную страницу.
+2018-05-25 18:58:14 INFO  MainController:86 - Передача данных Path через JSON.
+2018-05-25 18:59:07 INFO  MainController:37 - Загрузка контроллера 'MainController'.
+2018-05-25 18:59:11 INFO  MainController:45 - Загрузка данных на главную страницу.
+2018-05-25 18:59:12 INFO  MainController:86 - Передача данных Path через JSON.
+2018-05-25 19:41:34 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-25 19:41:42 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 19:41:43 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 19:42:57 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-25 19:42:59 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 19:43:00 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 19:43:22 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-25 19:43:28 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 19:43:29 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 19:43:57 INFO  MainController:68 - Загрузка вложенных директорий и файлов.
+2018-05-25 19:43:58 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 19:43:58 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 19:46:15 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-25 19:46:19 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 19:46:20 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 19:47:33 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-25 19:47:35 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 19:47:36 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 19:51:10 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-25 19:51:13 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 19:51:14 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 19:51:15 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 19:51:15 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 19:51:52 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-25 19:51:57 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 19:51:57 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 19:52:38 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-25 19:52:40 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 19:52:41 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 20:01:53 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-25 20:02:02 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 20:02:03 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 20:03:02 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-25 20:03:07 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 20:03:08 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-25 20:03:19 INFO  MainController:68 - Загрузка вложенных директорий и файлов.
+2018-05-25 20:03:23 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-25 20:03:23 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:16:06 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:16:13 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:16:14 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:23:54 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:23:59 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:24:00 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:24:41 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:24:46 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:24:47 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:26:19 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:27:36 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:28:33 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:28:41 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:28:42 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:36:01 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:36:07 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:36:07 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:36:27 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:53:27 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:53:28 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:55:09 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:55:14 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:55:15 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:55:40 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:55:48 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:55:49 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:56:08 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:56:16 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:56:17 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:56:46 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:56:50 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:56:51 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:57:25 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:57:28 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:57:29 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:57:47 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:57:50 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 14:57:50 INFO  MainController:80 - Передача данных Path через JSON.
+2018-05-26 14:58:58 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 14:59:01 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 15:00:57 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 15:01:08 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 15:04:22 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 15:04:25 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 15:04:53 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 15:04:57 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 15:04:59 INFO  MainController:80 - Передача данных через JSON.
+2018-05-26 15:10:59 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 15:11:05 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 15:11:05 INFO  MainController:49 - Директория найдена.
+2018-05-26 15:11:06 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 15:11:08 INFO  MainController:80 - Передача данных через JSON.
+2018-05-26 15:11:16 INFO  MainController:80 - Передача данных через JSON.
+2018-05-26 15:12:17 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 15:12:30 INFO  MainController:80 - Передача данных через JSON.
+2018-05-26 15:12:33 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 15:12:34 INFO  MainController:80 - Передача данных через JSON.
+2018-05-26 15:12:40 INFO  MainController:80 - Передача данных через JSON.
+2018-05-26 15:16:31 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 15:16:35 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 15:16:39 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 15:54:50 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 15:54:58 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 15:55:01 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 15:55:40 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 15:55:51 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 15:55:54 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:01:55 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:02:00 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:02:01 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:02:09 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:02:11 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:02:12 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:02:13 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:02:20 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:02:22 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:02:23 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:04:08 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:04:34 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:04:45 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:06:36 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:06:40 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:06:43 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:07:51 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:07:56 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:08:07 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:08:08 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:08:09 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:08:57 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:09:01 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:09:04 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:09:06 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:09:32 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:09:37 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:09:39 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:09:41 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:09:42 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:09:44 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:09:45 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:10:01 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 16:10:01 INFO  MainController:49 - Директория найдена.
+2018-05-26 16:10:01 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:10:05 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:10:37 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:10:43 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:10:49 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:15:09 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:15:10 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:15:14 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:15:56 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:16:00 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:16:04 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:19:53 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:20:19 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:20:23 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:20:25 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:20:25 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:20:26 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:20:28 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:20:30 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:20:30 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:20:51 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:20:57 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:20:58 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:00 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:01 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:02 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:03 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:04 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:05 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:25 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 16:21:33 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 16:21:34 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:36 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:37 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:39 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:42 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:43 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:44 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:46 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:47 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 16:21:52 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 17:53:52 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 17:53:58 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 17:54:02 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 17:54:08 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 17:54:13 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 17:55:21 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 17:55:26 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 17:55:27 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 17:55:36 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 17:55:42 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 17:55:50 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 17:55:54 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 17:55:57 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 17:55:59 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:01:56 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:02:04 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:02:05 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:02:28 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:02:29 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:02:38 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:03:53 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:03:55 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:03:57 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:04:08 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:05:15 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:05:23 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:05:25 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:05:32 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:05:33 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:05:38 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:05:44 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:05:49 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:09:11 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:09:16 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:09:21 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:09:23 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:09:24 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:09:44 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:09:49 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:10:27 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:10:34 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:10:35 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:11:00 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:11:04 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:11:05 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:11:32 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:11:35 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:11:36 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:12:09 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:12:12 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:12:14 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:12:18 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:13:46 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:13:49 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:14:54 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:14:54 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:15:15 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:17:04 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:17:09 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:18:23 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:19:49 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:20:32 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:20:56 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:21:01 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:21:04 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:22:19 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:22:25 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:22:26 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:23:01 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:23:05 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:23:06 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:23:34 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:23:36 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:23:37 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:32:53 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:32:57 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:33:00 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:33:10 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:33:39 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:33:45 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:33:46 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:35:59 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:36:12 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:36:14 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:38:39 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:38:55 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:39:00 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 18:39:00 INFO  MainController:49 - Директория найдена.
+2018-05-26 18:39:00 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:40:57 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:43:38 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:46:11 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:46:18 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:46:22 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:48:51 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:48:55 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:48:57 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:49:37 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 18:49:37 INFO  MainController:49 - Директория найдена.
+2018-05-26 18:49:37 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:49:40 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:57:50 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:57:57 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:57:59 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 18:59:22 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 18:59:26 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 18:59:29 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 19:01:16 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 19:01:16 INFO  MainController:49 - Директория найдена.
+2018-05-26 19:01:16 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 19:01:19 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 19:03:04 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 19:03:06 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 19:03:15 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 19:03:16 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 19:03:55 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 19:04:04 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 19:04:06 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 19:04:23 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 19:04:27 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 19:04:31 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 19:18:18 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 19:18:25 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 19:18:33 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 19:18:33 INFO  MainController:49 - Директория найдена.
+2018-05-26 19:18:33 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 19:18:35 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 21:46:26 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 21:46:33 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 21:46:34 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 21:59:39 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 21:59:43 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 21:59:44 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:00:54 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:01:05 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:01:06 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:02:18 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:02:22 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:02:24 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:03:41 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:03:45 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:09:05 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:09:10 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:09:51 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:09:55 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:10:32 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:10:43 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:15:45 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:15:55 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:16:43 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:16:45 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:16:53 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 22:16:53 INFO  MainController:49 - Директория найдена.
+2018-05-26 22:16:53 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:16:58 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:17:28 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 22:17:28 INFO  MainController:49 - Директория найдена.
+2018-05-26 22:17:28 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:17:29 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:20:19 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:20:24 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:20:26 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:22:40 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:22:43 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:22:50 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 22:22:50 INFO  MainController:49 - Директория найдена.
+2018-05-26 22:22:50 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:22:51 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:26:58 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:27:07 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:27:08 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:30:22 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:30:27 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:30:29 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:32:46 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:32:47 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:32:49 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:33:26 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:33:29 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:33:33 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 22:33:33 INFO  MainController:49 - Директория найдена.
+2018-05-26 22:33:33 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:33:37 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 22:33:37 INFO  MainController:49 - Директория найдена.
+2018-05-26 22:33:37 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:33:41 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 22:33:41 INFO  MainController:49 - Директория найдена.
+2018-05-26 22:33:41 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:33:50 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 22:33:50 INFO  MainController:49 - Директория найдена.
+2018-05-26 22:33:50 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:33:57 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 22:33:57 INFO  MainController:49 - Директория найдена.
+2018-05-26 22:33:57 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:34:00 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 22:34:00 INFO  MainController:59 - Директория не найдена.
+2018-05-26 22:34:07 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-26 22:34:07 INFO  MainController:49 - Директория найдена.
+2018-05-26 22:34:07 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:37:24 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:37:31 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:37:36 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:37:41 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:37:47 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:37:49 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:37:51 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:45:16 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:45:20 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:45:24 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:50:30 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:50:33 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:50:35 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:50:58 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:51:04 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:51:06 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:51:08 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:51:10 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:51:14 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:52:08 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:52:12 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:52:13 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:52:31 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:52:34 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:53:40 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:53:42 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:53:45 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:54:35 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:54:40 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:54:42 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:55:08 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:57:17 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:57:18 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:57:20 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:58:26 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:58:33 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 22:58:36 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:58:42 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 22:59:23 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-26 22:59:53 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 23:01:11 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-26 23:01:15 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:01:31 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:01:47 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:01:58 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:02:03 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:02:12 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:02:14 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:02:16 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:02:31 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:02:36 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:02:39 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:02:55 INFO  MainController:69 - Передача данных через JSON.
+2018-05-26 23:03:09 INFO  MainController:69 - Передача данных через JSON.

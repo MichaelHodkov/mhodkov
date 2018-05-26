@@ -17,7 +17,7 @@ public class CompareIntInText {
         }
     }
 
-    private static int compare(char[] charsOne, char[] charsTwo) {
+    public static int compare(char[] charsOne, char[] charsTwo) {
         List<Object> wordOne = addWord(charsOne);
         List<Object> wordTwo = addWord(charsTwo);
         int compr = 0;
@@ -53,14 +53,14 @@ public class CompareIntInText {
         }
         if (wordOne.size() == wordTwo.size()) {
             return 0;
-        } else if (wordOne.size() < wordTwo.size()){
+        } else if (wordOne.size() < wordTwo.size()) {
             return -1;
         } else {
             return 1;
         }
     }
 
-    private static List<Object> addWord(char[] chars) {
+    public static List<Object> addWord(char[] chars) {
         List<Object> list = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         boolean flagStart = false;
@@ -87,7 +87,7 @@ public class CompareIntInText {
     }
 
 
-    private static boolean isNum(char ch) {
+    public static boolean isNum(char ch) {
         return ch >= 48 && ch <= 58;
     }
 }
