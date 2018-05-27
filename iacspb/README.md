@@ -1,4 +1,8 @@
-# Michael Hodkov (Михаил Ходьков)
+##Для запуска необходимо иметь:
+-[Maven](http://maven.apache.org/)
 
-Для запуска: mvn spring-boot:run
-В браузере открыть http://localhost:8080/main
+## Запуск приложения:
+- Из корня репозитория в консоли выполнить `mvn spring-boot:run
+- В браузере открыть http://localhost:8080/main
+
+### Михаил Ходьков
