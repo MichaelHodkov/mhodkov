@@ -31,6 +31,6 @@ public class ConvertByte {
         } else {
             return String.format("%d b", num);
         }
-        return String.format("%.2f %s", res, textSize);
+        return String.format("%.2f %s", res, textSize).replace(",00", "");
     }
 }

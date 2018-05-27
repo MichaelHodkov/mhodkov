@@ -1,7 +1,6 @@
 package ru.iac.domain;
 
 import ru.iac.utils.CompareIntInText;
-
 import javax.persistence.*;
 
 /**
@@ -69,14 +68,14 @@ public class ListTable implements Comparable<ListTable> {
     public int compareTo(ListTable o) {
         if (this.getSize().equals("DIR")) {
             if (o.getSize().equals("DIR")) {
-                return CompareIntInText.compare(this.getName(), o.getName());
+                return CompareIntInText.compareString(this.getName(), o.getName());
             } else {
                 return -1;
             }
         } else if (o.getSize().equals("DIR")) {
             return 1;
         } else {
-            return CompareIntInText.compare(this.getName(), o.getName());
+            return CompareIntInText.compareString(this.getName(), o.getName());
         }
     }
 }

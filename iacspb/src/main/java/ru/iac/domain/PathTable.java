@@ -1,7 +1,6 @@
 package ru.iac.domain;
 
 import ru.iac.utils.TimeFormat;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 

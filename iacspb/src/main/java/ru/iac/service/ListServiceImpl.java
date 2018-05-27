@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import ru.iac.domain.ListTable;
 import ru.iac.domain.PathTable;
 import ru.iac.repository.ListRepository;
-
 import java.util.List;
 
 /**

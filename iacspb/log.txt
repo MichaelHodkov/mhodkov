@@ -715,3 +715,27 @@
 2018-05-27 14:14:09 INFO  MainController:69 - Передача данных через JSON.
 2018-05-27 14:14:14 INFO  MainController:69 - Передача данных через JSON.
 2018-05-27 14:14:18 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 14:15:03 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-27 14:15:07 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-27 14:15:11 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 14:15:14 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 14:15:17 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 14:15:19 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 14:15:24 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 15:59:37 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-27 15:59:45 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-27 15:59:51 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 16:00:41 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 16:04:06 INFO  MainController:31 - Загрузка контроллера 'MainController'.
+2018-05-27 16:04:17 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-27 16:04:17 INFO  MainController:49 - Директория найдена.
+2018-05-27 16:04:18 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-27 16:04:20 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 16:04:33 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 16:04:35 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 16:04:39 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 16:04:43 INFO  MainController:46 - Запрос на добавление новой директории.
+2018-05-27 16:04:43 INFO  MainController:49 - Директория найдена.
+2018-05-27 16:04:43 INFO  MainController:39 - Загрузка данных на главную страницу.
+2018-05-27 16:04:45 INFO  MainController:69 - Передача данных через JSON.
+2018-05-27 16:05:25 INFO  MainController:69 - Передача данных через JSON.

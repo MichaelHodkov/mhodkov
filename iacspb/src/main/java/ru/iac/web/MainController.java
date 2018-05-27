@@ -51,7 +51,7 @@ public class MainController {
             pathTable.setPath(path);
             pathTable.setTime(timestamp);
             pathService.add(pathTable);
-            for (ListTable item: disk.getAll(path, pathTable)) {
+            for (ListTable item: disk.getAll(pathTable)) {
                 listService.add(item);
             }
             return "redirect:main";

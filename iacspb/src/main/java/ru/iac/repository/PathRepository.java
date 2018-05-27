@@ -2,7 +2,6 @@ package ru.iac.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import ru.iac.domain.PathTable;
-
 import java.util.List;
 
 /**

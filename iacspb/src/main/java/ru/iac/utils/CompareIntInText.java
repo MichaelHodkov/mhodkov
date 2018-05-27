@@ -9,17 +9,17 @@ import java.util.List;
  * @since 0.1
  */
 public class CompareIntInText {
-    public static int compare(String stOne, String stTwo) {
+    public static int compareString(String stOne, String stTwo) {
         if (stOne.equalsIgnoreCase(stTwo)) {
             return 0;
         } else {
-            return compare(stOne.toLowerCase().toCharArray(), stTwo.toLowerCase().toCharArray());
+            return compareArraysChars(stOne.toLowerCase().toCharArray(), stTwo.toLowerCase().toCharArray());
         }
     }
 
-    public static int compare(char[] charsOne, char[] charsTwo) {
-        List<Object> wordOne = addWord(charsOne);
-        List<Object> wordTwo = addWord(charsTwo);
+    public static int compareArraysChars(char[] charsOne, char[] charsTwo) {
+        List<Object> wordOne = getSymbols(charsOne);
+        List<Object> wordTwo = getSymbols(charsTwo);
         int compr = 0;
         for (int i = 0; i < wordOne.size(); i++) {
             if (wordTwo.size() <= i) {
@@ -60,7 +60,7 @@ public class CompareIntInText {
         }
     }
 
-    public static List<Object> addWord(char[] chars) {
+    public static List<Object> getSymbols(char[] chars) {
         List<Object> list = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         boolean flagStart = false;

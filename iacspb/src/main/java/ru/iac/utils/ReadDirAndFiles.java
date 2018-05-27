@@ -2,7 +2,6 @@ package ru.iac.utils;
 
 import ru.iac.domain.ListTable;
 import ru.iac.domain.PathTable;
-
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,8 +17,8 @@ public class ReadDirAndFiles {
         return dir.isDirectory();
     }
 
-    public List<ListTable> getAll(String path, PathTable pathTable) {
-        File dir = new File(path);
+    public List<ListTable> getAll(PathTable pathTable) {
+        File dir = new File(pathTable.getPath());
         List<ListTable> list = new LinkedList<>();
         int countDirs = 0;
         int countFiles = 0;
