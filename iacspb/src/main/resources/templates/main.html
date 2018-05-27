@@ -8,6 +8,38 @@
         .marginLeft {
             margin-left: 10px;
         }
+        .border {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        TD {
+            padding: 3px;
+            border: 1px solid black;
+
+        }
+        .modalwin {
+            height: auto;
+            width: 30%;
+            background: white;
+            top: 20%;
+            right: 0;
+            left: 0;
+            font-size: 14px;
+            margin: 0 auto;
+            z-index:2;
+            display: none;
+            position: absolute;
+        }
+        #shadow {
+            position: fixed;
+            width:100%;
+            height:100%;
+            z-index:1; /* поверх всех  кроме окна*/
+            background:#000;
+            opacity: 0.5; /*прозрачность*/
+            left:0;
+            top:0;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -18,19 +50,19 @@
                 complete: function (data) {
                     var items = JSON.parse(data.responseText);
                     var title = items[0].pathTable.path + " " + items[0].pathTable.time;
-                    var info = items.realtimeinfo;
-                    var winPrinter = window.open(this.href,'_blank','left=200, top=200, location=no, directories=no, status=no, menubar=yes, scrollbars=yes, width=400, height=600');
-                    var result = "<!DOCTYPE html><html>";
-                    result += "<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' />";
-                    result += "<title>" + title + "</title></head>";
-                    result += "<body><div style='margin-left: 10px'>";
-                    result += "<table border='1' id='table_items'><thead><tr bgcolor='#dcdcdc'><td>Файл</td><td>Размер</td></tr></thead><tbody>";
-                    result += "</tbody></table></div>";
-                    result += "<br><button type='button' onclick='window.close()'>Закрыть</button></body></html>";
-                    winPrinter.document.write(result);
-                    var table = winPrinter.document.getElementById("table_items");
+                    var darkLayer = document.createElement('div');
+                    darkLayer.id = 'shadow';
+                    document.body.appendChild(darkLayer);
+                    var modalWin = document.getElementById('popupWin');
+                    modalWin.style.display = 'block';
+                    var modalTitle = document.getElementById("modalTitle");
+                    modalTitle.innerText = title;
+                    var modalBody = document.getElementById("modalBody");
+                    modalBody.innerHTML = "<table id='tableFiles' class='border' width='95%'></table>";
+                    var tableFiles = document.getElementById("tableFiles");
+                    tableFiles.innerHTML = "<thead><tr bgcolor='#dcdcdc'><td>Файл</td><td>Размер</td></tr></thead>";
                     for (var i=0; i != items.length; i++) {
-                        var row = table.insertRow(-1);
+                        var row = tableFiles.insertRow(-1);
                         row.insertCell(-1).innerHTML = items[i].name;
                         if (items[i].size == 'DIR') {
                             row.insertCell(-1).innerHTML = '&lt' + items[i].size + '&gt';
@@ -38,10 +70,18 @@
                             row.insertCell(-1).innerHTML = items[i].size;
                         }
                     }
-                    winPrinter.document.close();
-                    winPrinter.blur();
+                    var modalButton = document.getElementById("modalButton");
+                    modalButton.innerHTML = "<button onclick='exit()'>Закрыть</button>"
                 }
             });
+
+        }
+        function exit() {
+            var darkLayer = document.getElementById('shadow');
+            darkLayer.parentNode.removeChild(darkLayer);
+            var modalWin = document.getElementById('popupWin');
+            modalWin.style.display = 'none';
+            return false;
         }
     </script>
 </head>
@@ -61,7 +101,7 @@
     <h3>Список директорий и файлов</h3>
 </div>
 <div class="marginLeft">
-    <table cellspacing="2" border="2">
+    <table cellspacing="2" border="2" style="border-collapse: collapse">
         <thead>
         <tr bgcolor="#dcdcdc">
             <th>Дата</th>
@@ -84,5 +124,15 @@
         </tbody>
     </table>
 </div>
+
+<div id="popupWin" class="modalwin">
+    <table id="tableModal" class="border" width="100%">
+        <tr><td id="modalTitle"></td></tr>
+        <tr><td id="modalBody" align="center"></td></tr>
+        <tr><td id="modalButton" align="right"></td></tr>
+    </table>
+
+</div>
+
 </body>
 </html>
