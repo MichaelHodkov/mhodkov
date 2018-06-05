@@ -9,8 +9,6 @@ import ru.iac.domain.ListTable;
 import ru.iac.domain.PathTable;
 import ru.iac.service.ListService;
 import ru.iac.service.PathService;
-import ru.iac.utils.ReadDirAndFiles;
-import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,14 +22,12 @@ public class MainController {
     private static final Logger LOG = Logger.getLogger(MainController.class);
     private final PathService pathService;
     private final ListService listService;
-    private final ReadDirAndFiles disk;
 
     @Autowired
     public MainController(PathService pathService, ListService listService) {
         LOG.info("Загрузка контроллера 'MainController'.");
         this.pathService = pathService;
         this.listService = listService;
-        this.disk = new ReadDirAndFiles();
     }
 
     @GetMapping("/main")
@@ -44,16 +40,8 @@ public class MainController {
     @PostMapping("/main")
     public String add(@RequestParam("path") String path, ModelMap model) {
         LOG.info("Запрос на добавление новой директории.");
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        if (disk.isDir(path)) {
+        if (pathService.addPath(path)) {
             LOG.info("Директория найдена.");
-            PathTable pathTable = new PathTable();
-            pathTable.setPath(path);
-            pathTable.setTime(timestamp);
-            pathService.add(pathTable);
-            for (ListTable item: disk.getAll(pathTable)) {
-                listService.add(item);
-            }
             return "redirect:main";
         } else {
             LOG.info("Директория не найдена.");

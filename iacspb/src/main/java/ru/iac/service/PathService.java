@@ -12,4 +12,5 @@ public interface PathService {
     PathTable add(final PathTable pathTable);
     List<PathTable> getAll();
     PathTable findById(final int id);
+    boolean addPath(String path);
 }
