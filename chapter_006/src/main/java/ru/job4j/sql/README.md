@@ -1,4 +1,4 @@
-# Michael Hodkov (Михаил Ходьков)
+# Michael Khodkov (Михаил Ходьков)
 
 Задача: ***XML XSLT JDBC Оптимизация***.
 
