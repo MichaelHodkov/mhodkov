@@ -1,4 +1,4 @@
-### Michael Hodkov (Михаил Ходьков)
+### Michael Khodkov (Михаил Ходьков)
 
 [![Build Status](https://travis-ci.org/MichaelHodkov/mhodkov.svg?branch=master)](https://travis-ci.org/MichaelHodkov/mhodkov)
 [![codecov](https://codecov.io/gh/MichaelHodkov/mhodkov/branch/master/graph/badge.svg)](https://codecov.io/gh/MichaelHodkov/mhodkov)
