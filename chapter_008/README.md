@@ -1,4 +1,4 @@
-# Michael Hodkov (Михаил Ходьков)
+# Michael Khodkov (Михаил Ходьков)
 
 Задача: ***Создать TODO list***.
 
