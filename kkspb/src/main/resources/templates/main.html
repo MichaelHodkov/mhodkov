@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать короткую ссылку</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+<div class="main">
+    <h1>Создать короткую ссылку</h1>
+    <h5>Поддерживются ссылки вида: 'http://' и 'https://'</h5>
+</div>
+<div class="url">
+    <form th:action="@{/main}" method="post">
+        <div>
+            <label>Введите URL: <input type="text" name="url" th:value="${fullUrl}" style="width: 50%" /></label>
+            <input type="submit" value="Сгенерировать"/></div>
+    </form>
+</div>
+<div class="alert" th:if="${error}">
+    <label th:text="${error}"/>
+</div>
+<div class="url">
+    <h4><a th:href="@{/full}">Получить полную ссылку из короткой</a></h4>
+</div>
+</body>
+</html>

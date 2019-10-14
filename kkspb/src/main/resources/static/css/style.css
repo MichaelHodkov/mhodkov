@@ -1,0 +1,15 @@
+.main {
+    text-align: center;
+    margin-top: 20%;
+}
+.url {
+    text-align: center;
+}
+.alert {
+    text-align: center;
+    color: red;
+}
+.shortUrl {
+    margin-top: 21%;
+    text-align: center;
+}

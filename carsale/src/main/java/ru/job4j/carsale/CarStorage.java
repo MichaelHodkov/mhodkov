@@ -74,7 +74,7 @@ public enum CarStorage {
         return this.tx(
                 session -> {
                     Query query = session.createQuery("FROM Advert WHERE timecreated > :time ORDER BY id ASC");
-                    query.setParameter("time", new Timestamp(System.currentTimeMillis() - 86400000));
+                    query.setParameter("url.lifeTime", new Timestamp(System.currentTimeMillis() - 86400000));
                     List<Advert> list = query.list();
                     return list;
                 }
