@@ -1,18 +1,15 @@
 package ru.kk.utils;
 
 import org.apache.log4j.Logger;
+import org.postgresql.util.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-
+import ru.kk.model.JsonUrl;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.*;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 @Component
 @PropertySource("classpath:config.properties")
@@ -23,6 +20,11 @@ public class UrlTools {
     public String domainName;
     public int urlLifeTime;
     private int urlOffset;
+
+    public static final int ERROR = -1;
+    public static final int CREATED = 1;
+    public static final int UPDATE = 2;
+    public static final int FIND = 3;
 
     public UrlTools() {
     }
@@ -35,7 +37,7 @@ public class UrlTools {
     @Value("${url.lifeTime}")
     public void setUrlLifeTime(int urlLifeTime) {
         this.urlLifeTime = urlLifeTime;
-        this.urlLifeTimeLong = urlLifeTime * 1000 * 60;
+        urlLifeTimeLong = urlLifeTime * 1000 * 60;
     }
 
     @Value("${url.offset}")
@@ -44,71 +46,94 @@ public class UrlTools {
     }
 
     public String generateShortUrl(long id) {
-        return Long.toHexString(this.urlOffset + id);
+        return Long.toHexString(urlOffset + id);
     }
 
     @NotNull
     public String getShortUrl(String url) {
-        return url.replace(this.domainName.concat("/"), "");
+        return url.replace(domainName.concat("/"), "");
     }
 
     @NotNull
-    public boolean isCorrectUrl(String url) {
-        return isCorrectStartWithHttp(url) && isNoSpaces(url) && isCorrectLength(url);
+    public boolean isCorrectUrl(JsonUrl jsonUrl) {
+        return isNotNull(jsonUrl) && isNotEmpty(jsonUrl) && isUrlStartWithHttp(jsonUrl) &&
+                isNoSpaces(jsonUrl) && isCorrectLength(jsonUrl);
     }
 
     @NotNull
-    public boolean isNoSpaces(String url) {
-        if (url.matches("^\\S+$")) {
+    public boolean isCorrectShortUrl(JsonUrl jsonUrl) {
+        return isNotNull(jsonUrl) && isNotEmpty(jsonUrl) && isUrlStartWithDomain(jsonUrl) &&
+                isNoSpaces(jsonUrl) && isCorrectLength(jsonUrl);
+    }
+
+    @NotNull
+    public boolean isNotNull(JsonUrl jsonUrl) {
+        if (jsonUrl.url != null) {
             return true;
-        } else {
-            LOG.error(String.format("Ошибка, URL (%s) содержит пробел/ы", url));
         }
+        jsonUrl.status = ERROR;
+        jsonUrl.error = String.format("Json (%s) не содержит url", jsonUrl);
         return false;
     }
 
     @NotNull
-    public boolean isCorrectStartWithHttp(String url) {
-        if (url.matches("^https?:\\/\\/.+$")) {
+    private boolean isNotEmpty(JsonUrl jsonUrl) {
+        if (!jsonUrl.url.isEmpty()) {
             return true;
-        } else {
-            LOG.error(String.format("Ошибка, URL (%s) должен начинать с 'http://' либо 'https://'", url));
         }
+        jsonUrl.status = ERROR;
+        jsonUrl.error = String.format("URL (%s) пуст", jsonUrl.url);
         return false;
     }
 
     @NotNull
-    public boolean isCorrectLength(String url) {
-        if (url.length() > 10) {
+    public boolean isNoSpaces(JsonUrl jsonUrl) {
+        if (jsonUrl.url.matches("^\\S+$")) {
             return true;
-        } else {
-            LOG.error(String.format("Ошибка, URL (%s) меньше 11 символов", url));
         }
+        jsonUrl.status = ERROR;
+        jsonUrl.error = String.format("URL (%s) содержит пробел/ы", jsonUrl.url);
         return false;
     }
 
     @NotNull
-    public boolean isCorrectShortUrl(String url) {
-        if (url.contains(this.domainName)) {
-            if (url.startsWith(this.domainName)) {
-                return isCorrectUrl(url);
-            } else {
-                LOG.error(String.format("URL (%s) не начинается с имени домена: '%s'", url, this.domainName));
-            }
-        } else {
-            LOG.error(String.format("URL (%s) не содержит имя домена: '%s'", url, this.domainName));
+    public boolean isUrlStartWithHttp(JsonUrl jsonUrl) {
+        if (jsonUrl.url.matches("^https?:\\/\\/.+$")) {
+            return true;
         }
+        jsonUrl.status = ERROR;
+        jsonUrl.error = String.format("URL (%s) должен начинать с 'http://' либо 'https://'", jsonUrl.url);
+        return false;
+    }
+
+    @NotNull
+    public boolean isCorrectLength(JsonUrl jsonUrl) {
+        if (jsonUrl.url.length() > 10) {
+            return true;
+        }
+        jsonUrl.status = ERROR;
+        jsonUrl.error = String.format("URL (%s) меньше 11 символов", jsonUrl.url);
+        return false;
+    }
+
+    @NotNull
+    public boolean isUrlStartWithDomain(JsonUrl jsonUrl) {
+        if (jsonUrl.url.toLowerCase().startsWith(domainName.toLowerCase())) {
+            return true;
+        }
+        jsonUrl.status = ERROR;
+        jsonUrl.error = String.format("Неизветный URL (%s)", jsonUrl.url);
         return false;
     }
 
     @NotNull
     public String addDomain(String shortUrl) {
-        return this.domainName.concat("/").concat(shortUrl);
+        return domainName.concat("/").concat(shortUrl);
     }
 
     @NotNull
     public boolean validTime(Timestamp time) {
-        return getUtcTimeLong() <= (time.getTime() + this.urlLifeTimeLong);
+        return getUtcTimeLong() <= (time.getTime() + urlLifeTimeLong);
     }
 
     public long getUtcTimeLong() {
@@ -117,5 +142,23 @@ public class UrlTools {
 
     public Timestamp getUtcTimestamp() {
         return  Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
+    }
+
+    public static String decode(String url) {
+        try {
+            return new String(Base64.decode(url), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            LOG.error("Ошибка декодирования из BASE64", e);
+            return url;
+        }
+    }
+
+    public static String encode(String url)  {
+        try {
+            return Base64.encodeBytes(url.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            LOG.error("Ошибка кодирования в BASE64", e);
+            return url;
+        }
     }
 }

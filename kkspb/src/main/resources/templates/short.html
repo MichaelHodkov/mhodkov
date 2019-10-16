@@ -20,7 +20,7 @@
 <body>
 <div class="shortUrl">
     <div>
-        <label>Короткий URL: <input type="text" name="url" id="url" th:value="${shortUrl}" style="width: 20%" /></label>
+        <label>Короткий URL: <input type="text" name="url" id="url" th:value="${url}" style="width: 20%" /></label>
         <input type="button" value="Скопировать" onclick="copyUrl();">
     </div>
 </div>
@@ -28,7 +28,7 @@
     <h4><a th:href="@{/main}">Создать еще одну короткую ссылку</a></h4>
 </div>
 <div class="url">
-    <h4><a th:href="@{/full(url=${shortUrl})}">Получить полную ссылку из короткой</a></h4>
+    <h4><a th:href="@{/fullUrl(url=${url})}">Получить полную ссылку из короткой</a></h4>
 </div>
 </body>
 </html>

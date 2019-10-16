@@ -62,7 +62,7 @@ public class UrlTable {
         sb.append(", url='").append(url).append('\'');
         sb.append(", shortUrl='").append(shortUrl).append('\'');
         sb.append(", time=").append(time);
-        sb.append('}');
+        sb.append(" (UTC)}");
         return sb.toString();
     }
 }
