@@ -1,10 +1,9 @@
 ### Michael Khodkov (Михаил Ходьков)
 
-[![Build Status](https://travis-ci.org/MichaelHodkov/mhodkov.svg?branch=master)](https://travis-ci.org/MichaelHodkov/mhodkov)
-[![codecov](https://codecov.io/gh/MichaelHodkov/mhodkov/branch/master/graph/badge.svg)](https://codecov.io/gh/MichaelHodkov/mhodkov)
+[Короткие ссылки](https://github.com/MichaelHodkov/mhodkov/tree/master/kkspb) Генерация коротких ссылок, получение полных ссылок из коротких.
+Технологии: Spring Boot, Swagger, Orika Mapper, PostgreSQL, Log4j.
 
-
-[Тестовое задание на Spring Boot](https://github.com/MichaelHodkov/mhodkov/tree/master/iacspb) Приложение по сканированию файлов и дерикторий с особой сортировкой.
+[Сканированию файлов и дерикторий](https://github.com/MichaelHodkov/mhodkov/tree/master/iacspb) Spring Boot приложение по сканированию файлов и дерикторий с особой сортировкой.
 Технологии: Spring Boot, jQuery, Ajax, JSON, PostgreSQL, Log4j.
 
 [Enterprise приложение c авторизацией и правами доступа на основе ролей.](https://github.com/MichaelHodkov/mhodkov/tree/master/carsale1)
