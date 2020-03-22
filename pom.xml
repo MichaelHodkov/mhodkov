@@ -29,7 +29,7 @@
 
 		<module>kkspb</module>
 
-		<!--<module>iacspb</module>-->
+        <module>iacspb</module>
 		<!--<module>carsale2</module>-->
 		<!--<module>testtask</module>-->
     </modules>
