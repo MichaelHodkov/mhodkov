@@ -5,12 +5,14 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.kk.service.interfaces.UrlService;
 import ru.kk.web.controllers.interfaces.ApiResponsesCodes;
 import ru.kk.web.dto.request.ShortUrlRequestDto;
 import ru.kk.web.dto.request.UrlRequestDto;
-import ru.kk.web.dto.response.ErrorResponseDto;
 import ru.kk.web.dto.response.UrlResponseDto;
 
 import javax.validation.Valid;
@@ -52,12 +54,6 @@ public class UrlController {
     public UrlResponseDto getFullUrlWithValidTime(@NotNull @Valid @RequestBody final ShortUrlRequestDto requestDto) {
         String fullUrl = urlService.getFullUrlByShortUrlWithValidTime(mapperFacade.map(requestDto, String.class));
         return mapperFacade.map(fullUrl, UrlResponseDto.class);
-    }
-
-    @GetMapping("test")
-    @ApiOperation(value = "test", httpMethod = "GET")
-    public ErrorResponseDto test() {
-        return null;
     }
 
 }
